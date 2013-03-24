@@ -8,7 +8,10 @@ export EDITOR='nano'
 # Don’t clear the screen after quitting a manual page
 export MANPAGER='less -X'
 
-VENDOR_PATH=`dirname $0`/vendor
+# Manage paths
+CURRENT_PATH=`dirname $0`
+VENDOR_PATH=$CURRENT_PATH/vendor
+export PATH=$CURRENT_PATH/bin:$PATH
 
 # Loading oh-my-zsh
 ZSH=$VENDOR_PATH/oh-my-zsh
