@@ -5,6 +5,9 @@ export LC_ALL='en_US.UTF-8'
 # Make nano the default editor
 export EDITOR='nano'
 
+# Don’t clear the screen after quitting a manual page
+export MANPAGER='less -X'
+
 VENDOR_PATH=`dirname $0`/vendor
 
 # Loading oh-my-zsh
