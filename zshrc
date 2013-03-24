@@ -2,6 +2,9 @@
 export LANG='en_US'
 export LC_ALL='en_US.UTF-8'
 
+# Make nano the default editor
+export EDITOR='nano'
+
 VENDOR_PATH=`dirname $0`/vendor
 
 # Loading oh-my-zsh
