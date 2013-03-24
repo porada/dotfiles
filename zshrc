@@ -1,3 +1,7 @@
+# Set locale variables to prevent possible encoding issues
+export LANG='en_US'
+export LC_ALL='en_US.UTF-8'
+
 VENDOR_PATH=`dirname $0`/vendor
 
 # Loading oh-my-zsh
