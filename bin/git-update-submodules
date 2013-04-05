@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [[ ! `git diff --cached --exit-code` ]]; then
+  git submodule foreach --recursive 'git pull'
+  git diff --exit-code || git commit -am 'Update submodules'
+fi
