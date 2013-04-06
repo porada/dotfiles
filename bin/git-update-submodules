@@ -1,6 +1,11 @@
 #!/bin/sh
+#
+# Requires `git-is`
 
-if [[ ! `git diff --cached --exit-code` ]]; then
-  git submodule foreach --recursive 'git pull'
-  git diff --exit-code || git commit -am 'Update submodules'
-fi
+# Proceed only inside the clean working tree
+git is inside-tree || exit 128
+git is dirty && exit 1
+
+# Pull all changes and commit them if there are any
+git submodule foreach --recursive 'git pull'
+git is dirty && git commit -am 'Update submodules'
