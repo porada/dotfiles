@@ -8,4 +8,4 @@ git is dirty && exit 1
 
 # Pull all changes and commit them if there are any
 git submodule foreach --recursive 'git pull'
-git is dirty && git commit -am 'Update submodules'
+git commit -am 'Update submodules'
