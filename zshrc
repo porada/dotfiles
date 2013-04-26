@@ -23,3 +23,6 @@ source $ZSH/oh-my-zsh.sh
 source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $VENDOR_PATH/z/z.sh
+
+# Loading aliases
+source $CURRENT_PATH/aliases.zsh
