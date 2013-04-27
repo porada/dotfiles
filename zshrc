@@ -9,9 +9,9 @@ export EDITOR='nano'
 export MANPAGER='less -X'
 
 # Manage paths
-CURRENT_PATH=`dirname $0`
-VENDOR_PATH=$CURRENT_PATH/vendor
-export PATH=$CURRENT_PATH/bin:$PATH
+DOTFILES_PATH=`dirname $0`
+VENDOR_PATH=$DOTFILES_PATH/vendor
+export PATH=$DOTFILES_PATH/bin:$PATH
 
 # Loading oh-my-zsh
 ZSH=$VENDOR_PATH/oh-my-zsh
@@ -25,4 +25,4 @@ source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zs
 source $VENDOR_PATH/z/z.sh
 
 # Loading aliases
-source $CURRENT_PATH/aliases.zsh
+source $DOTFILES_PATH/aliases.zsh
