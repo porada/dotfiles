@@ -13,16 +13,17 @@ DOTFILES_PATH=`dirname $0`
 VENDOR_PATH=$DOTFILES_PATH/vendor
 export PATH=$DOTFILES_PATH/bin:$PATH
 
-# Loading oh-my-zsh
+# Load oh-my-zsh
 ZSH=$VENDOR_PATH/oh-my-zsh
 ZSH_THEME='macovsky'
 DISABLE_AUTO_UPDATE='true'
 source $ZSH/oh-my-zsh.sh
 
-# Loading plugins
+# Initialize plugins
 source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $VENDOR_PATH/z/z.sh
+eval "$(rbenv init - --no-rehash)"
 
-# Loading aliases
+# Load aliases
 source $DOTFILES_PATH/aliases.zsh
