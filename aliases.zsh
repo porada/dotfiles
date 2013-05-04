@@ -6,3 +6,6 @@ alias cdf='cd `pwdf`'
 alias rb='rbenv'
 alias be='bundle exec'
 alias bi='bundle install'
+
+# Shorten `brew cask`
+alias cask='brew cask'
