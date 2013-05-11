@@ -27,6 +27,9 @@ alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opend
 # Shorten `brew cask`
 alias cask='brew cask'
 
+# Intuitive map function: `ls *.* | map cat`
+alias map='xargs -n1'
+
 # Smart aliases for `subl` and `open`
 function s { subl ${@:-'.'} }
 function o { open ${@:-'.'} }
