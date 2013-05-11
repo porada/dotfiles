@@ -12,6 +12,9 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 # Syntax-highlighted version of `cat`
 alias ca='pygmentize -g'
 
+# Copy to clipboard while printing it: `cat foo | copy`
+alias copy='tee /dev/tty | pbcopy'
+
 # Ruby-related aliases
 alias rb='rbenv'
 alias be='bundle exec'
