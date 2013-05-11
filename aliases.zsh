@@ -5,6 +5,10 @@ alias sudo='sudo '
 alias pwdf='osascript -e "tell app \"Finder\" to POSIX path of (insertion location as alias)"'
 alias cdf='cd `pwdf`'
 
+# Show and hide hidden files in Finder
+alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
+alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+
 # Syntax-highlighted version of `cat`
 alias ca='pygmentize -g'
 
