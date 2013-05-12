@@ -18,6 +18,9 @@ alias ca='pygmentize -g'
 # Copy to clipboard while printing it: `cat foo | copy`
 alias copy='tee /dev/tty | pbcopy'
 
+# Use colored `git diff` instead of `diff`
+available git && alias diff='git diff --no-index --color-words'
+
 # Ruby-related aliases
 alias rb='rbenv'
 alias be='bundle exec'
