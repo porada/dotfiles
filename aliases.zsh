@@ -36,6 +36,7 @@ alias cask='brew cask'
 # Intuitive map function: `ls *.* | map cat`
 alias map='xargs -n1'
 
-# Smart aliases for `subl` and `open`
+# Smart aliases for `subl`, `open` and `git`
 function s { subl ${@:-'.'} }
 function o { open ${@:-'.'} }
+function g { git  ${@:-'s'} }
