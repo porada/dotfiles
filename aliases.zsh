@@ -17,6 +17,9 @@ alias cdf='cd `pwdf`'
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
 
+# Show hidden files by default when using `ls`
+alias ls='command ls -AG'
+
 # Syntax-highlighted version of `cat`
 alias ca='pygmentize -g'
 
