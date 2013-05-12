@@ -1,6 +1,9 @@
 # Allow aliases to be used with `sudo`
 alias sudo='sudo '
 
+# Wrapper for `command -v` that’s more convenient to use
+alias available='command -v > /dev/null 2>&1 --'
+
 # Print the path or change working directory to the top-most Finder window location
 alias pwdf='osascript -e "tell app \"Finder\" to POSIX path of (insertion location as alias)"'
 alias cdf='cd `pwdf`'
