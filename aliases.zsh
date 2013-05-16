@@ -41,9 +41,6 @@ alias bu='bundle update'
 # Determine local and public IP
 alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opendns.com'
 
-# Shorten `brew cask`
-alias cask='brew cask'
-
 # Intuitive map function: `ls *.* | map cat`
 alias map='xargs -n1'
 
