@@ -1,7 +1,9 @@
 # Quick navigation
 alias p='cd ~/Projects'
+alias w='cd ~/Work'
 alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
+alias dr='cd ~/Dropbox'
 
 # Allow aliases to be used with `sudo`
 alias sudo='sudo '
