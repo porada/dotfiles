@@ -35,7 +35,7 @@ alias copy='tee /dev/tty | pbcopy'
 available git && alias diff='git diff --no-index --color-words'
 
 # Ruby-related aliases
-alias rb='rbenv'
+alias rb='rbenv global'
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
