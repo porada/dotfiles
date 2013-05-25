@@ -25,5 +25,8 @@ source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zs
 source $VENDOR_PATH/z/z.sh
 eval "$(rbenv init - --no-rehash)"
 
-# Load aliases
-source $DOTFILES_PATH/aliases.zsh
+# Load aliases and extra stuff
+for file in $DOTFILES_PATH/{aliases,extra}.zsh; do
+  [ -r $file ] && source $file
+done
+unset file
