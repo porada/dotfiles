@@ -5,8 +5,9 @@ alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 alias dr='cd ~/Dropbox'
 
-# Global alias for `git`
+# Global aliases
 alias -g g='git'
+alias -g r='rails'
 
 # Wrapper for `command -v` that’s more convenient to use
 alias available='command -v > /dev/null 2>&1 --'
