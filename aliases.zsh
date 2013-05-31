@@ -5,9 +5,6 @@ alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 alias dr='cd ~/Dropbox'
 
-# Allow aliases to be used with `sudo`
-alias sudo='sudo '
-
 # Wrapper for `command -v` that’s more convenient to use
 alias available='command -v > /dev/null 2>&1 --'
 
