@@ -5,6 +5,9 @@ alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 alias dr='cd ~/Dropbox'
 
+# Global alias for `git`
+alias -g g='git'
+
 # Wrapper for `command -v` that’s more convenient to use
 alias available='command -v > /dev/null 2>&1 --'
 
@@ -46,4 +49,3 @@ alias map='xargs -n1'
 # Smart aliases for `subl`, `open` and `git`
 function s { subl ${@:-'.'} }
 function o { open ${@:-'.'} }
-function g { git  ${@:-'s'} }
