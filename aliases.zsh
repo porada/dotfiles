@@ -9,6 +9,12 @@ alias dr='cd ~/Dropbox'
 alias -g g='git'
 alias -g r='rails'
 
+# Smart alias for `subl`
+function s { subl ${@:-'.'} }
+
+# Smart alias for `open`
+function o { open ${@:-'.'} }
+
 # Wrapper for `command -v` that’s more convenient to use
 alias available='command -v > /dev/null 2>&1 --'
 
@@ -46,7 +52,3 @@ alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opend
 
 # Intuitive map function: `ls *.* | map cat`
 alias map='xargs -n1'
-
-# Smart aliases for `subl`, `open` and `git`
-function s { subl ${@:-'.'} }
-function o { open ${@:-'.'} }
