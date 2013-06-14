@@ -47,6 +47,9 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
 
+# Shorter `middleman`
+alias mm='bundle exec middleman'
+
 # Determine local and public IP
 alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opendns.com'
 
