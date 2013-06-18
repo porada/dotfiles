@@ -49,6 +49,7 @@ alias bu='bundle update'
 
 # Shorter `middleman`
 alias mm='bundle exec middleman'
+alias mms='bundle exec middleman server --port 3000'
 
 # Determine local and public IP
 alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opendns.com'
