@@ -46,6 +46,8 @@ alias rb='rbenv global'
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
+alias rs='bundle exec rails server'
+alias rc='bundle exec rails console'
 
 # Shorter `middleman`
 alias mm='bundle exec middleman'
