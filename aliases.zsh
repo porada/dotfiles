@@ -48,10 +48,8 @@ alias bi='bundle install'
 alias bu='bundle update'
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
-
-# Shorter `middleman`
 alias mm='bundle exec middleman'
-alias mms='bundle exec middleman server --port 3000'
+alias ms='bundle exec middleman server --port 3000'
 
 # Determine local and public IP
 alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opendns.com'
