@@ -44,6 +44,7 @@ available git && alias diff='git diff --no-index'
 # Ruby-related aliases
 alias rg='rbenv global'
 alias rl='rbenv local'
+alias rv='rbenv versions'
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
