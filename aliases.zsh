@@ -60,4 +60,4 @@ alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opend
 alias map='xargs -n1'
 
 # Smart alias for `proxylocal`
-function proxy { proxylocal ${@:-'3000'} }
+function proxy { proxylocal --host porada ${@:-'3000'} }
