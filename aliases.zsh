@@ -52,6 +52,7 @@ alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
 alias mm='bundle exec middleman'
 function ms { bundle exec middleman server --port ${@:-'3000'} }
+alias pow='powder'
 
 # Determine local and public IP
 alias ip='ipconfig getifaddr en1 && dig +short myip.opendns.com @resolver1.opendns.com'
