@@ -4,9 +4,8 @@ alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 alias dr='cd ~/Dropbox'
 
-# Global aliases
+# Make `g` the global alias for `git`
 alias -g g='git'
-alias -g r='rails'
 
 # Smart alias for `subl`
 function s { subl ${@:-'.'} }
