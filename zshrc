@@ -9,9 +9,8 @@ export EDITOR='nano'
 export MANPAGER='less -X'
 
 # Manage paths
-DOTFILES_PATH=$HOME/.dotfiles
+export DOTFILES_PATH=$HOME/.dotfiles
 VENDOR_PATH=$DOTFILES_PATH/vendor
-export PATH=$DOTFILES_PATH/bin:$PATH
 
 # Load oh-my-zsh
 ZSH=$VENDOR_PATH/oh-my-zsh
@@ -26,5 +25,6 @@ source $VENDOR_PATH/z/z.sh
 eval "$(rbenv init - --no-rehash)"
 
 # Load the rest of dotfiles
+source $DOTFILES_PATH/path.zsh
 source $DOTFILES_PATH/aliases.zsh
 source $DOTFILES_PATH/extra.zsh
