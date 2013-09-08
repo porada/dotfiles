@@ -1,8 +1,6 @@
 # Quick navigation
 alias p='cd ~/Projects'
 alias d='cd ~/Desktop'
-alias dl='cd ~/Downloads'
-alias dr='cd ~/Dropbox'
 
 # Make `g` the global alias for `git`
 alias -g g='git'
