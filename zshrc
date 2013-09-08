@@ -9,7 +9,7 @@ export EDITOR='nano'
 export MANPAGER='less -X'
 
 # Manage paths
-DOTFILES_PATH=`dirname $0`
+DOTFILES_PATH=$HOME/.dotfiles
 VENDOR_PATH=$DOTFILES_PATH/vendor
 export PATH=$DOTFILES_PATH/bin:$PATH
 
