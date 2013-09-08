@@ -2,8 +2,8 @@
 export LANG='en_US'
 export LC_ALL='en_US.UTF-8'
 
-# Make nano the default editor
-export EDITOR='nano'
+# Set the default editor
+export EDITOR='vim'
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER='less -X'
