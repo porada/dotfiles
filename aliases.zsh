@@ -37,7 +37,7 @@ alias ca='pygmentize -g'
 alias copy='tee /dev/tty | pbcopy'
 
 # Use colored `git diff` instead of `diff`
-available git && alias diff='git diff --no-index'
+alias diff='git diff --no-index'
 
 # Ruby-related aliases
 alias rg='rbenv global'
