@@ -33,9 +33,6 @@ alias rmd='rm -rfv'
 # Syntax-highlighted version of `cat`
 alias ca='pygmentize -g'
 
-# Copy to clipboard while printing it: `cat foo | copy`
-alias copy='tee /dev/tty | pbcopy'
-
 # Use colored `git diff` instead of `diff`
 alias diff='git diff --no-index'
 
