@@ -10,3 +10,6 @@
 [submodule "vendor/z"]
 	path = vendor/z
 	url = https://github.com/rupa/z.git
+[submodule "vendor/vim-sensible"]
+	path = vendor/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
