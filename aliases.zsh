@@ -2,7 +2,8 @@
 alias p='cd ~/Projects'
 alias d='cd ~/Desktop'
 
-# Make `g` the global alias for `git`
+# Global aliases
+alias -g v=$EDITOR
 alias -g g='git'
 
 # Smart alias for `subl`
