@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for source in .vim .vimrc .zshrc; do
+  target=~/`basename $source`
+  source=~/.dotfiles/$source
+
+  rm -rf $target
+  ln -s $source $target
+done
