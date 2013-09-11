@@ -3,7 +3,7 @@ export LANG='en_US'
 export LC_ALL='en_US.UTF-8'
 
 # Set the default editor
-export EDITOR='vim'
+export EDITOR='vim -c startinsert'
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER='less -X'
