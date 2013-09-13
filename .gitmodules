@@ -13,3 +13,6 @@
 [submodule "vendor/vim-sensible"]
 	path = vendor/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "vendor/vim-rsi"]
+	path = vendor/vim-rsi
+	url = https://github.com/tpope/vim-rsi.git
