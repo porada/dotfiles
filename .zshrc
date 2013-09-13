@@ -16,3 +16,6 @@ source $DOTFILES_PATH/path.zsh
 source $DOTFILES_PATH/vendor.zsh
 source $DOTFILES_PATH/aliases.zsh
 source $DOTFILES_PATH/extra.zsh
+
+# Disable autocorrect
+unsetopt correct_all
