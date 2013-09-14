@@ -41,7 +41,7 @@ alias bi='bundle install'
 alias bu='bundle update'
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
-alias rx='bundle exec rails runner "Rails.cache.clear"'
+alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
 alias mm='bundle exec middleman'
 function ms { bundle exec middleman server --port ${@:-'3000'} }
 alias pow='powder'
