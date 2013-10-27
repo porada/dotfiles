@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for source in .vim .vimrc .zshrc; do
+for source in .hushlogin .vim .vimrc .zshrc; do
   target=~/`basename $source`
   source=~/.dotfiles/$source
 
