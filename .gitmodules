@@ -13,3 +13,6 @@
 [submodule "vendor/vim-rsi"]
 	path = vendor/vim-rsi
 	url = https://github.com/tpope/vim-rsi.git
+[submodule "vendor/zsh-completions"]
+	path = vendor/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
