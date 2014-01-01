@@ -27,7 +27,7 @@ export PATH="$DOTFILES_PATH/bin:$PATH"
 
 # Load dotfiles
 source $DOTFILES_PATH/aliases.zsh
-source $DOTFILES_PATH/extra.zsh
+source $DOTFILES_PATH/extra.zsh > /dev/null 2>&1
 
 # Load vendor plugins
 source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
