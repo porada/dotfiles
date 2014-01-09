@@ -23,7 +23,8 @@ if command -v brew > /dev/null 2>&1; then
 fi
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
-export PATH="$DOTFILES_PATH/bin:$PATH"
+PATH="$DOTFILES_PATH/bin:$PATH"
+export PATH="./bin:$PATH"
 
 # Load dotfiles
 source $DOTFILES_PATH/aliases.zsh
