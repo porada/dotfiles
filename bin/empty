@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+typeset -A tasks
+tasks=(
+  # Flush DNS cache
+  dnscache 'sudo killall -HUP mDNSResponder'
+  # Clean Homebrew’s kegs and check if everything’s fine
+  brewcache 'brew cleanup --force; brew doctor'
+  # Empty the Trash on all mounted volumes and clear system logs
+  trash 'sudo rm -rfv ~/.Trash /Volumes/*/.Trashes /private/var/log/asl/*.asl'
+  # Clear the list of downloaded files
+  downloads 'sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
+  # Remove duplicates in Finder’s “Open With” menu
+  openmenu '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder'
+  # Recursively remove all `.DS_Store` files
+  dsstore 'find . -type f -name "*.DS_Store" -ls -delete'
+)
+
+# Remove non-alphanumeric characters and convert it to lowercase
+name=`echo $@ | tr -cd '[:alnum:]' | tr '[:upper:]' '[:lower:]'`
+task=$tasks[$name]
+
+# Print and run the command
+printf '$ %s\n' $task
+eval $task
