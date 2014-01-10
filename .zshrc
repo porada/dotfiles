@@ -24,7 +24,6 @@ fi
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
-export PATH="./bin:$PATH"
 
 # Load dotfiles
 source $DOTFILES_PATH/aliases.zsh
@@ -38,3 +37,6 @@ eval "$(rbenv init - --no-rehash)"
 
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
+
+# Make sure this is the last path
+export PATH="./bin:$PATH"
