@@ -18,15 +18,13 @@ export MANPAGER='less -X'
 export DOTFILES_PATH=$HOME/.dotfiles
 VENDOR_PATH=$DOTFILES_PATH/vendor
 
-if command -v brew > /dev/null 2>&1; then
-  PATH="`brew --prefix`/share/npm/bin:$PATH"
-fi
 PATH="/sbin:$PATH"
 PATH="/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="/usr/bin:$PATH"
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
+PATH="/usr/local/share/npm/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
 
 # Load dotfiles
