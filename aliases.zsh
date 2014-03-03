@@ -4,6 +4,7 @@ alias d='cd ~/Desktop'
 
 # Global aliases
 alias -g v=$EDITOR
+alias -g a='atom'
 alias -g g='git'
 
 # Smart alias for `subl`
