@@ -1,0 +1,21 @@
+[alias]
+	# Simple aliases
+	s = status --short
+	l = log
+	a = add -v
+	c = commit -v
+
+	rc = rebase --continue
+	ra = rebase --abort
+
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+
+[push]
+	# Push only to the current branch
+	default = simple
+
+[url "git@github.com:"]
+	# Provide URL shorthand for GitHub
+	insteadOf = gh:

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# If the first argument is a number, run `git-diff` between
+# the current state and the state from `n` revisions ago
+if [[ $1 =~ ^[0-9]+$ ]]; then
+  clear
+  git diff HEAD~$1
+else
+  git diff-files --quiet || clear
+  git diff $@
+fi
