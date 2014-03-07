@@ -4,7 +4,6 @@ alias d='cd ~/Desktop'
 
 # Global aliases
 alias -g v=$EDITOR
-alias -g a='atom'
 alias -g g='git'
 
 # Smart alias for `subl`
@@ -12,6 +11,9 @@ function s { subl ${@:-'.'} }
 
 # Smart alias for `open`
 function o { open ${@:-'.'} }
+
+# Shorter Atom
+alias a='atom'
 
 # Show and hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
