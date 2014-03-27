@@ -3,8 +3,8 @@
 # Update Homebrew and installed apps, then check if everything’s fine
 brew update && brew upgrade && brew cleanup; brew doctor
 
-# Update NPM and globally installed packages
-npm update -g npm && npm update -g
+# Update global packages installed via NPM
+npm update -g
 
 # Update RubyGems and installed gems
 gem update --system && yes | (gem update && gem cleanup)
