@@ -9,3 +9,7 @@ for source in .bundle .gemrc .gitconfig .hushlogin .powconfig .vim .vimrc .zshrc
 done
 
 touch ~/.z
+
+if [ `whoami` != "Dominik" ]; then
+  echo ".gitconfig: Remember to change your user info"
+fi
