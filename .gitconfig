@@ -11,6 +11,7 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+	stats = shortlog -sn
 
 [push]
 	# Push only to the current branch
