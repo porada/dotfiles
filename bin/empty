@@ -13,7 +13,7 @@ tasks=(
   # Remove duplicates in Finder’s “Open With” menu
   openmenu '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder'
   # Recursively remove all `.DS_Store` files
-  dsstore 'find . -type f -name "*.DS_Store" -ls -delete'
+  ds 'find . -type f -name "*.DS_Store" -ls -delete'
 )
 
 # Remove non-alphanumeric characters and convert it to lowercase
