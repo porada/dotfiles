@@ -5,6 +5,9 @@
 	a = add -v
 	c = commit -v
 
+	ch = checkout
+	cx = checkout HEAD --
+
 	rc = rebase --continue
 	ra = rebase --abort
 
