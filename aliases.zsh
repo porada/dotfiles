@@ -5,8 +5,8 @@ alias d='cd ~/Desktop'
 # Shorten the frequently used commands
 alias v=$EDITOR
 alias a='atom'
+alias s='atom'
 alias g='git'
-function s { subl ${@:-'.'} }
 function o { open ${@:-'.'} }
 
 # Show and hide hidden files in Finder
