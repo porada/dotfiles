@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Never go into computer sleep mode
+sudo systemsetup -setcomputersleep Off
+
 # Disable Resume and Versions system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write -g ApplePersistence -bool no
