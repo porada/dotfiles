@@ -31,6 +31,7 @@ alias pow='powder'
 # Rails-related aliases
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
+alias rg='bundle exec rails generate'
 alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
 
 # Middleman-related aliases
