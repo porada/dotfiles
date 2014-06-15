@@ -4,4 +4,4 @@
 # show `n` last log entries instead of the default value
 [[ $1 =~ ^[0-9]+$ ]] && count=$1
 
-git --no-pager log -n ${count:-5} --pretty=format:"%C(black bold)%h  %C(reset)%s %C(yellow)(%cr) %C(blue)%an%C(reset)"
+git --no-pager log -n ${count:-5} --pretty=format:"%C(black bold)%h %C(red)%d %C(reset)%s %C(yellow)(%cd) %C(blue)%an%C(reset)"
