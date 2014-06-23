@@ -1,5 +1,6 @@
 # Configure ZSH
-autoload -U compinit promptinit
+autoload -Uz compinit promptinit
+zmodload zsh/terminfo
 compinit
 promptinit
 setopt autocd
@@ -36,6 +37,10 @@ source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $VENDOR_PATH/z/z.sh
 hash rbenv > /dev/null 2>&1 && eval "$(rbenv init - --no-rehash)"
+
+# Bind history substring search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
