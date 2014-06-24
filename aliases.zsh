@@ -24,6 +24,7 @@ alias rmd='rm -rfv'
 # Ruby-related aliases
 alias be='bundle exec'
 alias bi='bundle install'
+alias bo='bundle outdated'
 alias bu='bundle update'
 alias pow='powder'
 
