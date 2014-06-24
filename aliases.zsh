@@ -5,7 +5,6 @@ alias d='cd ~/Desktop'
 # Shorten the frequently used commands
 alias v=$EDITOR
 alias a='atom'
-alias s='atom'
 alias g='git'
 function o { open ${@:-'.'} }
 
