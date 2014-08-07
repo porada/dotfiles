@@ -39,7 +39,10 @@ alias mb='bundle exec middleman build'
 function ms { bundle exec middleman server --port ${@:-'3000'} }
 
 # Determine local and public IP
-alias ip='ipconfig getifaddr en0; ipconfig getifaddr en1; dig +short myip.opendns.com @resolver1.opendns.com'
+function ip {
+  ifconfig -a inet | awk '/inet/ {print $2}'
+  dig +short myip.opendns.com @resolver1.opendns.com
+}
 
 # Smart alias for `proxylocal`
 function proxy { proxylocal --host porada ${@:-'3000'} }
