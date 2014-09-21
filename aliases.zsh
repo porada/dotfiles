@@ -26,7 +26,6 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bo='bundle outdated'
 alias bu='bundle update'
-alias pow='powder'
 
 # Rails-related aliases
 alias rs='bundle exec rails server'
