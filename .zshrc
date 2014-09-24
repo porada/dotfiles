@@ -44,6 +44,3 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
-
-# Make sure this is the last path
-export PATH="./bin:$PATH"
