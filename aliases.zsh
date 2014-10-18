@@ -35,7 +35,7 @@ alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
 
 # Middleman-related aliases
 alias mb='bundle exec middleman build'
-alias md='bundle exec middleman deploy'
+alias mdeploy='bundle exec middleman deploy'
 function ms { bundle exec middleman server --port ${@:-'3000'} }
 
 # Determine local and public IP
