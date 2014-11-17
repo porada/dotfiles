@@ -40,7 +40,7 @@ function ms { bundle exec middleman server --port ${@:-'3000'} }
 
 # Determine local and public IP
 function ip {
-  ifconfig -a inet | awk '/inet/ {print $2}'
+  ifconfig -a inet | awk '/inet/ {print $2}' | grep -v 127.0.0.1
   dig +short myip.opendns.com @resolver1.opendns.com
 }
 
