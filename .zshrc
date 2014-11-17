@@ -43,5 +43,8 @@ hash rbenv > /dev/null 2>&1 && eval "$(rbenv init - --no-rehash)"
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# Bind forward delete key
+bindkey "^[[3~" delete-char
+
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
