@@ -43,6 +43,3 @@ function ip {
   ifconfig -a inet | awk '/inet/ {print $2}' | grep -v 127.0.0.1
   dig +short myip.opendns.com @resolver1.opendns.com
 }
-
-# Smart alias for `proxylocal`
-function proxy { proxylocal --host porada ${@:-'3000'} }
