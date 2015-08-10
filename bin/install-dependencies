@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+typeset -A tasks
+tasks=(
+  ruby 'gem install bundle git-up powder'
+)
+
+# Remove non-alphanumeric characters and convert it to lowercase
+name=`echo $@ | tr -cd '[:alnum:]' | tr '[:upper:]' '[:lower:]'`
+task=$tasks[$name]
+
+# Print and run the command
+printf '$ %s\n' $task
+eval $task
