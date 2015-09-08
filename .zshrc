@@ -27,6 +27,8 @@ PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="/usr/local/share/npm/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
+PATH="./node_modules/.bin:$PATH"
+PATH="./bin:$PATH"
 
 # Load dotfiles
 source $DOTFILES_PATH/aliases.zsh
