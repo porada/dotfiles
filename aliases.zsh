@@ -6,6 +6,8 @@ alias d='cd ~/Desktop'
 alias v=$EDITOR
 alias a='atom'
 alias g='git'
+alias n='npm'
+alias ng='npm --global'
 function o { open ${@:-'.'} }
 
 # Show and hide hidden files in Finder
