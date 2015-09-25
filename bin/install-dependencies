@@ -2,7 +2,7 @@
 
 typeset -A tasks
 tasks=(
-  ruby 'gem install bundle git-up powder'
+  ruby 'gem install bundler git-up powder'
 )
 
 # Remove non-alphanumeric characters and convert it to lowercase

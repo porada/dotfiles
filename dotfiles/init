@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for source in .bundle .gemrc .gitconfig .hushlogin .powconfig .vim .vimrc .zshrc; do
+for source in .gemrc .gitconfig .hushlogin .vim .vimrc .zshrc; do
   target=~/`basename $source`
   source=~/.dotfiles/$source
 

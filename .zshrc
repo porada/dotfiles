@@ -1,6 +1,5 @@
 # Configure ZSH
 autoload -Uz compinit promptinit
-zmodload zsh/terminfo
 compinit
 promptinit
 setopt autocd
@@ -36,14 +35,7 @@ source $DOTFILES_PATH/extra.zsh > /dev/null 2>&1
 
 # Load vendor plugins
 source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $VENDOR_PATH/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $VENDOR_PATH/z/z.sh
-source $VENDOR_PATH/oh-my-zsh/plugins/terminalapp/terminalapp.plugin.zsh
-hash rbenv > /dev/null 2>&1 && eval "$(rbenv init - --no-rehash)"
-
-# Bind history substring search
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Bind forward delete key
 bindkey "^[[3~" delete-char

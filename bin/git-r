@@ -1,7 +1,3 @@
 #!/bin/sh
 
-# If the first argument is a number,
-# run `git rebase` starting from `n` last commits
-if [[ $1 =~ ^[0-9]+$ ]]; then
-  git rebase --interactive HEAD~$1
-fi
+git rebase --interactive HEAD~${1:-5}
