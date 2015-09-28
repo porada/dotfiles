@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git --no-pager log -n 1 --pretty=format:"%H" | pbcopy
+git --no-pager log -n 1 --pretty=format:"%C(black bold)%h %C(reset)%s %C(yellow)(%cd) %C(blue)%an"
