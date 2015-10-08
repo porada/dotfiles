@@ -4,8 +4,8 @@ alias d='cd ~/Desktop'
 
 # Shorten the frequently used commands
 alias g='git'
-function a { atom ${@:-'.'} }
-function o { open ${@:-'.'} }
+alias a='atom'
+alias o='open'
 
 # Show and hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
@@ -32,9 +32,3 @@ alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
 alias mb='bundle exec middleman build'
 alias md='bundle exec middleman deploy'
 alias ms='bundle exec middleman server'
-
-# Determine local and public IP
-function ip {
-  ifconfig -a inet | awk '/inet/ {print $2}' | grep -v 127.0.0.1
-  dig +short myip.opendns.com @resolver1.opendns.com
-}
