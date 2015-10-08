@@ -13,6 +13,7 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 
 # Show hidden files by default when using `ls`
 alias ls='command ls -AG'
+alias lsd='tree -ad'
 
 # Recursively remove given files and directories
 alias rmd='rm -rfv'
