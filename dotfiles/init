@@ -10,6 +10,6 @@ done
 
 touch ~/.z
 
-if [ `whoami` != "Dominik" ]; then
-  echo ".gitconfig: Remember to change your user info"
+if [ `whoami` != 'Dominik' ]; then
+  echo '.gitconfig: Remember to change your user info'
 fi
