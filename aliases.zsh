@@ -33,3 +33,10 @@ alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
 alias mb='bundle exec middleman build'
 alias md='bundle exec middleman deploy'
 alias ms='bundle exec middleman server'
+
+# Node-related aliases
+alias ni='npm install'
+alias no='npm outdated'
+alias ns='npm start'
+alias nu='npm upgrade'
+alias nx='rm -rf node_modules'
