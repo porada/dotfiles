@@ -37,6 +37,7 @@ alias ms='bundle exec middleman server'
 # Node-related aliases
 alias ni='npm install'
 alias no='npm outdated'
+alias nr='npm run-script'
 alias ns='npm start'
 alias nu='npm upgrade'
 alias nx='rm -rf node_modules'
