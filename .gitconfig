@@ -1,6 +1,5 @@
 [alias]
 	# Simple aliases
-	s = status --short
 	l = log
 	a = add -v
 	c = commit -v
