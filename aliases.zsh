@@ -18,6 +18,9 @@ alias lsd='tree -ad'
 # Recursively remove given files and directories
 alias rmd='rm -rfv'
 
+# Better diff
+alias diff='git diff --no-index'
+
 # Ruby-related aliases
 alias be='bundle exec'
 alias bi='bundle install'
