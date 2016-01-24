@@ -7,4 +7,4 @@ brew update && brew upgrade && brew cleanup; brew doctor && brew cleanup --force
 npm update -g npm && npm update -g
 
 # Update RubyGems and installed gems
-gem update --system && yes | (gem update && gem cleanup)
+gem update --system && gem uninstall --all --executables --ignore-dependencies && install-dependencies ruby
