@@ -1,0 +1,9 @@
+#!/usr/bin/env osascript
+
+on run argv
+  tell application "Messages"
+    set Messenger to last service
+    set Recipient to buddy (item 1 of argv) of Messenger
+    send (item 2 of argv) to Recipient
+  end tell
+end run
