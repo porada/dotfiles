@@ -1,0 +1,7 @@
+#!/usr/bin/env osascript
+
+on run argv
+  repeat with arg in argv
+    tell application arg to quit
+  end repeat
+end run
