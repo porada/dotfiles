@@ -1,0 +1,6 @@
+#!/bin/sh
+
+input="$1"
+output="$(basename $input | cut -f 1 -d '.').png"
+
+convert -coalesce $input $output
