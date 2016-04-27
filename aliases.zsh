@@ -4,7 +4,7 @@ alias d='cd ~/Desktop'
 
 # Shorten the frequently used commands
 alias g='git'
-alias a='atom'
+alias a='open -a Atom'
 alias o='open'
 
 # Show and hide hidden files in Finder
