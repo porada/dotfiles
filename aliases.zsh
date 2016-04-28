@@ -6,6 +6,7 @@ alias d='cd ~/Desktop'
 alias g='git'
 alias a='open -a Atom'
 alias o='open'
+alias k='killall'
 
 # Show and hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
