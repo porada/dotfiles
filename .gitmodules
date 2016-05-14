@@ -19,3 +19,6 @@
 [submodule "vendor/vim-polyglot"]
 	path = vendor/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "vendor/zsh-autosuggestions"]
+	path = vendor/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git

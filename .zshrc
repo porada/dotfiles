@@ -35,6 +35,7 @@ source $DOTFILES_PATH/extra.zsh > /dev/null 2>&1
 
 # Load vendor plugins
 source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $VENDOR_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $VENDOR_PATH/z/z.sh
 
 # Bind forward delete key
