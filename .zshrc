@@ -38,8 +38,7 @@ source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $VENDOR_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $VENDOR_PATH/z/z.sh
 
-# Bind forward delete key
-bindkey "^[[3~" delete-char
+source $VENDOR_PATH/oh-my-zsh/lib/key-bindings.zsh
 
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
