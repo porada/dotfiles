@@ -39,6 +39,7 @@ source $VENDOR_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $VENDOR_PATH/z/z.sh
 
 source $VENDOR_PATH/oh-my-zsh/lib/key-bindings.zsh
+source $VENDOR_PATH/oh-my-zsh/lib/history.zsh
 
 # Add completions
 fpath=($fpath $VENDOR_PATH/zsh-completions/src)
