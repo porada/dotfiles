@@ -29,6 +29,7 @@ alias bo='bundle outdated'
 alias bu='bundle update'
 
 # Rails-related aliases
+alias rl='tail -f log/development.log'
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
 alias rg='bundle exec rails generate'
