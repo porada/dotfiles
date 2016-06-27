@@ -28,3 +28,12 @@
 	# Please change this if you’re not me
 	name = Dominik Porada
 	email = dominik@porada.co
+
+[pager]
+	# Take advantage of the better built-in diff
+	log  = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+
+[interactive]
+	diffFilter = diff-highlight
