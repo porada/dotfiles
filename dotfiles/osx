@@ -32,7 +32,7 @@ defaults write com.apple.dock showhidden -bool true
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Disable smart quotes and continuous spell checking in Message
+# Disable smart quotes and continuous spell checking in Messages
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
