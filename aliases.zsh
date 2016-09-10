@@ -4,7 +4,7 @@ alias d='cd ~/Desktop'
 
 # Shorten the frequently used commands
 alias g='git'
-alias a='open -a Atom'
+alias a='atom'
 alias o='open'
 alias k='killall'
 
