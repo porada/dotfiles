@@ -33,7 +33,7 @@ alias rl='tail -f log/development.log'
 alias rs='bundle exec rails server'
 alias rc='bundle exec rails console'
 alias rg='bundle exec rails generate'
-alias rx='bundle exec rails runner "Rails.cache.clear" && powder restart'
+alias rx='bundle exec rails runner "Rails.cache.clear"'
 
 # Middleman-related aliases
 alias mb='bundle exec middleman build'
