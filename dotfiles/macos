@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Never go into computer sleep mode
-sudo pmset -a sleep 0
-
 # Disable Resume and Versions system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write -g ApplePersistence -bool no
@@ -38,6 +35,3 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
-# Increase sound quality for Bluetooth devices
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
