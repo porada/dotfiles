@@ -4,7 +4,7 @@
 brew update && brew upgrade && brew cleanup; brew doctor && brew cleanup --force
 
 # Update globally installed Node packages
-yarn self-update && yarn global upgrade
+npm upgrade --global yarn && yarn global upgrade
 
 # Update RubyGems and installed gems
 gem update --system && gem uninstall --all --executables --ignore-dependencies && install-dependencies ruby
