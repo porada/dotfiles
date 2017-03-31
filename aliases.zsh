@@ -49,3 +49,6 @@ alias ns='yarn start'
 alias nt='yarn test'
 alias nu='yarn upgrade'
 alias nx='find . -name node_modules -type d -exec rm -rf {} \;'
+
+# Raspberry Pi
+alias pi='ssh pi@raspberrypi.local'
