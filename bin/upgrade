@@ -7,7 +7,7 @@ if hash brew 2>/dev/null; then
 fi
 
 # Update globally installed Node packages
-npm upgrade --global yarn && yarn global upgrade
+npm upgrade --global && yarn global upgrade
 
 # Update RubyGems and installed gems
 gem update --system && gem uninstall --all --executables --ignore-dependencies && install-dependencies ruby
