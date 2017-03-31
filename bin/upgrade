@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # Update Homebrew and installed apps, then check if everything’s fine
-brew update && brew upgrade && brew cleanup; brew doctor && brew cleanup --force
+if hash brew 2>/dev/null; then
+  brew update && brew upgrade && brew cleanup
+  brew doctor && brew cleanup --force
+fi
 
 # Update globally installed Node packages
 npm upgrade --global yarn && yarn global upgrade
