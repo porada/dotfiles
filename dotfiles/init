@@ -1,11 +1,11 @@
 #!/bin/sh
 
-for source in .gemrc .gitconfig .hushlogin .vim .vimrc .zshrc; do
-  target=~/`basename $source`
+for source in .config/fish .gemrc .gitconfig .hushlogin .vim .vimrc .zshrc; do
+  target=~/$source
   source=~/.dotfiles/$source
 
   rm -rf $target
-  ln -s $source $target
+  ln -sf $source $target
 done
 
 touch ~/.z
