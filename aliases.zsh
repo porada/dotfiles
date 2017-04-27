@@ -16,6 +16,11 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias ls='command ls -AG'
 alias lsd='tree -ad'
 
+# Create a directory and enter it
+function md {
+  mkdir -p $1 && cd $_
+}
+
 # Recursively remove given files and directories
 alias rmd='rm -rfv'
 
