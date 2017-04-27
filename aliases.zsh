@@ -35,11 +35,6 @@ alias rc='bundle exec rails console'
 alias rg='bundle exec rails generate'
 alias rx='bundle exec rails runner "Rails.cache.clear"'
 
-# Middleman-related aliases
-alias mb='bundle exec middleman build'
-alias md='bundle exec middleman deploy'
-alias ms='bundle exec middleman server'
-
 # Node-related aliases
 alias na='yarn add'
 alias ni='yarn install'
