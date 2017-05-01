@@ -9,6 +9,9 @@ set -x EDITOR "vim -c startinsert"
 set -x MANPAGER "less -X"
 
 # Set dotfiles paths
+set -x DOTFILES_PATH "$HOME/.dotfiles"
+
+# Set dotfiles paths
 set -x PATH /sbin $PATH
 set -x PATH /bin $PATH
 set -x PATH /usr/sbin $PATH
@@ -17,6 +20,10 @@ set -x PATH /usr/local/sbin $PATH
 set -x PATH /usr/local/bin $PATH
 set -x PATH /usr/local/opt/node@6/bin $PATH
 set -x PATH (yarn global bin) $PATH
-set -x PATH ~/.dotfiles/bin $PATH
+set -x PATH "$DOTFILES_PATH/bin" $PATH
 set -x PATH ./node_modules/.bin $PATH
 set -x PATH ./bin $PATH
+
+# Load dotfiles
+. "$DOTFILES_PATH/aliases.fish"
+. "$DOTFILES_PATH/extra.fish" > /dev/null 2>&1
