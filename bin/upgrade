@@ -13,7 +13,9 @@ if hash apt-get 2>/dev/null; then
 fi
 
 # Update globally installed Node packages
-npm upgrade --global && yarn global upgrade
+npm upgrade --global
+yarn global upgrade && yarn cache clean
 
-# Update RubyGems and installed gems
-gem update --system && gem uninstall --all --executables --ignore-dependencies && install-dependencies ruby
+# Update RubyGems and reinstall dependencies
+gem update --system && gem uninstall --all --executables --ignore-dependencies
+gem install bundler git-up
