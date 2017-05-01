@@ -10,6 +10,7 @@ set -x MANPAGER "less -X"
 
 # Set dotfiles paths
 set -x DOTFILES_PATH "$HOME/.dotfiles"
+set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
 # Set dotfiles paths
 set -x PATH "/sbin" $PATH
@@ -25,5 +26,5 @@ set -x PATH "./node_modules/.bin" $PATH
 set -x PATH "./bin" $PATH
 
 # Load dotfiles
-. "$DOTFILES_PATH/aliases.fish"
-. "$DOTFILES_PATH/extra.fish" > /dev/null 2>&1
+. "$DOTFILES_FISH_PATH/aliases.fish"
+. "$DOTFILES_FISH_PATH/extra.fish" > /dev/null 2>&1

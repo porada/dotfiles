@@ -1,7 +1,7 @@
 extra.zsh
-extra.fish
 
 .config/fish/completions
 .config/fish/conf.d
-.config/fish/functions
+.config/fish/extra.fish
 .config/fish/fishd.*
+.config/fish/functions
