@@ -1,4 +1,4 @@
 #!/bin/sh
 
 git --no-pager log -n 1 --pretty=format:"%H" | pbcopy
-git --no-pager log -n 1 --pretty=format:"%C(black bold)%h %C(reset)%s %C(yellow)(%cd) %C(blue)%an"
+git --no-pager log -n 1 --date=format:'%Y-%m-%d / %H:%M' --pretty=format:"%C(white dim)%h%C(reset)%C(red)%d %C(reset)%s %C(white dim)%cd / %an%C(reset)"
