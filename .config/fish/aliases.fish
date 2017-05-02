@@ -1,17 +1,9 @@
-# Quick navigation
-alias p "cd ~/Projects"
-alias d "cd $DOTFILES_PATH"
-
 # Shorten the frequently used commands
 abbr a "atom"
-abbr b "bundle"
 abbr g "git"
 abbr k "killall"
-abbr n "node"
 abbr o "open"
-abbr r "bundle exec rails"
 abbr v "vim"
-abbr y "yarn"
 
 # Show hidden files by default when using `ls`
 abbr ls "ls -A"
@@ -24,10 +16,25 @@ abbr be "bundle exec"
 
 # Rails-related aliases
 abbr rl "tail -f log/development.log"
+abbr rs="bundle exec rails server"
+abbr rc="bundle exec rails console"
+abbr rg="bundle exec rails generate"
 abbr rx "bundle exec rails runner \"Rails.cache.clear\""
 
 # Node-related aliases
-alias nx "find . -name node_modules -type d -exec rm -rf {} \;"
+abbr ni "npm install"
+abbr no "npm outdated"
+abbr nu "npm upgrade"
+abbr nr "npm run"
+abbr ns "npm start"
+abbr nt "npm test"
+abbr nx "find . -name node_modules -type d -exec rm -rf {} \;"
+abbr ya "yarn add"
+abbr yo "yarn outdated"
+abbr yr "yarn run"
+abbr ys "yarn start"
+abbr yt "yarn test"
+abbr yu "yarn upgrade"
 
 # Raspberry Pi
 abbr pi "ssh pi@raspberrypi.local"
