@@ -6,6 +6,10 @@
 function fish_prompt
   set -l exit_code $status
 
+  set_color red
+  __fish_prompt_newline
+  __fish_prompt_host
+
   set_color blue
   __fish_prompt_pwd
 
@@ -19,8 +23,17 @@ function fish_prompt
   set_color normal
 end
 
+function __fish_prompt_newline
+  printf "\n"
+end
+
+function __fish_prompt_host
+  set -l user (whoami)
+  [ $user != "Dominik" ]; and printf "%s@%s " $user (hostname -s)
+end
+
 function __fish_prompt_pwd
-  printf "\n%s " (prompt_pwd)
+  printf "%s " (prompt_pwd)
 end
 
 function __fish_prompt_git_branch
