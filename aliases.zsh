@@ -13,6 +13,9 @@ alias rmd='rm -rfv'
 
 # Ruby-related aliases
 alias be='bundle exec'
+alias bi='bundle install'
+alias bo='bundle outdated'
+alias bu='bundle upgrade'
 
 # Rails-related aliases
 alias rl='tail -f log/development.log'
