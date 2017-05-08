@@ -25,7 +25,6 @@ PATH="/usr/bin:$PATH"
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="/usr/local/opt/node@6/bin:$PATH"
-PATH="$(yarn global bin):$PATH" > /dev/null 2>&1
 PATH="$DOTFILES_PATH/bin:$PATH"
 PATH="./node_modules/.bin:$PATH"
 PATH="./bin:$PATH"

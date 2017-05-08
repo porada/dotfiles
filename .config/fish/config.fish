@@ -20,7 +20,6 @@ set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/sbin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/usr/local/opt/node@6/bin" $PATH
-set -x PATH (yarn global bin) $PATH
 set -x PATH "$DOTFILES_PATH/bin" $PATH
 set -x PATH "./node_modules/.bin" $PATH
 set -x PATH "./bin" $PATH

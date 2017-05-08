@@ -14,7 +14,6 @@ fi
 
 # Update globally installed Node packages
 npm upgrade --global
-yarn global upgrade && yarn cache clean
 
 # Update RubyGems and reinstall dependencies
 gem update --system && gem uninstall --all --executables --ignore-dependencies
