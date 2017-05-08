@@ -15,7 +15,7 @@ abbr rmd "rm -rfv"
 abbr be "bundle exec"
 abbr bi "bundle install"
 abbr bo "bundle outdated"
-abbr bu "bundle upgrade"
+abbr bu "bundle update"
 
 # Rails-related aliases
 abbr rl "tail -f log/development.log"
