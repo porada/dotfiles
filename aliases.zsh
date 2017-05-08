@@ -12,6 +12,8 @@ alias ls='command ls -AG'
 alias rmd='rm -rfv'
 
 # Ruby-related aliases
+alias rake='RUBYOPT=-W0 command rake'
+
 alias be='bundle exec'
 alias bi='bundle install'
 alias bo='bundle outdated'
@@ -32,6 +34,7 @@ alias ns='npm start'
 alias nt='npm test'
 alias nu='npm upgrade'
 alias nx='find . -name node_modules -type d -exec rm -rf {} \;'
+
 alias ya='yarn add'
 alias yo='yarn outdated'
 alias yr='yarn run'

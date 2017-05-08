@@ -12,6 +12,8 @@ abbr ls "ls -A"
 abbr rmd "rm -rfv"
 
 # Ruby-related aliases
+abbr rake "env RUBYOPT=-W0 rake"
+
 abbr be "bundle exec"
 abbr bi "bundle install"
 abbr bo "bundle outdated"
@@ -32,6 +34,7 @@ abbr nr "npm run"
 abbr ns "npm start"
 abbr nt "npm test"
 abbr nx "find . -name node_modules -type d -exec rm -rf {} \;"
+
 abbr ya "yarn add"
 abbr yo "yarn outdated"
 abbr yr "yarn run"
