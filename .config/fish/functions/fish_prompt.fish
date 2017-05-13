@@ -35,7 +35,7 @@ function __fish_prompt_host
 end
 
 function __fish_prompt_pwd
-  printf "%s " (prompt_pwd)
+  printf "%s " (pwd)
 end
 
 function __fish_prompt_git_branch
@@ -54,5 +54,5 @@ function __fish_prompt_caret
 end
 
 function __fish_prompt_no_status_line
-  [ "$TERM_PROGRAM" != "Hyper" ]
+  [ -n "$SSH_CONNECTION" -a "$TERM_PROGRAM" != "Hyper" ]
 end
