@@ -10,14 +10,17 @@ function fish_prompt
   __fish_prompt_newline
   __fish_prompt_host
 
-  set_color blue
-  __fish_prompt_pwd
+  if __fish_prompt_no_status_line
+    set_color blue
+    __fish_prompt_pwd
+
+    set_color brblack
+    __fish_prompt_git_branch
+    __fish_prompt_git_dirty
+    __fish_prompt_newline
+  end
 
   set_color brblack
-  __fish_prompt_git_branch
-  __fish_prompt_git_dirty
-
-  set_color magenta
   __fish_prompt_caret $exit_code
 
   set_color normal
@@ -48,5 +51,9 @@ end
 
 function __fish_prompt_caret
   [ $argv[1] -ne 0 ]; and set_color --bold red
-  printf "\n› "
+  printf "▲ "
+end
+
+function __fish_prompt_no_status_line
+  [ $TERM_PROGRAM != "Hyper" ]
 end
