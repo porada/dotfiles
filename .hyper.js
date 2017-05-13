@@ -4,7 +4,8 @@ module.exports = {
     fontSize: 15,
     fontFamily: 'SF Mono, monospace',
     hyperStatusLine: {
-      footerTransparent: false,
+      dirtyColor: 'yellow',
+      footerTransparent: false
     },
 
     // Shell
