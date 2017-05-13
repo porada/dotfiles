@@ -32,14 +32,3 @@ PATH="./bin:$PATH"
 # Load dotfiles
 source $DOTFILES_PATH/aliases.zsh
 source $DOTFILES_PATH/extra.zsh > /dev/null 2>&1
-
-# Load vendor plugins
-source $VENDOR_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $VENDOR_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $VENDOR_PATH/z/z.sh
-
-source $VENDOR_PATH/oh-my-zsh/lib/key-bindings.zsh
-source $VENDOR_PATH/oh-my-zsh/lib/history.zsh
-
-# Add completions
-fpath=($fpath $VENDOR_PATH/zsh-completions/src)
