@@ -6,7 +6,7 @@
 function fish_prompt
   set -l exit_code $status
 
-  set_color red
+  set_color magenta
   __fish_prompt_newline
   __fish_prompt_host
 
@@ -31,8 +31,7 @@ function __fish_prompt_newline
 end
 
 function __fish_prompt_host
-  set -l user (whoami)
-  [ $user != "Dominik" ]; and printf "%s@%s " $user (hostname -s)
+  [ -n "$SSH_CONNECTION" ]; and printf "%s@%s " (whoami) (hostname -s)
 end
 
 function __fish_prompt_pwd
@@ -55,5 +54,5 @@ function __fish_prompt_caret
 end
 
 function __fish_prompt_no_status_line
-  [ $TERM_PROGRAM != "Hyper" ]
+  [ "$TERM_PROGRAM" != "Hyper" ]
 end
