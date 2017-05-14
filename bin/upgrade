@@ -20,6 +20,11 @@ npm upgrade --global
 gem update --system && gem uninstall --all --executables --ignore-dependencies
 gem install bundler git-up
 
+# Update Vim plugins
+if hash vim 2>/dev/null; then
+  vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"
+fi
+
 # Update Fish plugins
 if hash fisher 2>/dev/null; then
   fisher up

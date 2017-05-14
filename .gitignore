@@ -2,3 +2,5 @@ extra.zsh
 
 .atom
 .config/fish
+.vim/autoload/plug.vim
+.vim/plugged
