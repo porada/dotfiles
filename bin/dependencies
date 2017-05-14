@@ -1,0 +1,44 @@
+#!/bin/sh
+
+check() {
+  dependency_var  "dotfiles" "$DOTFILES_PATH"
+  dependency_bin  "git"
+
+  dependency_bin  "fish"
+  dependency_exec "fisher" "fish -c 'fisher --version'"
+
+  dependency_bin  "ruby"
+  dependency_bin  "node"
+
+  dependency_bin  "vim"
+  dependency_file "vim-plug" "$HOME/.vim/autoload/plug.vim"
+}
+
+# Checkers
+dependency_bin() {
+  hash "$1" > /dev/null 2>&1 && __dependency_yep "$1" || __dependency_nope "$1"
+}
+
+dependency_exec() {
+  eval "$2" > /dev/null 2>&1 && __dependency_yep "$1" || __dependency_nope "$1"
+}
+
+dependency_file() {
+  [ -r "$2" ] && __dependency_yep "$1" || __dependency_nope "$1"
+}
+
+dependency_var() {
+  [ -n "$2" ] && __dependency_yep "$1" || __dependency_nope "$1"
+}
+
+# Output
+__dependency_yep() {
+  printf '\033[0;32m✓ %s\n' "$1"
+}
+
+__dependency_nope() {
+  printf '\033[1;31m× %s\033[0m\n' "$1"
+}
+
+# Init
+check
