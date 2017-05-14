@@ -1,5 +1,7 @@
 extra.zsh
 
+.atom
+
 .config/fish/completions
 .config/fish/conf.d
 .config/fish/extra.fish

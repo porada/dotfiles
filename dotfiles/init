@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for source in .config/fish .gemrc .gitconfig .hushlogin .hyper.js .vim .vimrc .zshrc; do
+for source in .atom .config/fish .gemrc .gitconfig .hushlogin .hyper.js .vim .vimrc .zshrc; do
   target=~/$source
   source=~/.dotfiles/$source
 
