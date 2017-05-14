@@ -26,6 +26,6 @@ if hash vim 2>/dev/null; then
 fi
 
 # Update Fish plugins
-if hash fisher 2>/dev/null; then
-  fisher up
+if hash fish 2>/dev/null; then
+  fish -c "fisher up"
 fi
