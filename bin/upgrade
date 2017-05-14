@@ -18,8 +18,9 @@ fi
 npm upgrade --global
 
 # Update RubyGems and reinstall dependencies
-gem update --system && gem uninstall --all --executables --ignore-dependencies
-gem install bundler git-up
+# (using `sudo` because of Raspberry Pi)
+sudo gem update --system && sudo gem uninstall --all --executables --ignore-dependencies
+sudo gem install bundler git-up
 
 # Update Vim plugins
 if hash vim 2>/dev/null; then
