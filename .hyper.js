@@ -3,6 +3,11 @@ module.exports = {
     // UI
     fontSize: 15,
     fontFamily: 'SF Mono, monospace',
+    termCSS: `
+      :root {
+        letter-spacing: -0.2px;
+      }
+    `,
     hyperStatusLine: {
       dirtyColor: 'yellow',
       footerTransparent: false
