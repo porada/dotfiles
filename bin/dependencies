@@ -2,6 +2,8 @@
 
 check() {
   dependency_var  "dotfiles" "$DOTFILES_PATH"
+
+  dependency_bin  "brew"
   dependency_bin  "git"
 
   dependency_bin  "fish"
