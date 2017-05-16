@@ -6,7 +6,6 @@
 
 	ch = checkout
 	cx = checkout HEAD --
-	rx = reset --hard
 
 	rc = rebase --continue
 	ra = rebase --abort
