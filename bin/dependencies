@@ -7,7 +7,7 @@ check() {
   dependency_bin  "git"
 
   dependency_bin  "fish"
-  dependency_exec "fisher" "fish -c 'fisher --version'"
+  dependency_exec "fisherman" "fish -c 'fisher --version'"
 
   dependency_bin  "ruby"
   dependency_bin  "node"
@@ -35,7 +35,7 @@ dependency_var() {
 
 # Output
 __dependency_yep() {
-  printf '\033[0;32m✓ %s\n' "$1"
+  printf '\033[0;32m✓ %s\033[0m\n' "$1"
 }
 
 __dependency_nope() {
