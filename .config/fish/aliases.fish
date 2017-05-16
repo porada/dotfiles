@@ -21,9 +21,9 @@ abbr bu "bundle update"
 
 # Rails-related aliases
 abbr rl "tail -f log/development.log"
-abbr rs="bundle exec rails server"
-abbr rc="bundle exec rails console"
-abbr rg="bundle exec rails generate"
+abbr rs "bundle exec rails server"
+abbr rc "bundle exec rails console"
+abbr rg "bundle exec rails generate"
 abbr rx "bundle exec rails runner \"Rails.cache.clear\""
 
 # Node-related aliases
