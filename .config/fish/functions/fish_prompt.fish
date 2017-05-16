@@ -6,7 +6,7 @@
 function fish_prompt
   set -l exit_code $status
 
-  set_color magenta
+  set_color $fish_color_user
   __fish_prompt_newline
   __fish_prompt_host
 
@@ -31,10 +31,11 @@ function __fish_prompt_newline
 end
 
 function __fish_prompt_host
-  [ -n "$SSH_CONNECTION" ]; and printf "%s@%s " (whoami) (hostname -s)
+  [ -n "$SSH_CONNECTION" ]; and printf "%s@%s " $USER (hostname -s)
 end
 
 function __fish_prompt_pwd
+  [ "$USER" = "root" ]; and set_color $fish_color_cwd_root
   set -l fish_prompt_pwd_dir_length 0
   printf "%s " (prompt_pwd)
 end
@@ -50,7 +51,7 @@ function __fish_prompt_git_dirty
 end
 
 function __fish_prompt_caret
-  [ $argv[1] -ne 0 ]; and set_color --bold red
+  [ $argv[1] -ne 0 ]; and set_color $fish_color_error
   printf "▲ "
 end
 
