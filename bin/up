@@ -5,4 +5,4 @@ if (( `ps aux | grep "[c]affeinate" | wc -l` > 0 )); then
   exit 1
 fi
 
-caffeinate -i
+caffeinate -i $@
