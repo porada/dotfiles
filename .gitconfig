@@ -6,6 +6,8 @@
 
 	ch = checkout
 	cx = checkout HEAD --
+	m = checkout master
+	new = checkout -b
 
 	rc = rebase --continue
 	ra = rebase --abort
@@ -14,6 +16,15 @@
 	branches = branch -a
 	remotes = remote -v
 	stats = shortlog -sn
+
+	skip = update-index --assume-unchanged
+	unskip = update-index --no-assume-unchanged
+
+	# Quick commits
+	boom = commit -am ":boom:"
+	deps = commit -am "Update dependencies"
+	memo = commit -am ":memo:"
+	nail = commit -am ":nail_care:"
 
 [push]
 	# Push only to the current branch
