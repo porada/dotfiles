@@ -4,7 +4,7 @@ function fish_title
 end
 
 function __fish_title_command
-  [ $_ != "fish" ]; and printf "$_ "
+  test $_ != "fish"; and printf "$_ "
 end
 
 function __fish_title_pwd

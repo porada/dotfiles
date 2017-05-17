@@ -10,8 +10,8 @@ function fish_prompt
   __fish_prompt_newline
   __fish_prompt_host
 
-  if __fish_prompt_no_status_line
-    set_color blue
+  if not __fish_prompt_has_status_line
+    set_color $fish_color_cwd
     __fish_prompt_pwd
 
     set_color brblack
@@ -31,30 +31,30 @@ function __fish_prompt_newline
 end
 
 function __fish_prompt_host
-  [ -n "$SSH_CONNECTION" ]; and printf "%s@%s " $USER (hostname -s)
+  test -n "$SSH_CONNECTION"; and printf "%s@%s " $USER (hostname -s)
 end
 
 function __fish_prompt_pwd
-  [ "$USER" = "root" ]; and set_color $fish_color_cwd_root
   set -l fish_prompt_pwd_dir_length 0
+  test (id -u) -eq 0; and set_color $fish_color_cwd_root
   printf "%s " (prompt_pwd)
 end
 
 function __fish_prompt_git_branch
   set -l git_branch (command git symbolic-ref HEAD ^ /dev/null | sed -e "s|^refs/heads/||")
-  [ -n "$git_branch" ]; and printf $git_branch
+  test -n "$git_branch"; and printf $git_branch
 end
 
 function __fish_prompt_git_dirty
   set -l git_status (command git status --porcelain ^ /dev/null)
-  [ -n "$git_status" ]; and printf "·"
+  test -n "$git_status"; and printf "·"
 end
 
 function __fish_prompt_caret
-  [ $argv[1] -ne 0 ]; and set_color $fish_color_error
+  test $argv[1] -ne 0; and set_color $fish_color_error
   printf "▲ "
 end
 
-function __fish_prompt_no_status_line
-  [ -n "$SSH_CONNECTION" -o "$TERM_PROGRAM" != "Hyper" ]
+function __fish_prompt_has_status_line
+  test -z "$SSH_CONNECTION" -a "$TERM_PROGRAM" = "Hyper"
 end
