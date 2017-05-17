@@ -52,7 +52,11 @@ end
 
 function __fish_prompt_caret
   test $argv[1] -ne 0; and set_color $fish_color_error
-  printf "▲ "
+  switch "$USER"
+    case "Dominik"; printf "▲ "
+    case "pi";      printf "π "
+    case "*";       printf "\$ "
+  end
 end
 
 function __fish_prompt_has_status_line
