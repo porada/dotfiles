@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git commit -am "Fix"
+git r ${1:-5}
