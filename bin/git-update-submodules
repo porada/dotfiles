@@ -4,4 +4,4 @@
 git diff-files --quiet || exit $?
 
 # Pull all changes and commit them if there are any
-git submodule foreach --recursive 'git pull origin master' && git commit -am 'Update submodules'
+git submodule foreach --recursive "git pull origin master" && git commit -am "Update submodules"

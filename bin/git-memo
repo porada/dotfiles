@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git commit -m ':memo:' ${@:--a}
+git commit -m ":memo:" ${@:--a}

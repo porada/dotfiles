@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git commit -m ':nail_care:' ${@:--a}
+git commit -m ":nail_care:" ${@:--a}
