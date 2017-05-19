@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Ask for the password upfront
+sudo -v
+
 # Update Homebrew and installed apps, then check if everything’s fine
 if hash brew 2>/dev/null; then
   brew update && brew upgrade && brew cleanup
