@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Ask for the password upfront
-sudo -v
-
 # Update Homebrew and installed apps, then check if everything’s fine
 if hash brew 2>/dev/null; then
   brew update && brew upgrade && brew cleanup
@@ -21,9 +18,9 @@ fi
 npm upgrade --global
 
 # Update RubyGems and reinstall dependencies
-# (using `sudo` because of Raspberry Pi)
-sudo gem update --system && sudo gem uninstall --all --executables --ignore-dependencies
-sudo gem install bundler git-up
+gem update --system
+gem uninstall --all --executables --ignore-dependencies
+gem install bundler git-up
 
 # Update Vim plugins
 if hash vim 2>/dev/null; then
