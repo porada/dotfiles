@@ -18,9 +18,15 @@ fi
 npm upgrade --global
 
 # Update RubyGems and reinstall dependencies
-gem update --system
-gem uninstall --all --executables --ignore-dependencies
-gem install bundler git-up
+if hash gem 2>/dev/null; then
+  gem update --system
+  gem uninstall --all --executables --ignore-dependencies
+  gem install bundler git-up
+
+  # If Postgres.app is installed, install `pg` with the latest config
+  pg_path=`find /Applications/Postgres.app -name pg_config -type f -perm -111 2> /dev/null`
+  test -n "$pg_path" && gem install pg -- --with-pg-config=`printf "$pg_path" | tail -n 1`
+fi
 
 # Update Vim plugins
 if hash vim 2>/dev/null; then
