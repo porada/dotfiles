@@ -15,7 +15,9 @@ if hash apt-get 2>/dev/null; then
 fi
 
 # Update globally installed Node packages
-npm upgrade --global
+if hash npm 2>/dev/null; then
+  npm upgrade --global
+fi
 
 # Update RubyGems and reinstall dependencies
 if hash gem 2>/dev/null; then
