@@ -37,5 +37,5 @@ fi
 
 # Update Fish plugins
 if hash fish 2>/dev/null; then
-  fish -c "fisher up"
+  fish -c "fisher; and fisher up"
 fi
