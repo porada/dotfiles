@@ -21,18 +21,14 @@
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am ":boom:"
-	deps = commit -am "Update dependencies"
-	memo = commit -am ":memo:"
-	nail = commit -am ":nail_care:"
+	boom = commit -am ':boom:'
+	deps = commit -am 'Update dependencies'
+	memo = commit -am ':memo:'
+	nail = commit -am ':nail_care:'
 
 [push]
 	# Push only to the current branch
 	default = simple
-
-[url "git@github.com:"]
-	# Provide URL shorthand for GitHub
-	insteadOf = gh:
 
 [user]
 	# Please change this if you’re not me
