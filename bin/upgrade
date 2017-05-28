@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # Update Homebrew and installed apps, then check if everything’s fine
-if hash brew 2>/dev/null; then
+if hash brew 2> /dev/null; then
   brew update && brew upgrade && brew cleanup
   brew doctor && brew cleanup --force
 fi
 
 # Update packages installed via APT
-if hash apt-get 2>/dev/null; then
+if hash apt-get 2> /dev/null; then
   sudo apt-get update
   yes | sudo apt-get dist-upgrade
   yes | sudo apt-get autoremove
@@ -15,12 +15,12 @@ if hash apt-get 2>/dev/null; then
 fi
 
 # Update globally installed Node packages
-if hash npm 2>/dev/null; then
+if hash npm 2> /dev/null; then
   npm upgrade --global
 fi
 
 # Update RubyGems and reinstall dependencies
-if hash gem 2>/dev/null; then
+if hash gem 2> /dev/null; then
   gem update --system
   gem uninstall --all --executables --ignore-dependencies
   gem install bundler git-up
@@ -31,11 +31,11 @@ if hash gem 2>/dev/null; then
 fi
 
 # Update Vim plugins
-if hash vim 2>/dev/null; then
+if hash vim 2> /dev/null; then
   vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"
 fi
 
 # Update Fish plugins
-if hash fish 2>/dev/null; then
+if hash fish 2> /dev/null; then
   fish -c "fisher; and fisher up"
 fi
