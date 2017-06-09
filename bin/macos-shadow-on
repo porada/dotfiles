@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Enable shadow when taking screenshots
+defaults write com.apple.screencapture disable-shadow -bool false && killall SystemUIServer
