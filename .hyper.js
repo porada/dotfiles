@@ -9,7 +9,6 @@ module.exports = {
       }
     `,
     hyperStatusLine: {
-      dirtyColor: 'yellow',
       footerTransparent: false
     },
 
