@@ -13,6 +13,7 @@ module.exports = {
     },
 
     // Shell
+    shell: '/usr/local/bin/fish',
     env: {}
   },
 
