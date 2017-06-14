@@ -4,8 +4,10 @@ for source in .atom .config/fish .gemrc .gitconfig .hushlogin .hyper.js .vim .vi
   target=~/$source
   source=~/.dotfiles/$source
 
+  # Make sure parent directories exist before symlinking
+  mkdir -p `dirname $target`
   rm -rf $target
-  ln -sf $source $target
+  ln -s $source $target
 done
 
 touch ~/.z
