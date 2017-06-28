@@ -12,7 +12,4 @@ done
 
 touch ~/.z
 
-# Ignore if the user name starts with `dom`
-if whoami | grep -vi "^dom" > /dev/null 2>&1; then
-  echo ".gitconfig: Remember to change your user info"
-fi
+echo ".gitconfig: Remember to change your user info"

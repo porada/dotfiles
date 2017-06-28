@@ -52,10 +52,10 @@ end
 
 function __fish_prompt_caret
   test $argv[1] -ne 0; and set_color $fish_color_error
-  switch (echo "$USER" | tr "[:upper:]" "[:lower:]")
-    case "dom*"; printf "▲ "
-    case "pi";   printf "π "
-    case "*";    printf "\$ "
+  switch $USER
+    case "dom"; printf "▲ "
+    case "pi";  printf "π "
+    case "*";   printf "\$ "
   end
 end
 
