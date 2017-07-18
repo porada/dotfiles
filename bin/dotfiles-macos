@@ -4,7 +4,7 @@
 
 # Disable Resume and Versions system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
-defaults write -g ApplePersistence -bool no
+defaults write -g ApplePersistence -bool false
 
 # Disable local Time Machine backups
 sudo tmutil disablelocal
@@ -21,7 +21,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Disable window animations and Get Info animations in Finder
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Make Dock icons of hidden applications translucent
