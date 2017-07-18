@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Turn off Auto Save
+defaults write com.bohemiancoding.sketch3.plist enableAutoSaveAndVersions -bool false
+
+# Don’t animate zoom
+defaults write com.bohemiancoding.sketch3.plist animateZoom -bool false
+
+# Don’t modify duplicated layers
+defaults write com.bohemiancoding.sketch3.plist offsetDuplicatedLayers -bool false
+defaults write com.bohemiancoding.sketch3.plist suffixDuplicatedLayers -bool false
+
+# Skip Sketch-specific metadata when exporting SVGs
+defaults write com.bohemiancoding.sketch3.plist svgExportSkipAssignIdToLayerName -bool true
+
+# Flatten bitmaps to @2x
+defaults write com.bohemiancoding.sketch3.plist bitmapFlattenScale -int 2
