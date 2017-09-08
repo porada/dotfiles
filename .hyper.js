@@ -10,11 +10,7 @@ module.exports = {
     `,
     hyperStatusLine: {
       footerTransparent: false
-    },
-
-    // Shell
-    shell: '/usr/local/bin/fish',
-    env: {}
+    }
   },
 
   plugins: [
