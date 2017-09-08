@@ -10,15 +10,13 @@ function fish_prompt
   __fish_prompt_newline
   __fish_prompt_host
 
-  if not __fish_prompt_has_status_line
-    set_color $fish_color_cwd
-    __fish_prompt_pwd
+  set_color $fish_color_cwd
+  __fish_prompt_pwd
 
-    set_color brblack
-    __fish_prompt_git_branch
-    __fish_prompt_git_dirty
-    __fish_prompt_newline
-  end
+  set_color brblack
+  __fish_prompt_git_branch
+  __fish_prompt_git_dirty
+  __fish_prompt_newline
 
   set_color brblack
   __fish_prompt_caret $exit_code
@@ -57,8 +55,4 @@ function __fish_prompt_caret
     case "pi";  printf "π "
     case "*";   printf "\$ "
   end
-end
-
-function __fish_prompt_has_status_line
-  test -z "$SSH_CONNECTION" -a "$TERM_PROGRAM" = "Hyper"
 end
