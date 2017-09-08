@@ -1,3 +1,6 @@
+# Quick navigation
+abbr p "cd ~/Projects"
+
 # Shorten the frequently used commands
 abbr a "atom"
 abbr g "git"
