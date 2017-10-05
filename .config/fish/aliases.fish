@@ -45,5 +45,11 @@ abbr ys "yarn start"
 abbr yt "yarn test"
 abbr yu "yarn upgrade"
 
+# Tmux-related aliases
+abbr ta "tmux attach -t"
+abbr tk "tmux kill-session -t"
+abbr tl "tmux list-sessions"
+abbr tn "tmux new -s"
+
 # Raspberry Pi
 abbr pi "ssh pi@raspberrypi.local"
