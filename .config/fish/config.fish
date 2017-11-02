@@ -18,7 +18,6 @@ set -x PATH "/bin" $PATH
 set -x PATH "/usr/sbin" $PATH
 set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
-set -x PATH "/usr/local/opt/node@6/bin" $PATH > /dev/null 2>&1
 set -x PATH "$DOTFILES_PATH/bin" $PATH
 set -x PATH "./node_modules/.bin" $PATH
 set -x PATH "./bin" $PATH

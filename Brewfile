@@ -1,5 +1,5 @@
 brew "fish"
 brew "git"
-brew "node@6"
+brew "node"
 brew "ruby"
 brew "vim"
