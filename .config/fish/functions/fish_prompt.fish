@@ -10,9 +10,10 @@ function fish_prompt
   __fish_prompt_newline
   __fish_prompt_host
 
-  set_color $fish_color_cwd
+  set_color --bold $fish_color_cwd
   __fish_prompt_pwd
 
+  set_color normal
   set_color brblack
   __fish_prompt_git_branch
   __fish_prompt_git_dirty
