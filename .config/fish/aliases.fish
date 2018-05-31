@@ -45,6 +45,8 @@ abbr ys "yarn start"
 abbr yt "yarn test"
 abbr yu "yarn upgrade"
 
+abbr wp "webpack"
+
 # Tmux-related aliases
 abbr ta "tmux attach -t"
 abbr tk "tmux kill-session -t"
