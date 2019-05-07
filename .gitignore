@@ -1,5 +1,6 @@
 .atom
 .config/fish
+.gems
 .vim/.netrwhist
 .vim/autoload/plug.vim*
 .vim/plugged
