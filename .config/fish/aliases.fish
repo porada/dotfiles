@@ -5,8 +5,10 @@ abbr p "cd ~/Projects"
 abbr a "atom"
 abbr g "git"
 abbr k "killall"
+abbr n "node"
 abbr o "open"
 abbr v "vim"
+abbr y "yarn"
 
 # Show hidden files by default when using `ls`
 abbr ls "ls -A"
@@ -28,24 +30,6 @@ abbr rs "bundle exec rails server"
 abbr rc "bundle exec rails console"
 abbr rg "bundle exec rails generate"
 abbr rx "bundle exec rails runner \"Rails.cache.clear\""
-
-# Node-related aliases
-abbr ni "npm install"
-abbr no "npm outdated"
-abbr nu "npm upgrade"
-abbr nr "npm run"
-abbr ns "npm start"
-abbr nt "npm test"
-abbr nx "find . -name node_modules -type d -exec rm -rf {} \;"
-
-abbr ya "yarn add"
-abbr yo "yarn outdated"
-abbr yr "yarn run"
-abbr ys "yarn start"
-abbr yt "yarn test"
-abbr yu "yarn upgrade"
-
-abbr wp "webpack"
 
 # Tmux-related aliases
 abbr ta "tmux attach -t"
