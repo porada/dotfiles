@@ -38,8 +38,5 @@
 [pager]
 	# Take advantage of the better built-in diff
 	log  = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
-
-[interactive]
-	diffFilter = diff-highlight
+	show = diff-highlight | less --chop-long-lines
+	diff = diff-highlight | less --chop-long-lines
