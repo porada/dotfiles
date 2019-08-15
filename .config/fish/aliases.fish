@@ -31,11 +31,5 @@ abbr rc "bundle exec rails console"
 abbr rg "bundle exec rails generate"
 abbr rx "bundle exec rails runner \"Rails.cache.clear\""
 
-# Tmux-related aliases
-abbr ta "tmux attach -t"
-abbr tk "tmux kill-session -t"
-abbr tl "tmux list-sessions"
-abbr tn "tmux new -s"
-
 # Raspberry Pi
 abbr pi "ssh pi@raspberrypi.local"
