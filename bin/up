@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Don’t let the system go to sleep
 if (( `ps aux | grep "[c]affeinate" | wc -l` > 0 )); then
   echo "The system is already caffeinated."
   exit 1

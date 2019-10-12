@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Log a given number of last commits
 if test $# -gt 0; then
   eval "git --no-pager log $(git log-format)" | grep -i $@
 else

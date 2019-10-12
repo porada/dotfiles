@@ -1,5 +1,6 @@
 #!/usr/bin/env osascript
 
+-- Quit a given application
 on run argv
   repeat with arg in argv
     tell application arg to quit

@@ -1,4 +1,5 @@
 #!/bin/sh
 
+# Show diff without clearing the terminal window unless it’s necessary
 git diff-files --quiet || clear
 git diff $@

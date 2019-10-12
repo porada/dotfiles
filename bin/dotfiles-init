@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Symlink all dotfiles
 for source in .atom .config/fish .gemrc .gitconfig .hushlogin .vim .vimrc; do
   target=~/$source
   source=~/.dotfiles/$source

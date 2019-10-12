@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# Show files ignored by `git skip`
 `git ls-files -v`.scan /^\s*([a-z]+)\s+(.*)$/ do |(status, path)|
   puts "\e[35m#{status.length > 1 ? status : status.prepend(' ')}\e[0m #{path}"
 end

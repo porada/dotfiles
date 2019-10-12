@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Output the log format string
 args="--date=format:'%Y-%m-%d / %H:%M'"
 args="$args --pretty=format:'%C(white dim)%h"
 test "$1" = "--refs" && args="$args%C(reset)%C(red)%d"

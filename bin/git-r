@@ -1,3 +1,4 @@
 #!/bin/sh
 
+# Rebase a given number of last commits
 git rebase --interactive HEAD~${1:-5}

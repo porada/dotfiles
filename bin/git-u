@@ -1,3 +1,4 @@
 #!/bin/sh
 
+# List files with merge conflicts
 git status --short $@ | grep ^U
