@@ -11,6 +11,10 @@ git clone git@github.com:porada/dotfiles ~/.dotfiles
 # Symlink the dotfiles
 ~/.dotfiles/bin/dotfiles-init
 
+# Run optional configurators
+~/.dotfiles/bin/dotfiles-macos
+~/.dotfiles/bin/dotfiles-sketch
+
 # Make sure everything is up to date
 ~/.dotfiles/bin/upgrade
 ```

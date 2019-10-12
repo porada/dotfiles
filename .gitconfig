@@ -15,19 +15,18 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
-	stats = shortlog -sn
+	contributors = shortlog -sn
 
 	skip = update-index --assume-unchanged
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am ':boom:'
-	deps = commit -am 'Update dependencies'
-	memo = commit -am ':memo:'
-	nail = commit -am ':nail_care:'
+	boom = commit -am ":boom:"
+	deps = commit -am "Update dependencies"
+	nail = commit -am ":nail_care:"
 
 [push]
-	# Push only to the current branch
+	# Push to the current branch only
 	default = simple
 
 [user]
