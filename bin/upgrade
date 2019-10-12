@@ -2,8 +2,9 @@
 
 # Update Homebrew and installed apps, then check if everything’s fine
 if hash brew 2> /dev/null; then
-  brew update && brew upgrade && brew cleanup
-  brew doctor && brew cleanup --force
+  brew_cache_path=`brew --cache`
+  brew update && brew upgrade
+  brew doctor && brew cleanup -s && rm -rf "$brew_cache_path"
 fi
 
 # Update packages installed via APT
