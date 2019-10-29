@@ -21,9 +21,9 @@
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am ":boom:"
-	deps = commit -am "Update dependencies"
-	nail = commit -am ":nail_care:"
+	boom = commit -am ':boom:'
+	deps = commit -am 'Update dependencies'
+	nail = commit -am ':nail_care:'
 
 [push]
 	# Push to the current branch only
