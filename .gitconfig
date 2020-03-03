@@ -10,6 +10,7 @@
 	new = checkout -b
 
 	rc = rebase --continue
+	rs = rebase --skip
 	ra = rebase --abort
 
 	tags = tag -l
