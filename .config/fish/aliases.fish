@@ -31,5 +31,15 @@ abbr rc "bundle exec rails console"
 abbr rg "bundle exec rails generate"
 abbr rx "bundle exec rails runner \"Rails.cache.clear\""
 
+# Node-related aliases
+abbr ni "npm install"
+abbr na "npm install --save-dev"
+abbr no "npm outdated"
+abbr nu "npm upgrade"
+abbr nr "npm run"
+abbr ns "npm start"
+abbr nt "npm test"
+abbr nx "find . -name node_modules -type d -exec rm -rf {} \;"
+
 # Raspberry Pi
 abbr pi "ssh pi@raspberrypi.local"
