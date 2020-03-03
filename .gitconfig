@@ -7,7 +7,6 @@
 	ch = checkout
 	cx = checkout HEAD --
 	m = checkout master
-	new = checkout -b
 
 	rc = rebase --continue
 	rs = rebase --skip
