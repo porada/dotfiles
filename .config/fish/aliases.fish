@@ -39,7 +39,7 @@ abbr nu "npm upgrade"
 abbr nr "npm run"
 abbr ns "npm start"
 abbr nt "npm test"
-abbr nx "find . -name node_modules -type d -exec rm -rf {} \;"
+abbr nx "rm -rf node_modules"
 
 # Raspberry Pi
 abbr pi "ssh pi@raspberrypi.local"
