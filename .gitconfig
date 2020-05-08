@@ -12,6 +12,7 @@
 	rs = rebase --skip
 	ra = rebase --abort
 
+	cp = cherry-pick
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
