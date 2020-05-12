@@ -1,5 +1,13 @@
 .atom
-.config/fish
+.config/fish/*
+!.config/fish/aliases.fish
+!.config/fish/colors.fish
+!.config/fish/config.fish
+!.config/fish/functions
+.config/fish/functions/*
+!.config/fish/functions/fish_*.fish
+!.config/fish/functions/md.fish
+!.config/fish/fishfile
 .gems
 .vim/.netrwhist
 .vim/autoload/plug.vim*
