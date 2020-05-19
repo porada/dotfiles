@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# UI --------------------------------------------------------------------------
+# UI ---------------------------------------------------------------------------
 
 # Enable full keyboard access for all controls
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -9,13 +9,18 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
 
+# Disable screenshot thumbnails
+defaults write com.apple.screencapture show-thumbnail -bool false
+
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
+
+# Apps -------------------------------------------------------------------------
 
 # Send email on ⌘ + return
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
-# Text ------------------------------------------------------------------------
+# Text -------------------------------------------------------------------------
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
