@@ -1,9 +1,6 @@
 ```sh
-# Clone the dotfiles
-git clone git@github.com:porada/dotfiles ~/.dotfiles
-
-# Use the following in case of authentication errors
-# git clone https://github.com/porada/dotfiles.git ~/.dotfiles
+# Clone the dotfiles via HTTPS to avoid authentication errors
+git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Make sure all dependencies are in place
 ~/.dotfiles/bin/dependencies
@@ -17,4 +14,7 @@ git clone git@github.com:porada/dotfiles ~/.dotfiles
 
 # Make sure everything is up to date
 ~/.dotfiles/bin/upgrade
+
+# Once SSH has been set up, replace the remote path to the repository
+git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfiles
 ```
