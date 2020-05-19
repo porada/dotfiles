@@ -1,3 +1,5 @@
+## Setup
+
 ```sh
 # Clone the dotfiles via HTTPS to avoid authentication errors
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
@@ -18,3 +20,9 @@ git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 # Once SSH has been set up, replace the remote path to the repository
 git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfiles
 ```
+
+## Quick Links
+
+* [`brew`](https://brew.sh)
+* [`fisher`](https://github.com/jorgebucaran/fisher)
+* [`vim-plug`](https://github.com/junegunn/vim-plug)

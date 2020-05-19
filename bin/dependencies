@@ -10,7 +10,7 @@ check() {
   dependency_bin  "git"
 
   dependency_bin  "fish"
-  dependency_exec "fisherman" "fish -c 'fisher --version'"
+  dependency_exec "fisher" "fish -c 'fisher --version'"
 
   dependency_bin  "ruby"
   dependency_bin  "node"
