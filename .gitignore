@@ -13,3 +13,4 @@
 .vim/.netrwhist
 .vim/autoload
 .vim/plugged
+Brewfile.lock.json

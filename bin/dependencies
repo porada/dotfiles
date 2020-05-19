@@ -5,7 +5,7 @@ check() {
   dependency_var  "dotfiles" "$DOTFILES_PATH"
 
   dependency_bin  "brew"
-  dependency_exec "brewfile" "HOMEBREW_NO_AUTO_UPDATE=1 brew tap | grep /bundle"
+  dependency_file "brew-bundle" "$DOTFILES_PATH/Brewfile.lock.json"
 
   dependency_bin  "git"
 
