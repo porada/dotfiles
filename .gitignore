@@ -1,4 +1,5 @@
-.atom
+.atom/*
+!.atom/styles.less
 .config/fish/*
 !.config/fish/aliases.fish
 !.config/fish/colors.fish
@@ -10,5 +11,5 @@
 !.config/fish/fishfile
 .gems
 .vim/.netrwhist
-.vim/autoload/plug.vim*
+.vim/autoload
 .vim/plugged
