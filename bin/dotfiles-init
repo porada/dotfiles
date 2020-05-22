@@ -11,6 +11,9 @@ for source in .atom .config/fish .gemrc .gitconfig .hushlogin .vim .vimrc; do
   ln -s $source $target
 done
 
+# Create additional files
+touch ~/.dotfiles/.config/fish/extra.fish
 touch ~/.z
 
+# Miscellaneous
 echo ".gitconfig: Remember to change your user info"

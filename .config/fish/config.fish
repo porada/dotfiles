@@ -34,4 +34,4 @@ set -x PATH "./bin" $PATH
 # Load dotfiles
 . "$DOTFILES_FISH_PATH/aliases.fish"
 . "$DOTFILES_FISH_PATH/colors.fish"
-. "$DOTFILES_FISH_PATH/extra.fish" > /dev/null 2>&1
+. "$DOTFILES_FISH_PATH/extra.fish"
