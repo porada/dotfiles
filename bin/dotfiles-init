@@ -1,19 +1,29 @@
 #!/bin/sh
 
+DOTFILES="$HOME/.dotfiles"
+HOSTS="$HOME/Library/Gas Mask/Local"
+
+# A helper function that makes sure the symlink can be created and
+# that it’s going to overwrite any existing files or directories
+symlink() {
+  parent=`dirname "$2"`
+  mkdir -p "$parent"
+  rm -rf "$2"
+  ln -s "$1" "$2"
+}
+
 # Symlink all dotfiles
 for source in .atom .config/fish .gemrc .gitconfig .hushlogin .vim .vimrc; do
-  target=~/$source
-  source=~/.dotfiles/$source
-
-  # Make sure parent directories exist before symlinking
-  mkdir -p `dirname $target`
-  rm -rf $target
-  ln -s $source $target
+  symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
+# Symlink `/etc/hosts` templates
+symlink "$DOTFILES/etc/hosts" "$HOSTS"
+
 # Create additional files
-touch ~/.dotfiles/.config/fish/extra.fish
-touch ~/.z
+touch "$DOTFILES/.config/fish/extra.fish"
+touch "$HOME/.z"
+touch "$HOSTS/sandbox.hst"
 
 # Miscellaneous
 echo ".gitconfig: Remember to change your user info"
