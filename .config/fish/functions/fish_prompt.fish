@@ -45,7 +45,7 @@ function __fish_prompt_git_branch
 end
 
 function __fish_prompt_git_dirty
-  set -l git_status (command git status --porcelain ^ /dev/null)
+  set -l git_status (command git status --porcelain --untracked-files=no ^ /dev/null)
   test -n "$git_status"; and printf "·"
 end
 
