@@ -25,7 +25,7 @@ set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/usr/local/sbin" $PATH
 set -x PATH "/usr/local/opt/ruby/bin" $PATH
-set -x PATH "/usr/local/opt/node@12/bin" $PATH
+set -x PATH "/usr/local/opt/node@14/bin" $PATH
 set -x PATH "$GEM_BIN_PATH" $PATH
 set -x PATH "$DOTFILES_BIN_PATH" $PATH
 set -x PATH "./node_modules/.bin" $PATH
