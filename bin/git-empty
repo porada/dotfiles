@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Create an empty commit
+git commit --allow-empty --no-verify -m "Empty commit"
