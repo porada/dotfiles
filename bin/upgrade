@@ -24,7 +24,6 @@ fi
 if hash gem 2> /dev/null; then
   gem update --system
   gem uninstall --all --executables --ignore-dependencies
-  yes | gem install bundler git-up sass
 
   # If Postgres.app is installed, install `pg` with the latest config
   pg_path=`find /Applications/Postgres.app -name pg_config -type f -perm -111 2> /dev/null`

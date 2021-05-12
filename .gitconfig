@@ -1,8 +1,10 @@
 [alias]
 	# Simple aliases
-	l = log
 	a = add -v
 	c = commit -v
+	f = fetch
+	l = log
+	p = pull
 
 	ch = checkout
 	cx = checkout HEAD --
@@ -25,9 +27,17 @@
 	deps = commit -am 'Update dependencies'
 	nail = commit -am ':nail_care:'
 
+[pull]
+	# Push to the current branch only
+	rebase = true
+
 [push]
 	# Push to the current branch only
 	default = simple
+
+[rebase]
+	# Push to the current branch only
+	autoStash = true
 
 [user]
 	# Please change this if you’re not me
