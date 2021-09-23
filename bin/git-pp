@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Go to the main branch and pull changes
+git-m && git pull
