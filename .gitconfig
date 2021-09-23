@@ -39,6 +39,9 @@
 	# Push to the current branch only
 	autoStash = true
 
+[init]
+	defaultBranch = trunk
+
 [user]
 	# Please change this if you’re not me
 	name = Dominik Porada
