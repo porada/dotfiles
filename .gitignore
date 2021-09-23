@@ -11,4 +11,5 @@
 .vim/autoload
 .vim/plugged
 Brewfile.lock.json
-etc/hosts/sandbox.hst
+etc/hosts
+!etc/hosts/defaults.hst
