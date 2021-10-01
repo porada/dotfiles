@@ -40,12 +40,12 @@ function __fish_prompt_pwd
 end
 
 function __fish_prompt_git_branch
-  set -l git_branch (command git symbolic-ref HEAD ^ /dev/null | sed -e "s|^refs/heads/||")
+  set -l git_branch (command git symbolic-ref HEAD 2> /dev/null | sed -e "s|^refs/heads/||")
   test -n "$git_branch"; and printf $git_branch
 end
 
 function __fish_prompt_git_dirty
-  set -l git_status (command git status --porcelain --untracked-files=no ^ /dev/null)
+  set -l git_status (command git status --porcelain --untracked-files=no 2> /dev/null)
   test -n "$git_status"; and printf "·"
 end
 
