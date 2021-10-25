@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-
-# Pick a random argument from the input
-puts ARGV.sample

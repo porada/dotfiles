@@ -1,4 +1,3 @@
-brew "bat"
 brew "fish"
 brew "git"
 brew "node@14"
