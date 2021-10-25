@@ -1,6 +1,8 @@
-#!/usr/bin/env ruby
+#!/bin/sh
 
 # Show files ignored by `git skip`
-`git ls-files -v`.scan /^\s*([a-z]+)\s+(.*)$/ do |(status, path)|
-  puts "\e[35m#{status.length > 1 ? status : status.prepend(' ')}\e[0m #{path}"
-end
+print_skipped() {
+  echo "\033[1;33m S\033[0m ${@:2}"
+}
+
+git ls-files -v | grep "^h" | while read line; do print_skipped $line; done
