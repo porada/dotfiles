@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Create a new branch based on the name of the current one
+git checkout -b "wip/$(git rev-parse --abbrev-ref HEAD)"
