@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Display the README
+bat --paging=never --style=plain "$HOME/.dotfiles/README.md"
