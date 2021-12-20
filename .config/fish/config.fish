@@ -18,8 +18,11 @@ set -x NODE_BIN_PATH "/usr/local/opt/node@14/bin"
 
 # Set Ruby gem paths
 set -x RUBY_BIN_PATH "/usr/local/opt/ruby/bin"
-set -x GEM_HOME "$DOTFILES_PATH/.gems"
-set -x GEM_BIN_PATH = "$GEM_HOME/bin"
+set -x RUBY_BIN_PATH "$DOTFILES_PATH/.gems/bin" $RUBY_BIN_PATH
+
+# Set PHP paths
+set -x PHP_BIN_PATH "/usr/local/opt/php@7.4/sbin"
+set -x PHP_BIN_PATH "/usr/local/opt/php@7.4/bin" $PHP_BIN_PATH
 
 # Set dotfiles paths
 set -x PATH "/sbin" $PATH
@@ -28,8 +31,8 @@ set -x PATH "/usr/sbin" $PATH
 set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/usr/local/sbin" $PATH
+set -x PATH "$PHP_BIN_PATH" $PATH
 set -x PATH "$RUBY_BIN_PATH" $PATH
-set -x PATH "$GEM_BIN_PATH" $PATH
 set -x PATH "$NODE_BIN_PATH" $PATH
 set -x PATH "$DOTFILES_BIN_PATH" $PATH
 set -x PATH "./node_modules/.bin" $PATH
