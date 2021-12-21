@@ -1,4 +1,7 @@
 #!/bin/sh
 
-# Display the README
+# Display the README and the list of availabe commands
 bat --paging=never --style=plain "$HOME/.dotfiles/README.md"
+
+printf "\n## Available Commands\n\n" | bat --language=md --paging=never --style=plain
+ls "$HOME/.dotfiles/bin"
