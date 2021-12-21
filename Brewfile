@@ -1,7 +1,7 @@
 brew "bat"
 brew "fish"
 brew "git"
-brew "node@14"
+brew "node@16"
 brew "php@7.4"
 brew "ruby"
 brew "vim"

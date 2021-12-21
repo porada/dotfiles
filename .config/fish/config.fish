@@ -14,7 +14,7 @@ set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
 # Set Node paths
-set -x NODE_BIN_PATH "/usr/local/opt/node@14/bin"
+set -x NODE_BIN_PATH "/usr/local/opt/node@16/bin"
 
 # Set Ruby gem paths
 set -x RUBY_BIN_PATH "/usr/local/opt/ruby/bin"
