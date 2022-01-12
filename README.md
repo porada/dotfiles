@@ -1,6 +1,9 @@
 ## Setup
 
 ```sh
+# Trigger the prompt to install developer tools
+git --version
+
 # Clone the dotfiles via HTTPS to avoid authentication errors
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 

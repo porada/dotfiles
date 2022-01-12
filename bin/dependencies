@@ -5,7 +5,6 @@ check() {
   dependency_var  "dotfiles" "$DOTFILES_PATH"
 
   dependency_bin  "brew"
-  dependency_file "brew-bundle" "$DOTFILES_PATH/Brewfile.lock.json"
 
   dependency_bin  "fish"
   dependency_exec "fisher" "fish -c 'fisher --version'"
