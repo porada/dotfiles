@@ -32,16 +32,6 @@ if hash npm 2> /dev/null; then
   done
 fi
 
-# Update RubyGems and reinstall dependencies
-if hash gem 2> /dev/null; then
-  for gem in "gem" "/usr/local/opt/ruby/bin/gem"; do
-    if [ $gem != `which gem` ]; then
-      __upgrading $gem
-      command $gem update --system
-    fi
-  done
-fi
-
 # Update Vim plugins
 if hash vim 2> /dev/null; then
   __upgrading vim plugins

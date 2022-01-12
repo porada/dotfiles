@@ -16,10 +16,6 @@ set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 # Set Node paths
 set -x NODE_BIN_PATH "/usr/local/opt/node@14/bin"
 
-# Set Ruby gem paths
-set -x RUBY_BIN_PATH "/usr/local/opt/ruby/bin"
-set -x RUBY_BIN_PATH "$DOTFILES_PATH/.gems/bin" $RUBY_BIN_PATH
-
 # Set PHP paths
 set -x PHP_BIN_PATH "/usr/local/opt/php@7.4/sbin"
 set -x PHP_BIN_PATH "/usr/local/opt/php@7.4/bin" $PHP_BIN_PATH
@@ -32,7 +28,6 @@ set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/usr/local/sbin" $PATH
 set -x PATH "$PHP_BIN_PATH" $PATH
-set -x PATH "$RUBY_BIN_PATH" $PATH
 set -x PATH "$NODE_BIN_PATH" $PATH
 set -x PATH "$DOTFILES_BIN_PATH" $PATH
 set -x PATH "./node_modules/.bin" $PATH

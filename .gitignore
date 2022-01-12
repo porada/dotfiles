@@ -6,7 +6,6 @@
 .config/fish/fish_variables
 .config/fish/functions/__*
 .config/fish/functions/fisher.fish
-.gems
 .vim/.netrwhist
 .vim/autoload
 .vim/plugged
