@@ -27,6 +27,8 @@ set -x PATH "/usr/sbin" $PATH
 set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/usr/local/sbin" $PATH
+set -x PATH "/opt/homebrew/sbin" $PATH
+set -x PATH "/opt/homebrew/bin" $PATH
 set -x PATH "$PHP_BIN_PATH" $PATH
 set -x PATH "$NODE_BIN_PATH" $PATH
 set -x PATH "$DOTFILES_BIN_PATH" $PATH
