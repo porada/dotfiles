@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Create a directory and enter it
+mkdir -p "$1"
+and cd "$1"
