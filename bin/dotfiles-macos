@@ -17,9 +17,6 @@ defaults write com.apple.screencapture show-thumbnail -bool false
 defaults write com.apple.dock tilesize -int 24
 defaults write com.apple.dock showhidden -bool true
 
-# Send email on ⌘ + return
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
-
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 

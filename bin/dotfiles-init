@@ -22,7 +22,6 @@ symlink "$DOTFILES/etc/hosts" "$HOSTS"
 
 # Create additional files
 touch "$DOTFILES/extra.fish"
-touch "$HOME/.z"
 touch "$HOSTS/sandbox.hst"
 
 # Miscellaneous
