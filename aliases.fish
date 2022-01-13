@@ -14,7 +14,7 @@ abbr y "yarn"
 abbr ls "ls -A"
 
 # Recursively remove given files and directories
-abbr rmd "rm -rfv"
+abbr rr "rm -rfv"
 
 # Node-related aliases
 abbr ni "npm install"
