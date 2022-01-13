@@ -28,15 +28,12 @@
 	nail = commit -am ':nail_care:'
 
 [pull]
-	# Push to the current branch only
 	rebase = true
 
 [push]
-	# Push to the current branch only
 	default = simple
 
 [rebase]
-	# Push to the current branch only
 	autoStash = true
 
 [init]
@@ -49,6 +46,5 @@
 
 [pager]
 	# Take advantage of the better built-in diff
-	log  = diff-highlight | less
-	show = diff-highlight | less --chop-long-lines
 	diff = diff-highlight | less --chop-long-lines
+	show = diff-highlight | less --chop-long-lines
