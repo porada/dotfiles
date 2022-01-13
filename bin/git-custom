@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# List all custom Git commands
-cd $DOTFILES_BIN_PATH;
-bat --line-range=3: --paging=never git-*;
