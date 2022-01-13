@@ -1,0 +1,13 @@
+#!/bin/sh
+
+__installing() {
+  printf "\033[1;33m· Installing %s\033[0m\n" "$*"
+}
+
+# Install available dependencies with `brew`
+hash brew || exit $?
+
+for formula in bat fish git node@14 php@7.4 vim; do
+  __installing $formula
+  brew install $formula
+done

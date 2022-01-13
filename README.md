@@ -14,6 +14,7 @@ git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 ~/.dotfiles/bin/dotfiles-init
 
 # Run optional configurators
+~/.dotfiles/bin/dotfiles-install
 ~/.dotfiles/bin/dotfiles-macos
 
 # Make sure everything is up to date

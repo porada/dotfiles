@@ -9,6 +9,5 @@
 .vim/.netrwhist
 .vim/autoload
 .vim/plugged
-Brewfile.lock.json
 etc/hosts
 !etc/hosts/defaults.hst
