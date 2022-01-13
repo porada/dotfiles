@@ -15,7 +15,6 @@ git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Run optional configurators
 ~/.dotfiles/bin/dotfiles-macos
-~/.dotfiles/bin/dotfiles-sketch
 
 # Make sure everything is up to date
 ~/.dotfiles/bin/upgrade
