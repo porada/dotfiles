@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# UI ---------------------------------------------------------------------------
-
 # Enable full keyboard access for all controls
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
@@ -9,21 +7,21 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
 
+# Disable font smoothing
+defaults -currentHost write -g AppleFontSmoothing -int 0
+
 # Disable screenshot thumbnails
 defaults write com.apple.screencapture show-thumbnail -bool false
 
-# Make Dock icons of hidden applications translucent
+# Set Dock icons to a specific size and make hidden applications translucent
+defaults write com.apple.dock tilesize -int 24
 defaults write com.apple.dock showhidden -bool true
-
-# Apps -------------------------------------------------------------------------
 
 # Send email on ⌘ + return
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-# Text -------------------------------------------------------------------------
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
