@@ -5,9 +5,8 @@
 .config/fish/fish_variables
 .config/fish/functions/__*
 .config/fish/functions/fisher.fish
-.vim/.netrwhist
-.vim/autoload
-.vim/plugged
+.local
+.vim
 etc/hosts
 !etc/hosts/defaults.hst
 extra.fish
