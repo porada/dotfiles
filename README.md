@@ -8,7 +8,7 @@ git --version
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Make sure all dependencies are in place
-~/.dotfiles/bin/dependencies
+~/.dotfiles/bin/dotfiles-dependencies
 
 # Symlink the dotfiles
 ~/.dotfiles/bin/dotfiles-init

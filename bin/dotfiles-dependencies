@@ -2,7 +2,7 @@
 
 # Check dotfiles’ dependencies
 check() {
-  dependency_var  "dotfiles" "$DOTFILES_PATH"
+  dependency_var  "\$PATH" "$DOTFILES_PATH"
 
   dependency_bin  "brew"
 
