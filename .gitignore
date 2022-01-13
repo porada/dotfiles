@@ -2,7 +2,6 @@
 !.atom/styles.less
 .config/fish/completions
 .config/fish/conf.d
-.config/fish/extra.fish
 .config/fish/fish_variables
 .config/fish/functions/__*
 .config/fish/functions/fisher.fish
@@ -11,3 +10,4 @@
 .vim/plugged
 etc/hosts
 !etc/hosts/defaults.hst
+extra.fish
