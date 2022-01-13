@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Create or update a custom hosts file that blocks all social media websites
+curl https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social/hosts \
+  > "$HOME/.dotfiles/etc/hosts/defaults-social.hst"

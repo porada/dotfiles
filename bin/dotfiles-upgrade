@@ -43,3 +43,9 @@ if hash fish 2> /dev/null; then
   __upgrading fisher
   fish -c "fisher update"
 fi
+
+# Update hosts
+if hash dotfiles-update-hosts 2> /dev/null; then
+  __upgrading dotfiles/etc/hosts
+  dotfiles-update-hosts
+fi

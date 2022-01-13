@@ -7,6 +7,6 @@
 .config/fish/functions/fisher.fish
 .local
 .vim
-etc/hosts
+etc/hosts/*
 !etc/hosts/defaults.hst
 extra.fish
