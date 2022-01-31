@@ -23,9 +23,9 @@
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am ':boom:'
+	boom = commit -am '💥'
 	deps = commit -am 'Update dependencies'
-	nail = commit -am ':nail_care:'
+	nail = commit -am '💅'
 
 [pull]
 	rebase = true
