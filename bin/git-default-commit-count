@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Returns the number of the last available N commits (or lower) that can be
+# used a consistent commit count in the scripts that specify a default number
+default=10
+
+count=$(git rev-list --count HEAD)
+count=$(( $count - 2))
+
+echo $(( $count < default ? $count : default ))
