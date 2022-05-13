@@ -1,3 +1,6 @@
+[core]
+	excludesfile = ~/.dotfiles/.gitignore_global
+
 [alias]
 	# Simple aliases
 	a = add -v
