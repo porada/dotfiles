@@ -2,7 +2,7 @@
 abbr p "cd ~/Projects"
 
 # Shorten the frequently used commands
-abbr a "atom"
+abbr c "code"
 abbr g "git"
 abbr k "killall"
 abbr n "node"
