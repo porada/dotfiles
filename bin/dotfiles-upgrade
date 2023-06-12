@@ -23,7 +23,7 @@ fi
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
-  for npm in "npm" "/opt/homebrew/opt/node@14/bin/npm"; do
+  for npm in "npm" "/opt/homebrew/opt/node@18/bin/npm"; do
     if [ $npm != `which npm` ]; then
       __upgrading $npm
       command $npm install --global npm

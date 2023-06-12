@@ -14,7 +14,7 @@ set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
 # Set Node paths
-set -x NODE_BIN_PATH "/opt/homebrew/opt/node@14/bin"
+set -x NODE_BIN_PATH "/opt/homebrew/opt/node@18/bin"
 
 # Set PHP paths
 set -x PHP_BIN_PATH "/opt/homebrew/opt/php@7.4/sbin"

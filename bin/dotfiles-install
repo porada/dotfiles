@@ -7,7 +7,7 @@ __installing() {
 # Install available dependencies with `brew`
 hash brew || exit $?
 
-for formula in bat fish git node@14 php@7.4 vim; do
+for formula in bat fish git node@18 php@7.4 vim; do
   __installing $formula
   brew install $formula
 done
