@@ -8,6 +8,9 @@ set -x EDITOR "vim -c startinsert"
 # Don’t clear the screen after quitting a manual page
 set -x MANPAGER "less -X"
 
+# Disable Homebrew analytics
+set -x HOMEBREW_NO_ANALYTICS 1
+
 # Set dotfiles paths
 set -x DOTFILES_PATH "$HOME/.dotfiles"
 set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
