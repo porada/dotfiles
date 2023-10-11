@@ -5,9 +5,16 @@ __installing() {
 }
 
 # Install available dependencies with `brew`
-hash brew || exit $?
+brew="/opt/homebrew/bin/brew"
 
 for formula in bat fish git node@18 php@7.4 vim; do
   __installing $formula
-  brew install $formula
+  $brew install $formula
 done
+
+# Set `fish` as the default shell
+fish="$($brew --prefix)/bin/fish"
+echo "$fish" | sudo tee -a /etc/shells
+chsh -s "$fish"
+
+"$fish" --init-command="dotfiles-dependencies"
