@@ -13,18 +13,12 @@ defaults -currentHost write -g AppleFontSmoothing -int 0
 # Disable screenshot thumbnails
 defaults write com.apple.screencapture show-thumbnail -bool false
 
+# Disable prompt line marks
+defaults write com.apple.Terminal ShowLineMarks -int 0
+
 # Set Dock icons to a specific size and make hidden applications translucent
-defaults write com.apple.dock tilesize -int 24
+defaults write com.apple.dock tilesize -int 48
 defaults write com.apple.dock showhidden -bool true
 
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-# Disable smart quotes and continuous spell checking in Messages
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings \
-  -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings \
-  -dict-add "continuousSpellCheckingEnabled" -bool false
