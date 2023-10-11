@@ -11,7 +11,10 @@ abbr v "vim"
 abbr y "yarn"
 
 # Show hidden files by default when using `ls`
-abbr ls "ls -A"
+alias ls="ls -A"
+
+# Use syntax highlighting when using `cat`
+alias cat="bat"
 
 # Recursively remove given files and directories
 abbr rr "rm -rfv"
