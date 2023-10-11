@@ -11,7 +11,6 @@ check() {
 
   dependency_bin  "git"
   dependency_bin  "node"
-  dependency_bin  "php"
 
   dependency_bin  "vim"
   dependency_file "vim-plug" "$HOME/.vim/autoload/plug.vim"
