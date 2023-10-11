@@ -18,6 +18,3 @@ abbr rr "rm -rfv"
 
 # Remove `node_modules`
 abbr nx "find . -name node_modules -type d -prune -print -exec rm -rf '{}' +"
-
-# Raspberry Pi
-abbr pi "ssh pi@raspberrypi.local"
