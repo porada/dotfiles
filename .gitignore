@@ -4,6 +4,7 @@
 .config/fish/functions/__*
 .config/fish/functions/fisher.fish
 .local
+.ssh
 .vim
 etc/hosts/*
 !etc/hosts/defaults.hst
