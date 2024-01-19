@@ -17,7 +17,7 @@ set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
 # Set Node paths
-set -x NODE_BIN_PATH "/opt/homebrew/opt/node@18/bin"
+set -x NODE_BIN_PATH "/opt/homebrew/opt/node/bin"
 
 # Set dotfiles paths
 set -x PATH "/sbin" $PATH
