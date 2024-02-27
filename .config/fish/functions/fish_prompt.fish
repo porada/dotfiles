@@ -13,16 +13,15 @@ function fish_prompt
   set_color --bold $fish_color_cwd
   __fish_prompt_pwd
 
-  set_color normal
-  set_color brblack
+  set_color $fish_color_operator
   __fish_prompt_git_branch
   __fish_prompt_git_dirty
   __fish_prompt_newline
 
-  set_color brblack
+  set_color $fish_color_comment
   __fish_prompt_caret $exit_code
 
-  set_color normal
+  set_color $fish_color_normal
 end
 
 function __fish_prompt_newline
