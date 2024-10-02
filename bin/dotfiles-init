@@ -1,7 +1,6 @@
 #!/bin/sh
 
 DOTFILES="$HOME/.dotfiles"
-HOSTS="$HOME/Library/Gas Mask/Local"
 
 # A helper function that makes sure the symlink can be created and
 # that it’s going to overwrite any existing files or directories
@@ -17,12 +16,8 @@ for source in .config/fish .gitconfig .hushlogin .local .ssh .vim .vimrc; do
   symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
-# Symlink `/etc/hosts` templates
-symlink "$DOTFILES/etc/hosts" "$HOSTS"
-
 # Create additional files
 touch "$DOTFILES/extra.fish"
-touch "$HOSTS/sandbox.hst"
 
 # Miscellaneous
 echo ".gitconfig: Remember to change your user info"

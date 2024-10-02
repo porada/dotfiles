@@ -6,6 +6,4 @@
 .local
 .ssh
 .vim
-etc/hosts/*
-!etc/hosts/defaults.hst
 extra.fish
