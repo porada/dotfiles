@@ -7,7 +7,7 @@ __installing() {
 # Install available dependencies with `brew`
 brew="/opt/homebrew/bin/brew"
 
-for formula in fish git node@20 vim; do
+for formula in fish git node vim; do
   __installing $formula
   $brew install $formula
 done

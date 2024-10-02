@@ -23,13 +23,9 @@ fi
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
-  for npm in "npm" "/opt/homebrew/opt/node/bin/npm"; do
-    if [ $npm != `which npm` ]; then
-      __upgrading $npm
-      command $npm install --global npm
-      command $npm update --global
-    fi
-  done
+  __upgrading $npm
+  npm install --global npm
+  npm update --global
 fi
 
 # Update Vim plugins

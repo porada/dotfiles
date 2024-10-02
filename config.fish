@@ -16,9 +16,6 @@ set -x DOTFILES_PATH "$HOME/.dotfiles"
 set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
-# Set Node paths
-set -x NODE_BIN_PATH "/opt/homebrew/opt/node@20/bin"
-
 # Set dotfiles paths
 set -x PATH "/sbin" $PATH
 set -x PATH "/bin" $PATH
@@ -27,7 +24,6 @@ set -x PATH "/usr/bin" $PATH
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "/opt/homebrew/sbin" $PATH
 set -x PATH "/opt/homebrew/bin" $PATH
-set -x PATH "$NODE_BIN_PATH" $PATH
 set -x PATH "$DOTFILES_BIN_PATH" $PATH
 
 # Define prompt colors
