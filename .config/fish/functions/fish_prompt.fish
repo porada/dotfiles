@@ -1,8 +1,3 @@
-# Credits:
-#
-# https://github.com/sindresorhus/pure
-# https://github.com/godfat/fish_prompt-gitstatus
-
 function fish_prompt
   set -l exit_code $status
 
@@ -10,9 +5,10 @@ function fish_prompt
   __fish_prompt_newline
   __fish_prompt_host
 
-  set_color --bold $fish_color_cwd
+  set_color $fish_color_cwd
   __fish_prompt_pwd
 
+  set_color $fish_color_normal
   set_color $fish_color_operator
   __fish_prompt_git_branch
   __fish_prompt_git_dirty
@@ -50,9 +46,5 @@ end
 
 function __fish_prompt_caret
   test $argv[1] -ne 0; and set_color $fish_color_error
-  switch $USER
-    case "dom"; printf "▲ "
-    case "pi";  printf "π "
-    case "*";   printf "\$ "
-  end
+  printf "\$ "
 end
