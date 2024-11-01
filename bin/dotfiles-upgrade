@@ -35,9 +35,13 @@ fi
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
+  export NODE_NO_WARNINGS=1
+
   __upgrading npm
-  npm --global --loglevel=error install npm
-  npm --global --loglevel=error update
+  npm --global --no-fund install npm
+  npm --global --no-fund update
+
+  unset NODE_NO_WARNINGS
 fi
 
 # Update Vim plugins
