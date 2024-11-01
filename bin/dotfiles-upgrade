@@ -4,17 +4,31 @@ __upgrading() {
   printf "\n\033[1;33m· Upgrading %s\033[0m\n" "$*"
 }
 
+get_current_revision() {
+  md5 -q $(realpath "$0")
+}
+
+UPGRADER_REVISION=$(get_current_revision)
+
 # Update dotfiles
 if hash git 2> /dev/null && [ -n "$DOTFILES_PATH" ]; then
   __upgrading dotfiles
   git -C "$DOTFILES_PATH" pull
+
+  # Run the upgrader again if the script has changed
+  if [ $(get_current_revision) != "$UPGRADER_REVISION" ]; then
+    exec "$DOTFILES_PATH"/bin/dotfiles-upgrade
+  fi
+
   "$DOTFILES_PATH"/bin/dotfiles-init
+  "$DOTFILES_PATH"/bin/dotfiles-install
+  "$DOTFILES_PATH"/bin/dotfiles-macos
 fi
 
 # Update Homebrew and installed apps
 if hash brew 2> /dev/null; then
   __upgrading brew
-  brew_cache_path=`brew --cache`
+  brew_cache_path=$(brew --cache)
   brew update && brew upgrade
   brew doctor && brew cleanup -s && rm -rf "$brew_cache_path"
 fi
@@ -22,8 +36,8 @@ fi
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
   __upgrading npm
-  npm install --global npm
-  npm update --global
+  npm --global --loglevel=error install npm
+  npm --global --loglevel=error update
 fi
 
 # Update Vim plugins
