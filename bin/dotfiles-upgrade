@@ -8,6 +8,7 @@ __upgrading() {
 if hash git 2> /dev/null && [ -n "$DOTFILES_PATH" ]; then
   __upgrading dotfiles
   git -C "$DOTFILES_PATH" pull
+  "$DOTFILES_PATH"/bin/dotfiles-init
 fi
 
 # Update Homebrew and installed apps
