@@ -4,8 +4,14 @@ __installing() {
   printf "\n\033[1;33m· Installing %s\033[0m\n" "$*"
 }
 
+__error() {
+  printf "\n\033[1;31m× %s\033[0m\n" "$*"
+  exit 1
+}
+
 # Install available dependencies with `brew`
 brew="/opt/homebrew/bin/brew"
+[ ! -x "$brew" ] && __error 'Install `brew` first'
 
 for formula in fish git node vim; do
   $brew list --formula | grep -q "^$formula\$" && continue
