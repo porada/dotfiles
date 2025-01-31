@@ -14,10 +14,12 @@ brew="/opt/homebrew/bin/brew"
 [ ! -x "$brew" ] && __error 'Install `brew` first'
 
 for formula in fish git node vim; do
-  $brew list --formula | grep -q "^$formula\$" && continue
-
-  __installing $formula
-  $brew install $formula
+  if ! $brew list --formula | grep -q "^$formula\$"; then
+    __installing $formula
+    $brew install $formula
+  else
+    $brew link --overwrite $formula
+  fi
 done
 
 # Set `fish` as the default shell
