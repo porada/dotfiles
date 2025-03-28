@@ -5,6 +5,6 @@
 default=10
 
 count=$(git rev-list --count HEAD)
-count=$(( $count - 2))
+count=$(( $count - 1 ))
 
 echo $(( $count < default ? $count : default ))
