@@ -22,15 +22,23 @@ if hash git 2> /dev/null && [ -n "$DOTFILES_PATH" ]; then
 
   "$DOTFILES_PATH"/bin/dotfiles-init
   "$DOTFILES_PATH"/bin/dotfiles-install
-  "$DOTFILES_PATH"/bin/dotfiles-macos
 fi
 
 # Update Homebrew and installed apps
 if hash brew 2> /dev/null; then
   __upgrading brew
   brew_cache_path=$(brew --cache)
-  brew update && brew upgrade
-  brew doctor && brew cleanup -s && rm -rf "$brew_cache_path"
+  brew update
+  brew upgrade
+  brew cleanup --scrub
+  rm -rf $(brew --cache)
+fi
+
+# Re-link and configure installed apps
+if hash git 2> /dev/null && [ -n "$DOTFILES_PATH" ]; then
+  __upgrading links
+  "$DOTFILES_PATH"/bin/dotfiles-install
+  "$DOTFILES_PATH"/bin/dotfiles-macos
 fi
 
 # Update globally installed Node packages
