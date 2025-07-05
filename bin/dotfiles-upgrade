@@ -1,33 +1,48 @@
 #!/bin/sh
 
+get_file_path() {
+  realpath "$0"
+}
+
+get_file_revision() {
+  md5 -q $(get_file_path)
+}
+
+get_directory_path() {
+  dirname $(get_file_path)
+}
+
+__dotfiles() {
+  "$(get_directory_path)/dotfiles-$1"
+}
+
+__git() {
+  git -C "$(get_directory_path)" "$@"
+}
+
 __upgrading() {
   printf "\n\033[1;33m· Upgrading %s\033[0m\n" "$*"
 }
 
-get_current_revision() {
-  md5 -q $(realpath "$0")
-}
-
-DOTFILES="$HOME/.dotfiles"
-UPGRADER_REVISION=$(get_current_revision)
-
 # Ensure dependencies are in place
-__upgrading
-"$DOTFILES"/bin/dotfiles-dependencies
-"$DOTFILES"/bin/dotfiles-add-ssh
+__upgrading dependencies
+__dotfiles dependencies | grep -v PATH
+__dotfiles add-ssh
 
 # Update dotfiles
 if hash git 2> /dev/null; then
   __upgrading dotfiles
-  git -C "$DOTFILES" pull
 
-  # Run the upgrader again if the script has changed
-  if [ $(get_current_revision) != "$UPGRADER_REVISION" ]; then
-    exec "$DOTFILES"/bin/dotfiles-upgrade
+  CURRENT_REVISION=$(get_file_revision)
+  __git diff --quiet -- "$(get_file_path)" && __git pull
+
+  # Run the script again if it’s been updated
+  if [ $(get_file_revision) != "$CURRENT_REVISION" ]; then
+    exec $(get_file_path)
   fi
 
-  "$DOTFILES"/bin/dotfiles-init
-  "$DOTFILES"/bin/dotfiles-install
+  __dotfiles init
+  __dotfiles install
 fi
 
 # Update Homebrew and installed apps
@@ -42,8 +57,8 @@ fi
 
 # Re-link and configure installed apps
 __upgrading links
-"$DOTFILES"/bin/dotfiles-install
-"$DOTFILES"/bin/dotfiles-macos
+__dotfiles install
+__dotfiles macos
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
