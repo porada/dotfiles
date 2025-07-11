@@ -26,7 +26,7 @@ git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfi
 
 ## Quick Links
 
-* [`brew`](https://brew.sh)
-* [`fisher`](https://github.com/jorgebucaran/fisher)
-* [`ssh`](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-* [`vim-plug`](https://github.com/junegunn/vim-plug)
+- [`brew`](https://brew.sh)
+- [`fisher`](https://github.com/jorgebucaran/fisher)
+- [`ssh`](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [`vim-plug`](https://github.com/junegunn/vim-plug)

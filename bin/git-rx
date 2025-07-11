@@ -4,8 +4,8 @@
 # otherwise they’ll be affected by the reset
 skipped=$(git skipped)
 if [ -n "$skipped" ]; then
-  echo $skipped
+  echo "$skipped"
   exit
 fi
 
-git reset --hard $@
+git reset --hard "$@"

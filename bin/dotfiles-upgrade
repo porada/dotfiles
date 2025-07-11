@@ -5,11 +5,11 @@ get_file_path() {
 }
 
 get_file_revision() {
-  md5 -q $(get_file_path)
+  md5 -q "$(get_file_path)"
 }
 
 get_directory_path() {
-  dirname $(get_file_path)
+  dirname "$(get_file_path)"
 }
 
 __dotfiles() {
@@ -28,31 +28,29 @@ __upgrading() {
 __upgrading dependencies
 __dotfiles dependencies | grep -v PATH
 __dotfiles init
+__dotfiles install
 
 # Update dotfiles
 if hash git 2> /dev/null; then
   __upgrading dotfiles
 
-  CURRENT_REVISION=$(get_file_revision)
+  current_revision="$(get_file_revision)"
   __git diff --quiet -- "$(get_file_path)" && __git pull
 
   # Run the script again if it’s been updated
-  if [ $(get_file_revision) != "$CURRENT_REVISION" ]; then
-    exec $(get_file_path)
+  if [ "$(get_file_revision)" != "$current_revision" ]; then
+    exec "$(get_file_path)"
   fi
-
-  __dotfiles init
-  __dotfiles install
 fi
 
 # Update Homebrew and installed apps
 if hash brew 2> /dev/null; then
   __upgrading brew
-  brew_cache_path=$(brew --cache)
+  brew_cache_path="$(brew --cache)"
   brew update
   brew upgrade
   brew cleanup --scrub
-  rm -rf $(brew --cache)
+  rm -rf "$brew_cache_path"
 fi
 
 # Re-link and configure installed apps

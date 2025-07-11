@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # Show diff including staged files
-git diff --cached $@
+git diff --cached "$@"

@@ -1,5 +1,5 @@
 #!/bin/sh
 
 # Filter the list of files included in the current repository
-[ $# -gt 0 ] && suffix="| grep $@"
+[ $# -gt 0 ] && suffix="| grep $*"
 eval "git ls-files $suffix"

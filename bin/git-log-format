@@ -6,4 +6,4 @@ args="$args --pretty=format:'%C(dim)%h"
 test "$1" = "--refs" && args="$args%C(reset)%C(red)%d"
 args="$args %C(reset)%s %C(dim)%cd / %an%C(reset)'"
 
-echo $args
+echo "$args"
