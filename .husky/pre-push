@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -n "$(npm outdated --parseable)" ]; then
+  npm outdated
+  exit 1
+fi

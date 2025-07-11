@@ -1,0 +1,11 @@
+{
+	"plugins": ["prettier-plugin-sh"],
+	"overrides": [
+		{
+			"files": ["./bin/*", "./*.fish"],
+			"options": {
+				"parser": "sh"
+			}
+		}
+	]
+}
