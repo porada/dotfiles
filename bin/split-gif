@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Split a given gif into seprate frames
-input="$1"
-output="$(basename $input | cut -f 1 -d '.').png"
-
-# The following command requires ImageMagick
-convert -coalesce $input $output
