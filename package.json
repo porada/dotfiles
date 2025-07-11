@@ -10,9 +10,16 @@
 	"scripts": {
 		"fix": "npm run format -- .",
 		"format": "prettier --write",
+		"format:fish": "fish_indent --write",
+		"lint:fish": "fish --no-execute",
+		"lint:staged": "npx lint-staged --relative",
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"**/*": "npm run format --"
+		"**/*": "npm run format --",
+		"*.fish": [
+			"npm run format:fish --",
+			"npm run lint:fish --"
+		]
 	}
 }

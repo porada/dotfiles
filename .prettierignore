@@ -1,1 +1,6 @@
-.gitignore
+.config/fish
+.husky/_
+.local
+.ssh
+.vim
+node_modules
