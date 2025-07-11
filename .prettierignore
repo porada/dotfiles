@@ -1,6 +1,7 @@
 .config/fish
 .husky/_
 .local
+.shellcheckrc
 .ssh
 .vim
 node_modules

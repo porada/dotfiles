@@ -7,5 +7,5 @@
 .local
 .ssh
 .vim
-extra.fish
+extra.sh
 node_modules

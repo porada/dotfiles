@@ -22,7 +22,7 @@ permit() {
 }
 
 # Create additional files
-touch "$DOTFILES/extra.fish" && permit "$DOTFILES/extra.fish"
+touch "$DOTFILES/extra.sh" && permit "$DOTFILES/extra.sh"
 mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
 
 # Add SSH key to the Apple Keychain

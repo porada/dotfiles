@@ -17,18 +17,18 @@ set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
 # Set dotfiles paths
-set -x PATH "/sbin" $PATH
-set -x PATH "/bin" $PATH
-set -x PATH "/usr/sbin" $PATH
-set -x PATH "/usr/bin" $PATH
-set -x PATH "/usr/local/bin" $PATH
-set -x PATH "/opt/homebrew/sbin" $PATH
-set -x PATH "/opt/homebrew/bin" $PATH
-set -x PATH "$DOTFILES_BIN_PATH" $PATH
+set -x PATH "/sbin" "$PATH"
+set -x PATH "/bin" "$PATH"
+set -x PATH "/usr/sbin" "$PATH"
+set -x PATH "/usr/bin" "$PATH"
+set -x PATH "/usr/local/bin" "$PATH"
+set -x PATH "/opt/homebrew/sbin" "$PATH"
+set -x PATH "/opt/homebrew/bin" "$PATH"
+set -x PATH "$DOTFILES_BIN_PATH" "$PATH"
 
 # Define prompt colors
 . "$DOTFILES_FISH_PATH/colors.fish"
 
 # Load dotfiles
-. "$DOTFILES_PATH/aliases.fish"
-. "$DOTFILES_PATH/extra.fish"
+. "$DOTFILES_PATH/aliases.sh"
+. "$DOTFILES_PATH/extra.sh"

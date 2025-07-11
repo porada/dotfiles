@@ -27,7 +27,7 @@ __upgrading() {
 # Ensure dependencies are in place
 __upgrading dependencies
 __dotfiles dependencies | grep -v PATH
-__dotfiles add-ssh
+__dotfiles init
 
 # Update dotfiles
 if hash git 2> /dev/null; then

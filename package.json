@@ -5,13 +5,15 @@
 		"husky": "9.1.7",
 		"lint-staged": "16.1.2",
 		"prettier": "3.6.2",
-		"prettier-plugin-sh": "0.18.0"
+		"prettier-plugin-sh": "0.18.0",
+		"shellcheck": "3.1.0"
 	},
 	"scripts": {
 		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-find-fish); npm run lint:fish -- $(dotfiles-find-fish)",
 		"format": "prettier --write",
 		"format:fish": "fish_indent --write",
 		"lint:fish": "fish --no-execute",
+		"lint:sh": "npx shellcheck",
 		"lint:staged": "npx lint-staged --relative",
 		"prepare": "husky"
 	},
@@ -20,6 +22,9 @@
 		"*.fish": [
 			"npm run format:fish --",
 			"npm run lint:fish --"
-		]
+		],
+		"*.sh": "npm run lint:sh --",
+		".husky/*": "npm run lint:sh --",
+		"bin/*": "npm run lint:sh --"
 	}
 }
