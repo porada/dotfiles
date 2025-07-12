@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # List all Fish shell scripts that come with the dotfiles
+# (POSIX shell scripts can be listed with `dotfiles-find-sh`)
 cd "$DOTFILES_PATH" || exit 1
 
 find . -type f \

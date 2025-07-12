@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# List all shell scripts that come with the dotfiles
+# (Fish shell scripts can be listed with `dotfiles-find-fish`)
+cd "$DOTFILES_PATH" || exit 1
+
+find . -type f \
+  ! -path "./.git/*" \
+  ! -path "./.vim/*" \
+  ! -path "./node_modules/*" \
+  | while read -r file; do
+    if git check-ignore --quiet "$file" && [ "${file##*/}" != "extra.sh" ]; then
+      continue
+    fi
+
+    if [ "${file##*.}" = "sh" ] || head -n 1 "$file" | grep --quiet '^#!.*/sh'; then
+      echo "${file#./}"
+    fi
+  done
