@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# List all Fish shell scripts that come with the dotfiles
+cd "$DOTFILES_PATH" || exit 1
+
+find . -type f \
+  ! -path "./.git/*" \
+  ! -path "./.vim/*" \
+  ! -path "./node_modules/*" \
+  | while read -r file; do
+    if git check-ignore --quiet "$file"; then
+      continue
+    fi
+
+    if [ "${file##*.}" = "fish" ] || head -n 1 "$file" | grep --quiet '^#!.*/fish'; then
+      echo "${file#./}"
+    fi
+  done
