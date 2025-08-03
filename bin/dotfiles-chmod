@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Set correct permissions for an executable script
+# (f no file is given, set the permissions for all bin scripts)
+if [ $# -eq 0 ]; then
+  "$DOTFILES_BIN_PATH/dotfiles-find-sh" | grep "^bin/" | xargs chmod +x
+  exit $?
+fi
+
+for file in "$@"; do
+  if [ -f "$file" ] && [ ! -L "$file" ]; then
+    chmod +x "$file"
+  else
+    echo "File not found: $file"
+  fi
+done

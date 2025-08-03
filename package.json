@@ -25,6 +25,9 @@
 		],
 		"*.sh": "npm run lint:sh --",
 		".husky/*": "npm run lint:sh --",
-		"bin/*": "npm run lint:sh --"
+		"bin/*": [
+			"dotfiles-chmod",
+			"npm run lint:sh --"
+		]
 	}
 }
