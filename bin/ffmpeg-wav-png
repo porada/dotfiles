@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Batch convert `.wav` and `.png` pairs in the current directory to video files
+if ! command -v ffmpeg > /dev/null 2>&1; then
+  brew install ffmpeg
+fi
+
+# Parse `--preset` from arguments
+preset=""
+
+for arg in "$@"; do
+  case "$arg" in
+    --preset=*)
+      preset="${arg#--preset=}"
+      ;;
+  esac
+done
+
+if [ -z "$preset" ]; then
+  echo "You must provide a preset: --preset=instagram or --preset=youtube"
+  exit 1
+fi
+
+if [ "$preset" = "instagram" ]; then
+  for wav in *.wav; do
+    base="${wav%.wav}"
+    img="$base.png"
+    out="$base.mov"
+
+    if [ ! -f "$img" ]; then
+      echo "Missing image for $wav"
+      continue
+    fi
+
+    # Instagram clips can be up to 60 seconds long
+    duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$wav")
+    duration_arg=$(awk -v d="$duration" 'BEGIN { if (d >= 60.0) print "-t 60"; else print "-shortest"; }')
+
+    eval "ffmpeg -y -framerate 1 -loop 1 -i \"$img\" -i \"$wav\" -r 1 \
+      -vf \"format=rgb24,scale=in_range=full:out_range=tv\" \
+      -c:v prores_ks -profile:v 3 -pix_fmt yuv444p10le \
+      -color_range 1 -c:a copy $duration_arg \"$out\""
+  done
+fi
+
+if [ "$preset" = "youtube" ]; then
+  for wav in *.wav; do
+    base="${wav%.wav}"
+    img="$base.png"
+    out="$base.mkv"
+
+    if [ ! -f "$img" ]; then
+      echo "Missing image for $wav"
+      continue
+    fi
+
+    ffmpeg -loop 1 -framerate 1 -i "$img" -i "$wav" \
+      -vf "format=yuv420p,eq=gamma=1.18,scale=out_color_matrix=bt709" \
+      -c:v libx264 -crf 0 -preset veryslow -pix_fmt yuv420p \
+      -color_range 1 -colorspace 1 -color_primaries 1 -color_trc 1 \
+      -c:a copy -shortest -y "$out"
+  done
+fi
