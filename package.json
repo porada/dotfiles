@@ -10,7 +10,7 @@
 	},
 	"scripts": {
 		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-find-fish); npm run lint:fish -- $(dotfiles-find-fish); npm run lint:sh -- $(dotfiles-find-sh)",
-		"format": "prettier --write",
+		"format": "prettier --ignore-unknown --write",
 		"format:fish": "fish_indent --write",
 		"lint:fish": "fish --no-execute",
 		"lint:sh": "npx shellcheck",

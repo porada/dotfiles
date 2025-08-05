@@ -41,7 +41,7 @@
 	autoStash = true
 
 [init]
-	defaultBranch = trunk
+	defaultBranch = main
 
 [user]
 	# Please change this if you’re not me

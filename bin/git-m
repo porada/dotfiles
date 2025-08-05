@@ -1,4 +1,6 @@
 #!/bin/sh
 
 # Go to the main branch, whichever it is
-git checkout trunk 2> /dev/null || git checkout main 2> /dev/null || git checkout master
+git checkout main 2> /dev/null \
+  || git checkout trunk 2> /dev/null \
+  || git checkout master
