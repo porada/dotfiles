@@ -23,5 +23,9 @@ defaults write com.apple.Terminal ShowLineMarks -int 0
 defaults write com.apple.dock tilesize -int 48
 defaults write com.apple.dock showhidden -bool true
 
+# Set the consistent clock style on the login screen
+defaults write com.apple.loginwindow ClockFontIdentifier -string "rounded"
+defaults write com.apple.loginwindow ClockFontWeight -int 500
+
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
