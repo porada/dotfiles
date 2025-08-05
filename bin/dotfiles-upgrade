@@ -28,7 +28,6 @@ __upgrading() {
 __upgrading dependencies
 __dotfiles dependencies | grep -v PATH
 __dotfiles init
-__dotfiles install
 
 # Update dotfiles
 if hash git 2> /dev/null; then
@@ -51,12 +50,10 @@ if hash brew 2> /dev/null; then
   brew upgrade
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
-fi
 
-# Re-link and configure installed apps
-__upgrading links
-__dotfiles install
-__dotfiles macos
+  __upgrading links
+  __dotfiles init-install
+fi
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then

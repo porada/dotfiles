@@ -10,14 +10,8 @@ git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 # Make sure all dependencies are in place
 ~/.dotfiles/bin/dotfiles-dependencies
 
-# Symlink the dotfiles
+# Initialize the dotfiles and make sure everything is up to date
 ~/.dotfiles/bin/dotfiles-init
-
-# Run optional configurators
-~/.dotfiles/bin/dotfiles-install
-~/.dotfiles/bin/dotfiles-macos
-
-# Make sure everything is up to date
 ~/.dotfiles/bin/dotfiles-upgrade
 
 # Once SSH has been set up, replace the remote path to the repository

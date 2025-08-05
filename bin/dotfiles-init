@@ -3,7 +3,7 @@
 DOTFILES="$HOME/.dotfiles"
 DEFAULT_PERMISSIONS=$(stat -f "%A" "$HOME/Library")
 
-# Create a symlink without overwriting any existing files or directories
+# Symlink all dotfiles
 symlink() {
   parent=$(dirname "$2")
   mkdir -p "$parent"
@@ -11,19 +11,20 @@ symlink() {
   ln -s "$1" "$2"
 }
 
-# Symlink all dotfiles
 for source in .config/fish .gitconfig .hushlogin .local .ssh .vim .vimrc; do
   symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
-# Create a file with proper permissions
+# Create additional files with proper permissions
 permit() {
   chmod "$DEFAULT_PERMISSIONS" "$1"
 }
 
-# Create additional files
+permit "$DOTFILES"
 touch "$DOTFILES/extra.sh" && permit "$DOTFILES/extra.sh"
 mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
 
-# Add SSH key to the Apple Keychain
-"$DOTFILES"/bin/dotfiles-add-ssh
+# Apply other dotfiles
+"$DOTFILES"/bin/dotfiles-macos
+"$DOTFILES"/bin/dotfiles-init-ssh
+"$DOTFILES"/bin/dotfiles-init-install
