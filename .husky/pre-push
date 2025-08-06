@@ -2,5 +2,5 @@
 
 if [ -n "$(npm outdated --parseable)" ]; then
   npm outdated
-  exit 0
+  exit $?
 fi
