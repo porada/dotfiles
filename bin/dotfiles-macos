@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Enable full keyboard access for all controls
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 

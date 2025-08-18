@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
+# Check for updates
 if [ -n "$(npm outdated --parseable)" ]; then
   npm outdated
   exit $?

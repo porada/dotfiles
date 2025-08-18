@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Output the log format string
 args="--date=format:'%Y-%m-%d / %H:%M'"
 args="$args --pretty=format:'%C(dim)%h"

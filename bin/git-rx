@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Abort when files have been `git skipped`,
 # otherwise they’ll be affected by the reset
 skipped=$(git skipped)

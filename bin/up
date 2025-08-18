@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Don’t let the system go to sleep
 if [ "$(pgrep caffeinate | wc -l)" -gt 0 ]; then
   echo "The system is already caffeinated."

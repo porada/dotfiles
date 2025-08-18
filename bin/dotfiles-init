@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 DOTFILES="$HOME/.dotfiles"
 DEFAULT_PERMISSIONS=$(stat -f "%A" "$HOME/Library")
 

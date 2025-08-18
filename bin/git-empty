@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Create an empty commit
 git commit --allow-empty --no-verify -m "Empty commit"

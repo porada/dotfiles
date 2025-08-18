@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Batch convert `.wav` and `.png` pairs in the current directory to video files
 if ! command -v ffmpeg > /dev/null 2>&1; then
   brew install ffmpeg

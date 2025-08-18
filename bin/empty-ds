@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Recursively remove all `.DS_Store` files
 find . -type f -name "*.DS_Store" -ls -delete

@@ -1,11 +1,14 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Returns the number of the last available commits
 # that can be used as a consistent default
 default=10
 count=$(git rev-list --count HEAD)
 
-if [ "$1" = "--no-initial" ]; then
+if [ "${1-}" = "--no-initial" ]; then
   count=$((count - 1))
 fi
 

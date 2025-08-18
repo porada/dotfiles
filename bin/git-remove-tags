@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Remove all given tags locally and remotely
 for tag in $(git tag); do
   git push origin ":$tag"

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # List all shell scripts that come with the dotfiles
 # (Fish shell scripts can be listed with `dotfiles-find-fish`)
 cd "$DOTFILES_PATH" || exit 1

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Check dotfiles’ dependencies
 check() {
   dependency_var "\$PATH" "$DOTFILES_PATH"

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Show the current `git status` including skipped files
 git status --short "$@" || exit $?
 git skipped

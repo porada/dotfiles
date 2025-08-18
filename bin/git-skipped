@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Show files ignored by `git skip`
 print_skipped() {
   shift

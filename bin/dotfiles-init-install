@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 __installing() {
   printf "\n\033[1;33m· Installing %s\033[0m\n" "$*"
 }

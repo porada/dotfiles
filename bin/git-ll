@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Show a full log
 eval "git log --graph $(git log-format --refs)"

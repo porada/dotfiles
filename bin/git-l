@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Log a given number of last commits
 if test $# -gt 0; then
   eval "git --no-pager log $(git log-format)" | grep -i "$@"

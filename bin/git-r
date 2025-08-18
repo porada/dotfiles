@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Rebase a given number of last commits
 git rebase --interactive "HEAD~${1:-$(git default-commit-count --no-initial)}"

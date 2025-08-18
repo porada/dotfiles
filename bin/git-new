@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Create a new branch, overwriting it if necessary
 git branch -D "$@" 2> /dev/null
 git checkout -b "$@"

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Enable strict mode
+set -eu
+
 # Proceed inside the clean working tree
 git diff-files --quiet || exit $?
 
