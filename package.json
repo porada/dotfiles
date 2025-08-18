@@ -3,10 +3,10 @@
 	"private": true,
 	"devDependencies": {
 		"husky": "9.1.7",
-		"lint-staged": "16.1.4",
+		"lint-staged": "16.1.5",
 		"prettier": "3.6.2",
 		"prettier-plugin-sh": "0.18.0",
-		"shellcheck": "3.1.0"
+		"shellcheck": "4.1.0"
 	},
 	"scripts": {
 		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-find-fish); npm run lint:fish -- $(dotfiles-find-fish); npm run lint:sh -- $(dotfiles-find-sh)",

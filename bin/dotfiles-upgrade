@@ -46,7 +46,7 @@ fi
 if hash brew 2> /dev/null; then
   __upgrading brew
   brew_cache_path="$(brew --cache)"
-  brew update
+  brew update --quiet
   brew upgrade
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
