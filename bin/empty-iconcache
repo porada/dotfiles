@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Clear icon cache
-sudo rm -rf /Library/Caches/com.apple.iconservices.store && sudo find /private/var/folders/ -name com.apple.dock.iconcache -exec rm {} \;
