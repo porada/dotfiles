@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.dotfiles/.gitignore_global
+	excludesfile = ~/.dotfiles/.gitignore.global
 
 [alias]
 	# Simple aliases
