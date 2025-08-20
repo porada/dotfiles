@@ -7,5 +7,5 @@ set -eu
 SSH_KEY="$HOME/.ssh/id_ed25519"
 
 if [ -f "$SSH_KEY" ]; then
-  ssh-add --apple-use-keychain "$SSH_KEY" 2> /dev/null
+  ssh-add --apple-use-keychain "$SSH_KEY" > /dev/null 2>&1 || true
 fi
