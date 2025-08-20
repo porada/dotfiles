@@ -6,6 +6,13 @@
 			"options": {
 				"parser": "sh"
 			}
+		},
+		{
+			"files": "*.plist",
+			"options": {
+				"parser": "html",
+				"printWidth": 999
+			}
 		}
 	]
 }

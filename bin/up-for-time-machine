@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Keep the system awake while Time Machine is backing up
+# (used by the launch agent `co.porada.up-for-time-machine`)
+DOTFILES_BIN_PATH="$(dirname "$0")"
+
+log() {
+  "$DOTFILES_BIN_PATH/dotfiles-log" "$@"
+}
+
+up() {
+  "$DOTFILES_BIN_PATH/up" "$@"
+}
+
+__is_running() {
+  tmutil status | grep -q "Running = 1"
+}
+
+__keep_awake() {
+  log "Keeping the system awake…"
+  up -t 60
+}
+
+if ! __is_running; then
+  exit 0
+fi
+
+log
+log "Time Machine is running."
+__keep_awake
+
+while __is_running; do
+  __keep_awake
+done
+
+log "Time Machine is done."
+log

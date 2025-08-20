@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Log using a consistent format
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
+}
+
+if [ "$#" -gt 0 ]; then
+  log "$@"
+else
+  echo
+fi

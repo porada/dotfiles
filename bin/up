@@ -9,4 +9,4 @@ if [ "$(pgrep caffeinate | wc -l)" -gt 0 ]; then
   exit 1
 fi
 
-caffeinate -i "$@"
+caffeinate -im "$@"

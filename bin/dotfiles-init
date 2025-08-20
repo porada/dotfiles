@@ -8,14 +8,24 @@ DEFAULT_PERMISSIONS=$(stat -f "%A" "$HOME/Library")
 
 # Symlink all dotfiles
 symlink() {
-  parent=$(dirname "$2")
-  mkdir -p "$parent"
+  mkdir -p "$(dirname "$2")"
   rm -rf "$2"
   ln -s "$1" "$2"
 }
 
 for source in .config/fish .gitconfig .hushlogin .local .ssh .vim .vimrc; do
   symlink "$DOTFILES/$source" "$HOME/$source"
+done
+
+# Symlink and enable launch agents
+for source in "$DOTFILES"/launch-agents/*.plist; do
+  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
+  domain="gui/$(id -u)"
+
+  symlink "$source" "$agent"
+  launchctl bootout "$domain" "$1" 2> /dev/null || true
+  launchctl bootstrap "$domain" "$1"
+  launchctl kickstart -k "$domain/$(basename "$1" .plist)"
 done
 
 # Create additional files with proper permissions

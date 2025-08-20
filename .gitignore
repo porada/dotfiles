@@ -7,5 +7,7 @@
 .local
 .ssh
 .vim
+launch-agents/*.err
+launch-agents/*.log
 extra.sh
 node_modules
