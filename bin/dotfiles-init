@@ -23,9 +23,9 @@ for source in "$DOTFILES"/launch-agents/*.plist; do
   domain="gui/$(id -u)"
 
   symlink "$source" "$agent"
-  launchctl bootout "$domain" "$1" 2> /dev/null || true
-  launchctl bootstrap "$domain" "$1"
-  launchctl kickstart -k "$domain/$(basename "$1" .plist)"
+  launchctl bootout "$domain" "$agent" 2> /dev/null || true
+  launchctl bootstrap "$domain" "$agent"
+  launchctl kickstart -k "$domain/$(basename "$agent" .plist)"
 done
 
 # Create additional files with proper permissions
