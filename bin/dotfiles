@@ -3,6 +3,17 @@
 # Enable strict mode
 set -eu
 
-# Display the list of availabe commands
+# Run the available `dotfiles` command
+# or list all available commands
+BIN_PATH="$(dirname "$(realpath "$0")")"
+
+if [ $# -gt 0 ]; then
+  COMMAND_PATH="$BIN_PATH/dotfiles-$*"
+
+  if [ -x "$COMMAND_PATH" ]; then
+    exec "$COMMAND_PATH"
+  fi
+fi
+
 printf "\n\033[1mAvailable Commands\033[0m\n\n"
-ls "$HOME/.dotfiles/bin"
+ls "$BIN_PATH"
