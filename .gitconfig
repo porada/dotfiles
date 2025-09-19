@@ -26,9 +26,9 @@
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am '💥'
-	deps = commit -am 'Update dependencies'
-	nail = commit -am '💅'
+	boom = commit -am "💥" --no-verify
+	deps = commit -am "Update dependencies"
+	nail = commit -am "💅"
 
 [pull]
 	rebase = true
@@ -50,5 +50,5 @@
 
 [pager]
 	# Take advantage of the better built-in diff
-	diff = diff-highlight | less --chop-long-lines
-	show = diff-highlight | less --chop-long-lines
+	diff = ~/.dotfiles/bin/diff | less --chop-long-lines
+	show = ~/.dotfiles/bin/diff | less --chop-long-lines
