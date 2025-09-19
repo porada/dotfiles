@@ -80,3 +80,7 @@ if hash fish 2> /dev/null; then
   __upgrading fisher
   fish -c "fisher update"
 fi
+
+# Finish with dependency status
+__upgrading complete
+__dotfiles dependencies

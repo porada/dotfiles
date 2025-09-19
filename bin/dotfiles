@@ -6,6 +6,7 @@ set -eu
 # Run the available `dotfiles` command
 # or list all available commands
 BIN_PATH="$(dirname "$(realpath "$0")")"
+BIN_PATH_COMMAND="ls \"$BIN_PATH\""
 
 if [ $# -gt 0 ]; then
   COMMAND_PATH="$BIN_PATH/dotfiles-$*"
@@ -13,7 +14,10 @@ if [ $# -gt 0 ]; then
   if [ -x "$COMMAND_PATH" ]; then
     exec "$COMMAND_PATH"
   fi
+
+  # Narrow down the list of available commands
+  BIN_PATH_COMMAND="$BIN_PATH_COMMAND | grep '^dotfiles-'"
 fi
 
 printf "\n\033[1mAvailable Commands\033[0m\n\n"
-ls "$BIN_PATH"
+eval "$BIN_PATH_COMMAND"
