@@ -30,5 +30,12 @@ defaults write com.apple.dock showhidden -bool true
 defaults write com.apple.loginwindow ClockFontIdentifier -string "rounded"
 defaults write com.apple.loginwindow ClockFontWeight -int 500
 
+# Disable autoplay in the App Store
+defaults write com.apple.AppStore AutoPlayVideoSetting -string off
+defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -int 1
+
+# Don’t prompt for reviews
+defaults write com.apple.AppStore InAppReviewEnabled -bool false
+
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
