@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Enable strict mode
-set -eu
-
-# Create a directory and enter it
-directory="${1:-.}"
-mkdir -p "$directory"
-cd "$directory" || exit 1

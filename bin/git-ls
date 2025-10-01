@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Enable strict mode
-set -eu
-
-# Filter the list of files included in the current repository
-[ $# -gt 0 ] && suffix="| grep $*"
-eval "git ls-files $suffix"
