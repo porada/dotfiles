@@ -9,7 +9,7 @@
 		"shellcheck": "4.1.0"
 	},
 	"scripts": {
-		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-find-fish); npm run lint:fish -- $(dotfiles-find-fish); npm run lint:sh -- $(dotfiles-find-sh)",
+		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-ls-fish | grep -vF -e 'aliases.fish' -e 'config.fish'); npm run lint:fish -- $(dotfiles-ls-fish); npm run lint:sh -- $(dotfiles-ls-sh)",
 		"format": "prettier --ignore-unknown --write",
 		"format:fish": "fish_indent --write",
 		"lint:fish": "fish --no-execute",
@@ -18,11 +18,9 @@
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"**/*": "npm run format --",
-		"*.fish": [
-			"npm run format:fish --",
-			"npm run lint:fish --"
-		],
+		"*": "npm run format --",
+		"**/!(aliases|config).fish": "npm run format:fish --",
+		"*.fish": "npm run lint:fish --",
 		"*.sh": "npm run lint:sh --",
 		".husky/*": "npm run lint:sh --",
 		"bin/*": [

@@ -4,15 +4,12 @@
 set -eu
 
 # List all shell scripts that come with the dotfiles
-# (Fish shell scripts can be listed with `dotfiles-find-fish`)
+# (Fish shell scripts can be listed with `dotfiles ls-fish`)
 cd "$DOTFILES_PATH" || exit 1
 
-find . -type f \
-  ! -path "./.git/*" \
-  ! -path "./.vim/*" \
-  ! -path "./node_modules/*" \
+git ls-files --cached --exclude-standard \
   | while read -r file; do
-    if git check-ignore --quiet "$file" && [ "${file##*/}" != "extra.sh" ]; then
+    if [ -L "$file" ]; then
       continue
     fi
 

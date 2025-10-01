@@ -29,5 +29,5 @@ set -x PATH "$DOTFILES_BIN_PATH" "$PATH"
 . "$DOTFILES_FISH_PATH/colors.fish"
 
 # Load dotfiles
-. "$DOTFILES_PATH/aliases.sh"
-. "$DOTFILES_PATH/extra.sh"
+. "$DOTFILES_PATH/aliases.fish"
+. "$DOTFILES_PATH/extra.fish"

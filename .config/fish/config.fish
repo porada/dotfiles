@@ -1,1 +1,1 @@
-../../fish.sh
+../../config.fish

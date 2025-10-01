@@ -34,7 +34,7 @@ permit() {
 }
 
 permit "$DOTFILES"
-touch "$DOTFILES/extra.sh" && permit "$DOTFILES/extra.sh"
+touch "$DOTFILES/extra.fish" && permit "$DOTFILES/extra.fish"
 mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
 
 # Apply other dotfiles

@@ -9,5 +9,5 @@
 .vim
 launch-agents/*.err
 launch-agents/*.log
-extra.sh
+extra.fish
 node_modules

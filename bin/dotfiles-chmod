@@ -8,7 +8,7 @@ set -eu
 DOTFILES_BIN_PATH="$(dirname "$0")"
 
 if [ $# -eq 0 ]; then
-  "$DOTFILES_BIN_PATH/dotfiles-find-sh" | grep "^bin/" | xargs chmod +x
+  "$DOTFILES_BIN_PATH/dotfiles-ls-sh" | grep "^bin/" | xargs chmod +x
   exit $?
 fi
 

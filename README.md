@@ -8,11 +8,11 @@ git --version
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Make sure all dependencies are in place
-~/.dotfiles/bin/dotfiles-dependencies
+~/.dotfiles/bin/dotfiles dependencies
 
 # Initialize the dotfiles and make sure everything is up to date
-~/.dotfiles/bin/dotfiles-init
-~/.dotfiles/bin/dotfiles-upgrade
+~/.dotfiles/bin/dotfiles init
+~/.dotfiles/bin/dotfiles upgrade
 
 # Once SSH has been set up, replace the remote path to the repository
 git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfiles
