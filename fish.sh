@@ -1,5 +1,5 @@
 # Set locale variables to prevent possible encoding issues
-set -x LANG "en_US"
+set -x LANG "en_US.UTF-8"
 set -x LC_ALL "en_US.UTF-8"
 
 # Set the default editor
@@ -16,7 +16,6 @@ set -x DOTFILES_PATH "$HOME/.dotfiles"
 set -x DOTFILES_BIN_PATH "$DOTFILES_PATH/bin"
 set -x DOTFILES_FISH_PATH "$DOTFILES_PATH/.config/fish"
 
-# Set dotfiles paths
 set -x PATH "/sbin" "$PATH"
 set -x PATH "/bin" "$PATH"
 set -x PATH "/usr/sbin" "$PATH"

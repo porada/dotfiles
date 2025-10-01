@@ -4,7 +4,9 @@
 set -eu
 
 # Set correct permissions for an executable script
-# (f no file is given, set the permissions for all bin scripts)
+# (if no file is given, set the permissions for all bin scripts)
+DOTFILES_BIN_PATH="$(dirname "$0")"
+
 if [ $# -eq 0 ]; then
   "$DOTFILES_BIN_PATH/dotfiles-find-sh" | grep "^bin/" | xargs chmod +x
   exit $?

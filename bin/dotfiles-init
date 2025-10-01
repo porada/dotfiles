@@ -38,6 +38,6 @@ touch "$DOTFILES/extra.sh" && permit "$DOTFILES/extra.sh"
 mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
 
 # Apply other dotfiles
-"$DOTFILES"/bin/dotfiles-macos
-"$DOTFILES"/bin/dotfiles-init-ssh
-"$DOTFILES"/bin/dotfiles-init-install
+"$DOTFILES/bin/dotfiles-macos"
+"$DOTFILES/bin/dotfiles-init-ssh"
+"$DOTFILES/bin/dotfiles-init-install"

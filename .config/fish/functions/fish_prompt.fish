@@ -36,7 +36,7 @@ end
 
 function __fish_prompt_git_branch
     set -l git_branch (command git symbolic-ref HEAD 2> /dev/null | sed -e "s|^refs/heads/||")
-    test -n "$git_branch"; and printf $git_branch
+    test -n "$git_branch"; and printf "%s" "$git_branch"
 end
 
 function __fish_prompt_git_dirty

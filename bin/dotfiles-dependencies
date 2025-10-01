@@ -24,7 +24,7 @@ dependency_bin() {
   if hash "$1" > /dev/null 2>&1; then
     __available "$1"
   else
-    __unavilable "$1"
+    __unavailable "$1"
   fi
 }
 
@@ -32,7 +32,7 @@ dependency_exec() {
   if eval "$2" > /dev/null 2>&1; then
     __available "$1"
   else
-    __unavilable "$1"
+    __unavailable "$1"
   fi
 }
 
@@ -40,7 +40,7 @@ dependency_file() {
   if [ -r "$2" ]; then
     __available "$1"
   else
-    __unavilable "$1"
+    __unavailable "$1"
   fi
 }
 
@@ -48,7 +48,7 @@ dependency_var() {
   if [ -n "$2" ]; then
     __available "$1"
   else
-    __unavilable "$1"
+    __unavailable "$1"
   fi
 }
 
@@ -57,7 +57,7 @@ __available() {
   printf '\033[0;32m✓ %s\033[0m\n' "$1"
 }
 
-__unavilable() {
+__unavailable() {
   printf '\033[1;31m× %s\033[0m\n' "$1"
 }
 
