@@ -8,7 +8,6 @@ function fish_prompt
     set_color $fish_color_cwd
     __fish_prompt_pwd
 
-    set_color $fish_color_normal
     set_color $fish_color_operator
     __fish_prompt_git_branch
     __fish_prompt_git_dirty

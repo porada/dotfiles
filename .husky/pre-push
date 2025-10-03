@@ -4,7 +4,9 @@
 set -eu
 
 # Check for updates
-if [ -n "$(npm outdated --parseable)" ]; then
+updates=$(npm outdated --parseable || true)
+
+if [ -n "$updates" ]; then
   npm outdated
   exit $?
 fi

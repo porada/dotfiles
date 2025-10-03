@@ -4,4 +4,4 @@
 set -eu
 
 # Lint staged files
-npm run lint:staged --
+npx lint-staged --relative

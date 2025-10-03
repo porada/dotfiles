@@ -12,6 +12,7 @@ This document is not intended for humans.
 - Always include `extra.fish` in any analysis or execution—it’s an active part of the dotfiles.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not raise warnings about the file being empty.
+    - Do not mention the file unless there are specific issues to report.
 
 ### Shell Scripting
 
@@ -25,7 +26,7 @@ This document is not intended for humans.
 
 - Do not raise warnings about `dotfiles-init` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
-- Do not raise warnings about `dotfiles-dependencies` relying on `$DOTFILES_PATH` in an inconsistent way—it’s intentional.
+- Do not raise warnings about `dotfiles-dependencies` referencing `$PATH` while it verifies `$DOTFILES_PATH`—it’s intentional.
 
 ### Launch Agents
 
@@ -41,7 +42,7 @@ This document is not intended for humans.
 - Enforce strict consistency.
 - Report any redundancies, inconsistencies, or typos, even if they’re unrelated to the active task.
 - Do not report inconsistencies that the formatter or linter will fix automatically.
-- Always respect `.gitignore` when evaluating files, noting that some files may be hidden in `~/dotfiles/.gitignore.global`.
+- Always respect `.gitignore` when evaluating files, noting that some files may be hidden in `~/.dotfiles/.gitignore.global`.
 - Split large edits into smaller, digestible changes.
 - Apply changes one by one, waiting for my confirmation before proceeding with the next, unless they are tightly related and can be batched together.
 - Do not print any secrets during automated runs. Redact any sensitive values in reports.

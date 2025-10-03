@@ -14,7 +14,6 @@
 		"format:fish": "fish_indent --write",
 		"lint:fish": "fish --no-execute",
 		"lint:sh": "npx shellcheck",
-		"lint:staged": "npx lint-staged --relative",
 		"prepare": "husky"
 	},
 	"lint-staged": {

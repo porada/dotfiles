@@ -13,11 +13,11 @@ cd "$(dirname "$DOTFILES_BIN_PATH")"
   echo extra.fish
 } | sort \
   | while read -r file; do
-    if [ -L "$file" ]; then
+    if [ ! -e "$file" ] || [ -L "$file" ]; then
       continue
     fi
 
-    if [ "${file##*.}" = "fish" ] || head -n 1 "$file" | grep --quiet '^#!.*/fish'; then
+    if [ "${file##*.}" = "fish" ] || head -n 1 "$file" | grep -q '^#!.*/fish'; then
       echo "${file#./}"
     fi
   done
