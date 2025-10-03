@@ -5,7 +5,7 @@ set -eu
 
 # Set correct permissions for an executable script
 # (if no file is given, set the permissions for all bin scripts)
-DOTFILES_BIN_PATH="$(dirname "$0")"
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 
 if [ $# -eq 0 ]; then
   "$DOTFILES_BIN_PATH/dotfiles-ls-sh" | grep "^bin/" | xargs chmod +x

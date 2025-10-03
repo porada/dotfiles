@@ -5,7 +5,7 @@ set -eu
 
 # Check dotfiles’ dependencies
 check() {
-  dependency_var "\$PATH" "$DOTFILES_PATH"
+  dependency_var "\$PATH" "${DOTFILES_PATH:-}"
 
   dependency_bin "brew"
 

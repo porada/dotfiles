@@ -8,7 +8,7 @@ set -eu
 skipped=$(git skipped)
 if [ -n "$skipped" ]; then
   echo "$skipped"
-  exit
+  exit 1
 fi
 
 git reset --hard "$@"

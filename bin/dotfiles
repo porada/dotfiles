@@ -3,16 +3,16 @@
 # Enable strict mode
 set -eu
 
-# Run the available `dotfiles` command
-# or list all available commands
+# Run the available `dotfiles` command or list all available commands
 BIN_PATH="$(dirname "$(realpath "$0")")"
 BIN_PATH_COMMAND="ls \"$BIN_PATH\""
 
 if [ $# -gt 0 ]; then
-  COMMAND_PATH="$BIN_PATH/dotfiles-$*"
+  COMMAND_PATH="$BIN_PATH/dotfiles-$1"
+  shift
 
   if [ -x "$COMMAND_PATH" ]; then
-    exec "$COMMAND_PATH"
+    exec "$COMMAND_PATH" "$@"
   fi
 
   # Narrow down the list of available commands

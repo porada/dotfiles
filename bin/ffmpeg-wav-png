@@ -5,7 +5,13 @@ set -eu
 
 # Batch convert `.wav` and `.png` pairs in the current directory to video files
 if ! command -v ffmpeg > /dev/null 2>&1; then
-  brew install ffmpeg
+  echo "\`ffmpeg\` is missing"
+  exit 1
+fi
+
+if ! command -v ffprobe > /dev/null 2>&1; then
+  echo "\`ffprobe\` is missing"
+  exit 1
 fi
 
 # Parse `--preset` from arguments
@@ -20,7 +26,7 @@ for arg in "$@"; do
 done
 
 if [ -z "$preset" ]; then
-  echo "You must provide a preset: --preset=instagram or --preset=youtube"
+  echo "You must provide a \`--preset\`"
   exit 1
 fi
 
@@ -31,7 +37,7 @@ if [ "$preset" = "instagram" ]; then
     out="$base.mov"
 
     if [ ! -f "$img" ]; then
-      echo "Missing image for $wav"
+      echo "Missing image for \`$wav\`"
       continue
     fi
 
@@ -53,7 +59,7 @@ if [ "$preset" = "youtube" ]; then
     out="$base.mkv"
 
     if [ ! -f "$img" ]; then
-      echo "Missing image for $wav"
+      echo "Missing image for \`$wav\`"
       continue
     fi
 

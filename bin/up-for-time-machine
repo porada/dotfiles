@@ -4,8 +4,8 @@
 set -eu
 
 # Keep the system awake while Time Machine is backing up
-# (used by the launch agent `co.porada.up-for-time-machine`)
-DOTFILES_BIN_PATH="$(dirname "$0")"
+# (used by the launch agent `co.porada.dotfiles.up-for-time-machine`)
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 
 log() {
   "$DOTFILES_BIN_PATH/dotfiles-log" "$@"

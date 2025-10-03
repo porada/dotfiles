@@ -30,6 +30,7 @@ done
 fish="$($brew --prefix)/bin/fish"
 [ "$fish" = "$SHELL" ] && exit 0
 
+# The following line is not a typo
 __installing '$SHELL'
 echo "$fish" | sudo tee -a /etc/shells
 chsh -s "$fish"

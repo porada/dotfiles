@@ -5,7 +5,8 @@ set -eu
 
 # List all Fish shell scripts that come with the dotfiles
 # (POSIX shell scripts can be listed with `dotfiles ls-sh`)
-cd "$DOTFILES_PATH" || exit 1
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
+cd "$(dirname "$DOTFILES_BIN_PATH")"
 
 {
   git ls-files --cached --exclude-standard

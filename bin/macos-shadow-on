@@ -4,4 +4,5 @@
 set -eu
 
 # Enable window shadows when taking screenshots
-defaults write com.apple.screencapture disable-shadow -bool false && killall SystemUIServer
+defaults write com.apple.screencapture disable-shadow -bool false
+killall SystemUIServer || true
