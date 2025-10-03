@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Lint all Fish shell scripts that come with the dotfiles
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
+cd "$(dirname "$DOTFILES_BIN_PATH")"
+
+"$DOTFILES_BIN_PATH/dotfiles-ls-fish" \
+  | while read -r line; do
+    echo "$line"
+    fish --no-execute -- "$line" || exit $?
+  done

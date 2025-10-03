@@ -8,6 +8,15 @@
 			}
 		},
 		{
+			"files": "*.js",
+			"options": {
+				"bracketSpacing": true,
+				"quoteProps": "consistent",
+				"singleQuote": true,
+				"trailingComma": "es5"
+			}
+		},
+		{
 			"files": "*.plist",
 			"options": {
 				"parser": "html",
