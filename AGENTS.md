@@ -7,20 +7,22 @@ This document is not intended for humans.
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
 - This repository is open source and publicly accessible.
 - Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
-- Ignore symlinks that point outside of the repository.
+    - Take note of which of the listed entries are regular files and which are symlinks.
+    - Ignore symlinks that point outside of the repository.
 - Never read or analyze the `.ssh` directory.
 - Always include `extra.fish` in any analysis or execution—it’s an active part of the dotfiles.
-    - Do not suggest adding additional documentation for `extra.fish`.
+    - Do not raise warnings about `.gitignore` including `extra.fish`.
     - Do not raise warnings about the file being empty.
+    - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
 
 ### Shell Scripting
 
 - Assume that `fish` is the default shell.
-- Treat `config.fish` and `.config/fish/config.fish` as one file, executed only once (they’re symlinked and therefore always in sync).
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
+- Prefer `echo` over `printf`.
 
 ### `dotfiles` Scripts
 
@@ -77,6 +79,7 @@ describe("`Icon` component with a custom `ASSET_PATH`", () => {
 ### Audit
 
 - Analyze the whole repository for redundancies, inconsistencies, and typos.
+    - Check unpushed commit messages as well.
     - Ignore log files.
 
 ### Logs

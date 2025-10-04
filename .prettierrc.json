@@ -8,7 +8,7 @@
 			}
 		},
 		{
-			"files": "*.js",
+			"files": ["*.js", "*.mjs"],
 			"options": {
 				"bracketSpacing": true,
 				"quoteProps": "consistent",

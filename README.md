@@ -15,7 +15,7 @@ git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 ~/.dotfiles/bin/dotfiles upgrade
 
 # Once SSH has been set up, replace the remote path to the repository
-git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfiles
+git --git-dir ~/.dotfiles/.git remote set-url origin git@github.com:porada/dotfiles.git
 ```
 
 ## Quick Links

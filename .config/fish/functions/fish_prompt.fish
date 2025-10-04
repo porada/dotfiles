@@ -24,7 +24,7 @@ function __fish_prompt_newline
 end
 
 function __fish_prompt_host
-    test -n "$SSH_CONNECTION"; and printf "%s@%s " $USER (hostname -s)
+    test -n "$SSH_CONNECTION"; and printf "%s@%s " $USER (hostname --short)
 end
 
 function __fish_prompt_pwd
