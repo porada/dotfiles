@@ -48,6 +48,7 @@ This document is not intended for humans.
 - Split large edits into smaller, digestible changes.
 - Apply changes one by one, waiting for my confirmation before proceeding with the next, unless they are tightly related and can be batched together.
 - Do not print any secrets during automated runs. Redact any sensitive values in reports.
+- If any of the tools used in the project allow opting out of telemetry, notify me.
 
 ## Style
 

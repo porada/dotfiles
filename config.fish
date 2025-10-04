@@ -8,7 +8,8 @@ set -x EDITOR "vim -c startinsert"
 # Don’t clear the screen after quitting a manual page
 set -x MANPAGER "less -X"
 
-# Disable Homebrew analytics
+# Opt out of telemetry
+set -x DO_NOT_TRACK 1
 set -x HOMEBREW_NO_ANALYTICS 1
 
 # Set paths

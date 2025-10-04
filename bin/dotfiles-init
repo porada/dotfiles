@@ -13,7 +13,7 @@ symlink() {
   ln -s "$1" "$2"
 }
 
-for source in .config/fish .gitconfig .hushlogin .local .ssh .vim .vimrc; do
+for source in .config/fish .gitconfig .hushlogin .local .npmrc .ssh .vim .vimrc; do
   symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
