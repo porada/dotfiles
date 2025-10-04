@@ -8,6 +8,10 @@ set -x EDITOR "vim -c startinsert"
 # Don’t clear the screen after quitting a manual page
 set -x MANPAGER "less -X"
 
+# Enable persistent REPL history for `node`
+set -x NODE_REPL_HISTORY "$HOME/.node_history"
+set -x NODE_REPL_MODE "sloppy"
+
 # Opt out of telemetry
 set -x DO_NOT_TRACK 1
 set -x HOMEBREW_NO_ANALYTICS 1
