@@ -1,26 +1,20 @@
-[core]
-	excludesfile = ~/.dotfiles/.gitignore.global
-
 [alias]
-	# Simple aliases
 	a = add -v
 	c = commit -v
-	f = fetch
-	l = log
 	p = pull
 
 	ch = checkout
 	cx = checkout HEAD --
+	cp = cherry-pick
 
+	ra = rebase --abort
 	rc = rebase --continue
 	rs = rebase --skip
-	ra = rebase --abort
 
-	cp = cherry-pick
-	tags = tag -l
 	branches = branch -a
-	remotes = remote -v
 	contributors = shortlog -sn
+	remotes = remote -v
+	tags = tag -l
 
 	skip = update-index --assume-unchanged
 	unskip = update-index --no-assume-unchanged
@@ -28,7 +22,27 @@
 	# Quick commits
 	boom = commit -am '💥' --no-verify
 	deps = commit -am 'Update dependencies'
-	nail = commit -am '💅'
+
+[core]
+	excludesfile = ~/.dotfiles/.gitignore.global
+
+[diff]
+	algorithm = histogram
+	colorMoved = dimmed-zebra
+	colorMovedWS = allow-indentation-change
+
+[help]
+	autocorrect = prompt
+
+[init]
+	defaultBranch = main
+
+[merge]
+	ff = only
+
+[pager]
+	diff = ~/.dotfiles/bin/diff | less --chop-long-lines
+	show = ~/.dotfiles/bin/diff | less --chop-long-lines
 
 [pull]
 	rebase = true
@@ -40,15 +54,14 @@
 [rebase]
 	autoStash = true
 
-[init]
-	defaultBranch = main
+[rerere]
+	enabled = true
+
+[status]
+	showUntrackedFiles = all
+	submoduleSummary = true
 
 [user]
 	# Please change this if you’re not me
 	name = Dominik Porada
 	email = dominik@porada.co
-
-[pager]
-	# Take advantage of the better built-in diff
-	diff = ~/.dotfiles/bin/diff | less --chop-long-lines
-	show = ~/.dotfiles/bin/diff | less --chop-long-lines
