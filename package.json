@@ -3,16 +3,16 @@
 	"private": true,
 	"devDependencies": {
 		"husky": "9.1.7",
-		"lint-staged": "16.2.3",
+		"lint-staged": "16.2.4",
 		"prettier": "3.6.2",
 		"prettier-plugin-sh": "0.18.0",
 		"shellcheck": "4.1.0"
 	},
 	"scripts": {
-		"fix": "npm run format -- .; npm run format:fish -- $(dotfiles-ls-fish | grep -vF -e 'aliases.fish' -e 'config.fish'); npm run lint:fish; npm run lint:sh -- $(dotfiles-ls-sh)",
+		"fix": "pnpm format .; pnpm format:fish $(dotfiles-dev-ls-fish | grep -vF -e 'aliases.fish' -e 'config.fish'); pnpm lint:fish; pnpm lint:sh $(dotfiles-dev-ls-sh)",
 		"format": "prettier --ignore-unknown --write",
 		"format:fish": "fish_indent --write",
-		"lint:fish": "dotfiles-lint-fish",
+		"lint:fish": "dotfiles-dev-lint-fish",
 		"lint:sh": "shellcheck",
 		"prepare": "husky"
 	}

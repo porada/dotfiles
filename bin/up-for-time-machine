@@ -8,7 +8,7 @@ set -eu
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 
 log() {
-  "$DOTFILES_BIN_PATH/dotfiles-log" "$@"
+  "$DOTFILES_BIN_PATH/dotfiles-dev-log" "$@"
 }
 
 up() {

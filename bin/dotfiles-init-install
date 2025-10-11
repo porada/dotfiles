@@ -16,12 +16,13 @@ __error() {
 brew="/opt/homebrew/bin/brew"
 [ ! -x "$brew" ] && __error 'Install `brew` first'
 
-for formula in fish git node vim; do
+for formula in fish git node pnpm vim; do
   __installing $formula
 
   if ! $brew list --formula | grep -q "^$formula\$"; then
     $brew install $formula
   else
+    $brew unlink $formula
     $brew link --overwrite $formula
   fi
 done

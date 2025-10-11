@@ -1,12 +1,1 @@
-#!/bin/sh
-
-# Enable strict mode
-set -eu
-
-# Check for updates
-updates=$(npm outdated --parseable || true)
-
-if [ -n "$updates" ]; then
-  npm outdated
-  exit $?
-fi
+../bin/dotfiles-dev-pre-push

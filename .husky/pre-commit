@@ -1,7 +1,1 @@
-#!/bin/sh
-
-# Enable strict mode
-set -eu
-
-# Lint staged files
-npx lint-staged --relative
+../bin/dotfiles-dev-pre-commit

@@ -60,13 +60,9 @@ fi
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
-  export NODE_NO_WARNINGS=1
-
   __upgrading npm
-  npm --global --no-fund install npm
-  npm --global --no-fund update
-
-  unset NODE_NO_WARNINGS
+  npm --global install npm
+  npm --global update
 fi
 
 # Update Vim plugins

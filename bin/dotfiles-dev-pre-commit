@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Lint staged files
+pnpm exec lint-staged --relative
