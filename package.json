@@ -1,6 +1,10 @@
 {
 	"name": "dotfiles",
 	"private": true,
+	"engines": {
+		"node": "^22.19.0",
+		"pnpm": ">=10"
+	},
 	"devDependencies": {
 		"husky": "9.1.7",
 		"lint-staged": "16.2.4",

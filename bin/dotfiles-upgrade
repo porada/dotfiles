@@ -53,9 +53,6 @@ if hash brew 2> /dev/null; then
   brew upgrade
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
-
-  __upgrading links
-  __dotfiles init-install
 fi
 
 # Update globally installed Node packages
