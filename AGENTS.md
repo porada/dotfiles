@@ -15,14 +15,21 @@ This document is not intended for humans.
     - Do not raise warnings about the file being empty.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
+- Always use `git mv` when renaming or moving files.
+- Enforce strict consistency across all modules, configuration files, and naming conventions.
+- Always stay alert for any issues outlined in this document, even when performing unrelated tasks.
+    - Report on all discovered issues, but do not fix them without my confirmation.
+- Do not report inconsistencies automatically handled by the formatter or linter.
+- Split large edits into smaller, digestible changes.
+- Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
 
 ### Shell Scripting
 
-- Assume that `fish` is the default shell.
+- Always assume that `fish` is the default shell.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
-- Prefer `echo` over `printf`.
+- Always prefer `echo` over `printf` for plain text output.
 
 ### `dotfiles` Scripts
 
@@ -36,19 +43,17 @@ This document is not intended for humans.
 
 ## General
 
+- Always re-read `AGENTS.md` before reading every message from me to ensure you’re following the latest version of the instructions.
+- Always stay alert for any issues outlined in this document, even when performing unrelated tasks.
+    - Report on all discovered issues, but do not fix them without my confirmation.
 - Never edit this file.
-- Never override or alter my input unless asked.
+- Never override or alter my input unless explicitly asked.
 - Ask for clarification if you don’t have enough information on a given task.
 - If you cannot verify something directly, admit that you cannot verify it, that you do not have access to the information, or that your knowledge base does not contain it.
 - Always check the most recent version of a file’s contents on each response.
-- Enforce strict consistency.
-- Report any redundancies, inconsistencies, or typos, even if they’re unrelated to the active task.
-- Do not report inconsistencies that the formatter or linter will fix automatically.
-- Always respect `.gitignore` when evaluating files, noting that some files may be hidden in `~/.dotfiles/.gitignore.global`.
-- Split large edits into smaller, digestible changes.
-- Apply changes one by one, waiting for my confirmation before proceeding with the next, unless they are tightly related and can be batched together.
-- Do not print any secrets during automated runs. Redact any sensitive values in reports.
-- If any of the tools used in the project allow opting out of telemetry, notify me.
+    - Ignore `.DS_Store` files and do not report on them.
+- Notify me if any development tools used in the project allow opting out of telemetry.
+    - Do not mention tools where telemetry has already been disabled.
 
 ## Style
 
@@ -60,14 +65,14 @@ This document is not intended for humans.
  * Tests for the `Icon` component
  */
 
-describe("`Icon` component with a custom `ASSET_PATH`", () => {
-	process.env.ASSET_PATH = "/assets";
+describe('`Icon` component with a custom `ASSET_PATH`', () => {
+	process.env.ASSET_PATH = '/assets';
 
-	test("accepts `true` as the `name` prop", () => {
+	test('accepts `true` as the `name` prop', () => {
 		// …
 	});
 
-	test("returns `null` if the `name` prop isn’t provided", () => {
+	test('returns `undefined` if the `name` prop isn’t provided', () => {
 		// …
 	});
 });
@@ -75,16 +80,27 @@ describe("`Icon` component with a custom `ASSET_PATH`", () => {
 
 ## Shorthand Commands
 
+- Shorthand commands are high-level task macros that define complete, self-contained procedures.
 - Always execute the task exactly as defined below whenever I say its name.
 
 ### Audit
 
-- Analyze the whole repository for redundancies, inconsistencies, and typos.
-    - Check unpushed commit messages as well.
-    - Ignore log files.
+- Review the entire repository for redundancies, inconsistencies, typos, or potential structural issues.
+- Analyze unpushed commit messages for typos.
+    - Ignore `💥` commits.
+    - Do not analyze diffs.
+- Ensure there is no dead or unused code.
+- Run all instructions from the `Logs` section as part of the audit process.
+- Report only issues that may require fixing.
 
 ### Logs
 
-- Analyze all collected logs (`**/*.{err,log}`) for any issues that may need my attention.
-    - Do not comment on or suggest changes to the scripts that generate the logs unless explicitly asked.
-- Clear the analyzed log files after reporting.
+- Review all collected logs (`**/*.{err,log}`) for any issues that may require attention.
+    - Do not comment on or suggest changes to the scripts that generate logs unless explicitly asked.
+- Clear analyzed log files after reporting.
+
+### Verify
+
+- Re-read all reported files to determine whether the reported issues are still relevant.
+- Mark resolved issues as addressed and exclude them from future reports.
+- Highlight any issues that still persist after the latest edits.

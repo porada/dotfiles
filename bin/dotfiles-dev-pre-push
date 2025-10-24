@@ -4,9 +4,4 @@
 set -eu
 
 # Check for updates
-updates=$(pnpm outdated --format json || true)
-
-if [ -n "$updates" ]; then
-  pnpm outdated
-  exit $?
-fi
+pnpm outdated

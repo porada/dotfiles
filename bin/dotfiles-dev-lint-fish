@@ -3,12 +3,17 @@
 # Enable strict mode
 set -eu
 
-# Lint all Fish shell scripts that come with the dotfiles
+# Lint Fish shell scripts that come with the dotfiles
+# (lint all files when no paths are provided)
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
-cd "$(dirname "$DOTFILES_BIN_PATH")"
 
-"$DOTFILES_BIN_PATH/dotfiles-dev-ls-fish" \
-  | while read -r line; do
-    echo "$line"
-    fish --no-execute -- "$line" || exit $?
-  done
+files="$*"
+
+if [ $# -eq 0 ]; then
+  files="$("$DOTFILES_BIN_PATH/dotfiles-dev-ls-fish")"
+fi
+
+for file in $files; do
+  echo "$file"
+  fish --no-execute -- "$file" || exit $?
+done

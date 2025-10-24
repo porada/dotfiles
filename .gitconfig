@@ -13,6 +13,7 @@
 
 	branches = branch -a
 	contributors = shortlog -sn
+	names = show --name-only
 	remotes = remote -v
 	tags = tag -l
 
@@ -30,9 +31,6 @@
 	algorithm = histogram
 	colorMoved = dimmed-zebra
 	colorMovedWS = allow-indentation-change
-
-[help]
-	autocorrect = prompt
 
 [init]
 	defaultBranch = main
