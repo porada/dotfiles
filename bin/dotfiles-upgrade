@@ -27,11 +27,6 @@ __upgrading() {
   printf "\n\033[1;33m· Upgrading %s\033[0m\n" "$*"
 }
 
-# Ensure dependencies are in place
-__upgrading dependencies
-__dotfiles dependencies | grep -v PATH
-__dotfiles init
-
 # Update dotfiles
 if hash git 2> /dev/null; then
   __upgrading dotfiles
@@ -45,7 +40,7 @@ if hash git 2> /dev/null; then
   fi
 fi
 
-# Update Homebrew and installed apps
+# Update Homebrew and installed dependencies
 if hash brew 2> /dev/null; then
   __upgrading brew
   brew_cache_path="$(brew --cache)"
@@ -54,6 +49,9 @@ if hash brew 2> /dev/null; then
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
 fi
+
+# Link dependencies
+__dotfiles init
 
 # Update globally installed Node packages
 if hash npm 2> /dev/null; then
