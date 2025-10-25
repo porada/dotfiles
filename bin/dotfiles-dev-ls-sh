@@ -4,7 +4,7 @@
 set -eu
 
 # List all shell scripts that come with the dotfiles
-# (Fish shell scripts can be listed with `dotfiles ls-fish`)
+# (Fish shell scripts can be listed with `dotfiles-dev-ls-fish`)
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 cd "$(dirname "$DOTFILES_BIN_PATH")"
 

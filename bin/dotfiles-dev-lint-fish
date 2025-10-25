@@ -6,6 +6,7 @@ set -eu
 # Lint Fish shell scripts that come with the dotfiles
 # (lint all files when no paths are provided)
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
+cd "$(dirname "$DOTFILES_BIN_PATH")"
 
 files="$*"
 
