@@ -35,7 +35,12 @@ permit() {
 
 permit "$DOTFILES"
 touch "$DOTFILES/extra.fish" && permit "$DOTFILES/extra.fish"
+touch "$HOME/.node_history" && permit "$HOME/.node_history"
 mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
+
+# Keep things tidy
+rm -f "$HOME/.lesshst"
+rm -f "$HOME/.viminfo"
 
 # Apply other dotfiles
 "$DOTFILES/bin/dotfiles-macos"

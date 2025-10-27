@@ -5,8 +5,13 @@ set -x LC_ALL "en_US.UTF-8"
 # Set the default editor
 set -x EDITOR "vim -c startinsert"
 
-# Don’t clear the screen after quitting a manual page
-set -x MANPAGER "less -X"
+# Don’t clear the screen after a `less` session
+set -x LESS "-FRX"
+set -x PAGER "less $LESS"
+set -x MANPAGER "less $LESS"
+
+# Don’t keep history between `less` sessions
+set -x LESSHISTFILE "-"
 
 # Enable persistent REPL history for `node`
 set -x NODE_REPL_HISTORY "$HOME/.node_history"
