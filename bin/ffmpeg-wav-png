@@ -32,6 +32,8 @@ fi
 
 if [ "$preset" = "instagram" ]; then
   for wav in *.wav; do
+    [ -e "$wav" ] || continue
+
     base="${wav%.wav}"
     img="$base.png"
     out="$base.mov"
@@ -54,6 +56,8 @@ fi
 
 if [ "$preset" = "youtube" ]; then
   for wav in *.wav; do
+    [ -e "$wav" ] || continue
+
     base="${wav%.wav}"
     img="$base.png"
     out="$base.mkv"

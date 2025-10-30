@@ -11,14 +11,12 @@ This document is not intended for humans.
     - Ignore symlinks that point outside of the repository.
 - Never read or analyze the `.ssh` directory.
 - Always include `extra.fish` in any analysis or execution—it’s an active part of the dotfiles.
-    - Do not raise warnings about `.gitignore` including `extra.fish`.
-    - Do not raise warnings about the file being empty.
+    - Do not report `.gitignore` including `extra.fish`.
+    - Do not report the file being empty.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
 - Always use `git mv` when renaming or moving files.
 - Enforce strict consistency across all modules, configuration files, and naming conventions.
-- Always stay alert for any issues outlined in this document, even when performing unrelated tasks.
-    - Report on all discovered issues, but do not fix them without my confirmation.
 - Do not report inconsistencies automatically handled by the formatter or linter.
 - Split large edits into smaller, digestible changes.
 - Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
@@ -30,22 +28,23 @@ This document is not intended for humans.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
 - Always prefer `echo` over `printf` for plain text output.
+- Always use `git diff --no-index` instead of `diff` when comparing arbitrary files.
 
 ### `dotfiles` Scripts
 
-- Do not raise warnings about `dotfiles-init` overwriting initial state.
+- Do not report `dotfiles-init` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
-- Do not raise warnings about `dotfiles-dependencies` referencing `$PATH` while it verifies `$DOTFILES_PATH`—it’s intentional.
+- Do not report `dotfiles-dependencies` referencing `$PATH` while verifying `$DOTFILES_PATH`—it’s intentional.
 
 ### Launch Agents
 
-- Do not raise warnings about hardcoded paths in `*.plist` files.
+- Do not report hardcoded paths in `*.plist` files.
 
 ## General
 
 - Always re-read `AGENTS.md` before reading every message from me to ensure you’re following the latest version of the instructions.
-- Always stay alert for any issues outlined in this document, even when performing unrelated tasks.
-    - Report on all discovered issues, but do not fix them without my confirmation.
+- Always stay alert to any issues outlined in this document, even when performing unrelated tasks.
+    - Report all discovered issues, but do not fix them without my confirmation.
 - Never edit this file.
 - Never override or alter my input unless explicitly asked.
 - Ask for clarification if you don’t have enough information on a given task.
@@ -85,7 +84,8 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Audit
 
-- Review the entire repository for redundancies, inconsistencies, typos, or potential structural issues.
+- Review the entire repository for redundancies, inconsistencies, typos, and potential structural issues.
+    - Perform the review without making edits.
 - Analyze unpushed commit messages for typos.
     - Ignore `💥` commits.
     - Do not analyze diffs.
@@ -102,5 +102,6 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 ### Verify
 
 - Re-read all reported files to determine whether the reported issues are still relevant.
+    - Ensure all findings align with the latest version of this document.
 - Mark resolved issues as addressed and exclude them from future reports.
 - Highlight any issues that still persist after the latest edits.
