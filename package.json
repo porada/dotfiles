@@ -17,6 +17,7 @@
 		"format": "prettier --ignore-unknown --write",
 		"format:fish": "fish_indent --write",
 		"lint:fish": "dotfiles-dev-lint-fish",
+		"lint:plist": "plutil -lint",
 		"lint:sh": "shellcheck",
 		"prepare": "husky"
 	}
