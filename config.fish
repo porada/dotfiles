@@ -13,6 +13,9 @@ set -x MANPAGER "less $LESS"
 # Don’t keep history between `less` sessions
 set -x LESSHISTFILE "-"
 
+# Configure `node`
+set -x NODE_OPTIONS "--no-deprecation --trace-uncaught --unhandled-rejections=strict"
+
 # Enable persistent REPL history for `node`
 set -x NODE_REPL_HISTORY "$HOME/.node_history"
 set -x NODE_REPL_MODE "sloppy"
