@@ -24,17 +24,16 @@ This document is not intended for humans.
 ### Shell Scripting
 
 - Always assume that `fish` is the default shell.
+    - Run all shell terminal commands using `fish` syntax.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
 - Always prefer `echo` over `printf` for plain text output.
-- Always use `git diff --no-index` instead of `diff` when comparing arbitrary files.
 
 ### `dotfiles` Scripts
 
 - Do not report `dotfiles-init` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
-- Do not report `dotfiles-dependencies` referencing `$PATH` while verifying `$DOTFILES_PATH`—it’s intentional.
 
 ### Launch Agents
 

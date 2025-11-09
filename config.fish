@@ -21,21 +21,16 @@ set -x NODE_REPL_MODE "sloppy"
 set -x DO_NOT_TRACK 1
 set -x HOMEBREW_NO_ANALYTICS 1
 
-# Set paths
-set -x DOTFILES_PATH "$HOME/.dotfiles"
+# Set `$PATH`
+set -l DOTFILES "$HOME/.dotfiles"
 
-set -x PATH "/sbin" $PATH
-set -x PATH "/bin" $PATH
-set -x PATH "/usr/sbin" $PATH
-set -x PATH "/usr/bin" $PATH
-set -x PATH "/usr/local/bin" $PATH
-set -x PATH "/opt/homebrew/sbin" $PATH
-set -x PATH "/opt/homebrew/bin" $PATH
-set -x PATH "$DOTFILES_PATH/bin" $PATH
+fish_add_path --path --move --append "$DOTFILES/bin"
+fish_add_path --path --move "/opt/homebrew/bin"
+fish_add_path --path --move "/opt/homebrew/sbin"
 
-# Define prompt colors
-. "$DOTFILES_PATH/.config/fish/colors.fish"
+# Set prompt colors
+. "$DOTFILES/.config/fish/colors.fish"
 
 # Load dotfiles
-. "$DOTFILES_PATH/aliases.fish"
-. "$DOTFILES_PATH/extra.fish"
+. "$DOTFILES/aliases.fish"
+. "$DOTFILES/extra.fish"

@@ -4,8 +4,10 @@
 set -eu
 
 # Check dotfiles’ dependencies
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
+
 check() {
-  dependency_var "\$PATH" "${DOTFILES_PATH:-}"
+  dependency_path "\$PATH" "$DOTFILES_BIN_PATH"
 
   dependency_bin "brew"
 
@@ -44,8 +46,8 @@ dependency_file() {
   fi
 }
 
-dependency_var() {
-  if [ -n "$2" ]; then
+dependency_path() {
+  if echo ":$PATH:" | grep -q ":$2:"; then
     __available "$1"
   else
     __unavailable "$1"
