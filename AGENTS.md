@@ -85,9 +85,6 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 - Review the entire repository for redundancies, inconsistencies, typos, and potential structural issues.
     - Perform the review without making edits.
-- Analyze unpushed commit messages for typos.
-    - Ignore `💥` commits.
-    - Do not analyze diffs.
 - Ensure there is no dead or unused code.
 - Run all instructions from the `Logs` section as part of the audit process.
 - Report only issues that may require fixing.
