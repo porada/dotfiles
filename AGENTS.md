@@ -29,6 +29,7 @@ This document is not intended for humans.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
 - Always prefer `echo` over `printf` for plain text output.
+- Avoid using `case` statements.
 
 ### `dotfiles` Scripts
 
@@ -94,6 +95,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 - Review all collected logs (`**/*.{err,log}`) for any issues that may require attention.
     - Do not comment on or suggest changes to the scripts that generate logs unless explicitly asked.
 - Clear analyzed log files after reporting.
+    - Remove the legacy `co.porada.*.{err,log}` files.
 
 ### Verify
 

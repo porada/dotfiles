@@ -19,13 +19,26 @@ done
 
 # Symlink and enable launch agents
 for source in "$DOTFILES"/launch-agents/*.plist; do
-  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
   domain="gui/$(id -u)"
 
+  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
+  agent_label="$(basename "$agent" .plist)"
+
+  # Clean up legacy agents first
+  legacy_agent="$(echo "$agent" | sed 's/engineering\.dom/co.porada.dotfiles/g')"
+
+  if [ "$legacy_agent" != "$agent" ]; then
+    legacy_agent_label="$(basename "$legacy_agent" .plist)"
+
+    launchctl bootout "$domain" "$legacy_agent_label" 2> /dev/null || true
+    launchctl remove "$legacy_agent_label" 2> /dev/null || true
+    rm -f "$legacy_agent"
+  fi
+
   symlink "$source" "$agent"
-  launchctl bootout "$domain" "$agent" 2> /dev/null || true
+  launchctl bootout "$domain" "$agent_label" 2> /dev/null || true
   launchctl bootstrap "$domain" "$agent"
-  launchctl kickstart -k "$domain/$(basename "$agent" .plist)"
+  launchctl kickstart -k "$domain/$agent_label"
 done
 
 # Create additional files with proper permissions
