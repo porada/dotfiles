@@ -21,7 +21,7 @@
 	unskip = update-index --no-assume-unchanged
 
 	# Quick commits
-	boom = commit -am '💥' --no-verify
+	boom = commit -am '💥' --allow-empty --no-verify
 	deps = commit -am 'Update dependencies'
 
 [core]

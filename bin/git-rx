@@ -6,6 +6,7 @@ set -eu
 # Abort when files have been `git skipped`,
 # otherwise they’ll be affected by the reset
 skipped=$(git skipped)
+
 if [ -n "$skipped" ]; then
   echo "$skipped"
   exit 1

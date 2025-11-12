@@ -8,13 +8,20 @@ set -eu
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 cd "$(dirname "$DOTFILES_BIN_PATH")"
 
-files="$*"
+lint() {
+  echo "$1"
+  fish --no-execute -- "$1"
+}
 
-if [ $# -eq 0 ]; then
+if [ $# -gt 0 ]; then
+  for file in "$@"; do
+    lint "$file"
+  done
+else
   files="$("$DOTFILES_BIN_PATH/dotfiles-dev-ls-fish")"
-fi
 
-for file in $files; do
-  echo "$file"
-  fish --no-execute -- "$file" || exit $?
-done
+  printf '%s\n' "$files" \
+    | while IFS= read -r file; do
+      lint "$file"
+    done
+fi

@@ -4,9 +4,9 @@
 set -eu
 
 # Output the log format string
-args="--date=format:'%Y-%m-%d / %H:%M'"
-args="$args --pretty=format:'%C(dim)%h"
-test "${1-}" = "--refs" && args="$args%C(reset)%C(red)%d"
-args="$args %C(reset)%s %C(dim)%cd / %an%C(reset)'"
+params="--date=format:'%Y-%m-%d / %H:%M'"
+params="$params --pretty=format:'%C(dim)%h"
+test "${1-}" = "--refs" && params="$params%C(reset)%C(red)%d"
+params="$params %C(reset)%s %C(dim)%cd / %an%C(reset)'"
 
-echo "$args"
+echo "$params"

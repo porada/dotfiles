@@ -17,6 +17,7 @@ This document is not intended for humans.
     - Do not mention the file unless there are specific issues to report.
 - Always use `git mv` when renaming or moving files.
 - Enforce strict consistency across all modules, configuration files, and naming conventions.
+    - Always report any potential misspellings of `dom.engineering`.
 - Do not report inconsistencies automatically handled by the formatter or linter.
 - Split large edits into smaller, digestible changes.
 - Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
@@ -28,8 +29,17 @@ This document is not intended for humans.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
+- Always set `IFS` locally when iterating over filenames or command output.
+    - Limit `IFS` overrides to the sensitive `read` blocks only.
+    - Prefer `while read` loops over for when splitting behavior depends on `IFS`.
+- Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
+    - Exempt intentional `printf` output piped into `while` from this requirement.
 - Always prefer `echo` over `printf` for plain text output.
+    - Ignore cases where `printf` is required for precise whitespace control.
 - Avoid using `case` statements.
+- Always prefer the variable name `param` over `arg`.
+    - Exempt `fish`’s built-in `$argv` variable from this rule.
+- Do not report use of `eval` unless it poses a security risk.
 
 ### `dotfiles` Scripts
 
@@ -99,7 +109,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Verify
 
-- Re-read all reported files to determine whether the reported issues are still relevant.
-    - Ensure all findings align with the latest version of this document.
+- Re-read this document and all reported files to confirm whether reported issues remain relevant.
+    - Ensure that all findings align with the latest version of this document.
 - Mark resolved issues as addressed and exclude them from future reports.
-- Highlight any issues that still persist after the latest edits.
+- Highlight any issues that persist after the latest edits.

@@ -8,8 +8,10 @@ set -eu
 DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 cd "$(dirname "$DOTFILES_BIN_PATH")"
 
-git ls-files --cached --exclude-standard \
-  | while read -r file; do
+files="$(git ls-files --cached --exclude-standard)"
+
+printf '%s\n' "$files" \
+  | while IFS= read -r file; do
     if [ ! -e "$file" ] || [ -L "$file" ]; then
       continue
     fi

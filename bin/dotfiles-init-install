@@ -39,7 +39,7 @@ fish="$($brew --prefix)/bin/fish"
 
 # The following line is not a typo
 __installing '$SHELL'
-echo "$fish" | sudo tee -a /etc/shells
+grep -qx "$fish" /etc/shells || echo "$fish" | sudo tee -a /etc/shells
 chsh -s "$fish"
 
 "$fish" --init-command="dotfiles-dependencies"
