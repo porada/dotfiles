@@ -10,7 +10,7 @@ cd "$(dirname "$DOTFILES_BIN_PATH")"
 
 files="$({
   git ls-files --cached --exclude-standard
-  echo extra.fish
+  echo ".config/fish/extra.fish"
 } | sort)"
 
 printf '%s\n' "$files" \

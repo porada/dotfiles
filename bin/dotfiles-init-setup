@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+DOTFILES="$HOME/.dotfiles"
+FISH_CONFIG="$DOTFILES/.config/fish"
+
+# Symlink all dotfiles
+symlink() {
+  mkdir -p "$(dirname "$2")"
+  rm -rf "$2"
+  ln -s "$1" "$2"
+}
+
+for source in .config/fish .gitconfig .hushlogin .local .npmrc .ssh .vim .vimrc; do
+  symlink "$DOTFILES/$source" "$HOME/$source"
+done
+
+# Create additional files with proper permissions
+permit() {
+  chmod "$(stat -f "%A" "$HOME/Library")" "$1"
+}
+
+permit "$DOTFILES"
+touch "$FISH_CONFIG/extra.fish" && permit "$FISH_CONFIG/extra.fish"
+touch "$HOME/.node_history" && permit "$HOME/.node_history"
+mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
+
+# Ensure Apple Keychain includes the SSH key
+SSH_KEY="$HOME/.ssh/id_ed25519"
+
+if [ -f "$SSH_KEY" ]; then
+  ssh-add --apple-use-keychain "$SSH_KEY" > /dev/null 2>&1 || true
+fi

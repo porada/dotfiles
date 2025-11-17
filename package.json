@@ -13,10 +13,10 @@
 		"shellcheck": "4.1.0"
 	},
 	"scripts": {
-		"fix": "pnpm format .; pnpm format:fish $(dotfiles-dev-ls-fish | grep -vF -e 'aliases.fish' -e 'config.fish'); pnpm lint:fish; pnpm lint:sh $(dotfiles-dev-ls-sh)",
+		"fix": "pnpm format .; pnpm format:fish $(bin/dotfiles-dev-ls-fish); pnpm lint:fish; pnpm lint:sh $(bin/dotfiles-dev-ls-sh)",
 		"format": "prettier --ignore-unknown --write",
 		"format:fish": "fish_indent --write",
-		"lint:fish": "dotfiles-dev-lint-fish",
+		"lint:fish": "bin/dotfiles-dev-lint-fish",
 		"lint:plist": "plutil -lint",
 		"lint:sh": "shellcheck",
 		"prepare": "husky"

@@ -10,22 +10,20 @@ This document is not intended for humans.
     - Take note of which of the listed entries are regular files and which are symlinks.
     - Ignore symlinks that point outside of the repository.
 - Never read or analyze the `.ssh` directory.
-- Always include `extra.fish` in any analysis or execution—it’s an active part of the dotfiles.
+- Always consider `./config/fish/extra.fish` an active part of the dotfiles if it exists.
+    - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
     - Do not report the file being empty.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
 - Always use `git mv` when renaming or moving files.
-- Enforce strict consistency across all modules, configuration files, and naming conventions.
-    - Always report any potential misspellings of `dom.engineering`.
-- Do not report inconsistencies automatically handled by the formatter or linter.
-- Split large edits into smaller, digestible changes.
-- Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
+- Always run `prettier` and `shellcheck` through `pnpm exec`.
+    - Exempt `package.json` scripts from this requirement.
 
 ### Shell Scripting
 
 - Always assume that `fish` is the default shell.
-    - Run all shell terminal commands using `fish` syntax.
+    - Run all shell terminal commands using `fish` syntax when fish is available.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
@@ -43,7 +41,7 @@ This document is not intended for humans.
 
 ### `dotfiles` Scripts
 
-- Do not report `dotfiles-init` overwriting initial state.
+- Do not report `dotfiles-init-setup` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
 
 ### Launch Agents
@@ -61,6 +59,11 @@ This document is not intended for humans.
 - If you cannot verify something directly, admit that you cannot verify it, that you do not have access to the information, or that your knowledge base does not contain it.
 - Always check the most recent version of a file’s contents on each response.
     - Ignore `.DS_Store` files and do not report on them.
+- Enforce strict consistency across all modules, configuration files, and naming conventions.
+    - Always report any potential misspellings of `dom.engineering`.
+- Do not report inconsistencies automatically handled by the formatter or linter.
+- Split large edits into smaller, digestible changes.
+- Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
 - Notify me if any development tools used in the project allow opting out of telemetry.
     - Do not mention tools where telemetry has already been disabled.
 
@@ -94,11 +97,17 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Audit
 
-- Review the entire repository for redundancies, inconsistencies, typos, and potential structural issues.
+- Review the entire codebase for redundancies, inconsistencies, typos, and potential structural issues.
+    - Ignore files that don’t belong to this repository (other than `extra.fish`).
+    - Include the contents of this document in the analysis.
+    - Include all code comments in the analysis.
     - Perform the review without making edits.
 - Ensure there is no dead or unused code.
 - Run all instructions from the `Logs` section as part of the audit process.
-- Report only issues that may require fixing.
+- Treat the audit as one continuous task.
+    - Do not wait for my confirmation between steps.
+    - Report all findings at the end.
+    - Report only issues that may require fixing.
 
 ### Logs
 

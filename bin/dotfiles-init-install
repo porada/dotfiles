@@ -3,6 +3,8 @@
 # Enable strict mode
 set -eu
 
+DOTFILES="$HOME/.dotfiles"
+
 __installing() {
   printf "\n\033[1;33m· Installing %s\033[0m\n" "$*"
 }
@@ -16,12 +18,6 @@ __error() {
 brew="/opt/homebrew/bin/brew"
 [ ! -x "$brew" ] && __error 'Install `brew` first'
 
-for formula in node; do
-  if $brew list --formula | grep -q "^$formula\$"; then
-    $brew uninstall $formula
-  fi
-done
-
 for formula in fish git node@22 pnpm vim; do
   __installing $formula
 
@@ -31,6 +27,24 @@ for formula in fish git node@22 pnpm vim; do
     $brew unlink $formula
     $brew link --overwrite $formula
   fi
+done
+
+# Set up launch agents
+__installing launch agents
+
+for source in "$DOTFILES"/launch-agents/*.plist; do
+  domain="gui/$(id -u)"
+
+  # It’s safe to assume `~/Library/LaunchAgents` always exists
+  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
+  agent_label="$(basename "$agent" .plist)"
+
+  rm -f "$agent"
+  ln -s "$source" "$agent"
+
+  launchctl bootout "$domain" "$agent_label" 2> /dev/null || true
+  launchctl bootstrap "$domain" "$agent" 2> /dev/null || true
+  launchctl kickstart -k "$domain/$agent_label"
 done
 
 # Set `fish` as the default shell

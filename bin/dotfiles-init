@@ -3,59 +3,10 @@
 # Enable strict mode
 set -eu
 
-DOTFILES="$HOME/.dotfiles"
-DEFAULT_PERMISSIONS=$(stat -f "%A" "$HOME/Library")
+# Set up all dotfiles
+DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
 
-# Symlink all dotfiles
-symlink() {
-  mkdir -p "$(dirname "$2")"
-  rm -rf "$2"
-  ln -s "$1" "$2"
-}
-
-for source in .config/fish .gitconfig .hushlogin .local .npmrc .ssh .vim .vimrc; do
-  symlink "$DOTFILES/$source" "$HOME/$source"
-done
-
-# Symlink and enable launch agents
-for source in "$DOTFILES"/launch-agents/*.plist; do
-  domain="gui/$(id -u)"
-
-  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
-  agent_label="$(basename "$agent" .plist)"
-
-  # Clean up legacy agents first
-  legacy_agent="$(echo "$agent" | sed 's/engineering\.dom/co.porada.dotfiles/g')"
-
-  if [ "$legacy_agent" != "$agent" ]; then
-    legacy_agent_label="$(basename "$legacy_agent" .plist)"
-
-    launchctl bootout "$domain" "$legacy_agent_label" 2> /dev/null || true
-    launchctl remove "$legacy_agent_label" 2> /dev/null || true
-    rm -f "$legacy_agent"
-  fi
-
-  symlink "$source" "$agent"
-  launchctl bootout "$domain" "$agent_label" 2> /dev/null || true
-  launchctl bootstrap "$domain" "$agent"
-  launchctl kickstart -k "$domain/$agent_label"
-done
-
-# Create additional files with proper permissions
-permit() {
-  chmod "$DEFAULT_PERMISSIONS" "$1"
-}
-
-permit "$DOTFILES"
-touch "$DOTFILES/extra.fish" && permit "$DOTFILES/extra.fish"
-touch "$HOME/.node_history" && permit "$HOME/.node_history"
-mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
-
-# Keep things tidy
-rm -f "$HOME/.lesshst"
-rm -f "$HOME/.viminfo"
-
-# Apply other dotfiles
-"$DOTFILES/bin/dotfiles-macos"
-"$DOTFILES/bin/dotfiles-init-ssh"
-"$DOTFILES/bin/dotfiles-init-install"
+"$DOTFILES_BIN_PATH/dotfiles-init-migrate"
+"$DOTFILES_BIN_PATH/dotfiles-init-setup"
+"$DOTFILES_BIN_PATH/dotfiles-init-install"
+"$DOTFILES_BIN_PATH/dotfiles-macos"

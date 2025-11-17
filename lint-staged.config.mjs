@@ -1,7 +1,6 @@
 export default {
 	'*': 'pnpm format',
-	'**/!(aliases|config).fish': 'pnpm format:fish',
-	'*.fish': 'pnpm lint:fish',
+	'*.fish': ['pnpm format:fish', 'pnpm lint:fish'],
 	'*.plist': 'pnpm lint:plist',
 	'*.sh': 'pnpm lint:sh',
 	'.husky/*': 'pnpm lint:sh',

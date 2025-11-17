@@ -1,11 +1,15 @@
 # Clean up legacy abbreviations
-abbr --erase (abbr --list) 2> /dev/null
+set -l abbr (abbr --list)
+
+if test (count $abbr) -gt 0
+    abbr --erase $abbr
+end
 
 # Shorten frequently used commands
-abbr c "code"
-abbr g "git"
-abbr o "open"
-abbr p "pnpm"
+abbr c code
+abbr g git
+abbr o open
+abbr p pnpm
 
 # Show hidden files by default when using `ls`
 alias ls "ls -A"
