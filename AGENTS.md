@@ -27,6 +27,12 @@ This document is not intended for humans.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all shell scripts without a file extension include a proper shebang.
+- Ensure all POSIX shell scripts source `dotlib`.
+    - Always keep all functions defined in `dotlib` alphabetized in natural order.
+    - Always report any functions defined in `dotlib` that are never used.
+    - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `dotlib`.
+- Ensure all quoted strings use double quotes.
+    - Allow single quotes when the string contains characters that would otherwise require escaping.
 - Always set `IFS` locally when iterating over filenames or command output.
     - Limit `IFS` overrides to the sensitive `read` blocks only.
     - Prefer `while read` loops over for when splitting behavior depends on `IFS`.
@@ -38,9 +44,11 @@ This document is not intended for humans.
 - Always prefer the variable name `param` over `arg`.
     - Exempt `fish`’s built-in `$argv` variable from this rule.
 - Do not report use of `eval` unless it poses a security risk.
+- Always report inline `shellcheck` comments that have no effect.
 
 ### `dotfiles` Scripts
 
+- All `dotfiles` commands must work on a fresh macOS install (Sequoia or newer).
 - Do not report `dotfiles-init-setup` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
 
@@ -115,6 +123,14 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
     - Do not comment on or suggest changes to the scripts that generate logs unless explicitly asked.
 - Clear analyzed log files after reporting.
     - Remove the legacy `co.porada.*.{err,log}` files.
+
+### Review
+
+- Review the commit matching the provided hash.
+    - If no hash is given, review the most recent commit on the current branch.
+    - Perform the review without making edits.
+- Report any regressions the changes may introduce.
+- Ensure all changes comply with the latest version of `AGENTS.md`.
 
 ### Verify
 

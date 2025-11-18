@@ -1,7 +1,13 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
+
+__print_heading "Configuring macOS"
+
+if ! __is_macos; then
+  __print_info_and_exit "Skipping configuration. This isn’t macOS"
+fi
 
 # Enable full keyboard access for all controls
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -39,3 +45,18 @@ defaults write com.apple.AppStore InAppReviewEnabled -bool false
 
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+__print_heading_dimmed "Setting up Launch Agents"
+
+for source in "$DOTFILES"/launch-agents/*.plist; do
+  domain="gui/$(id -u)"
+
+  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
+  agent_label="$(basename "$agent" .plist)"
+
+  __symlink "$source" "$agent"
+
+  launchctl bootout "$domain" "$agent_label" 2> /dev/null || true
+  launchctl bootstrap "$domain" "$agent" 2> /dev/null || true
+  launchctl kickstart -k "$domain/$agent_label"
+done

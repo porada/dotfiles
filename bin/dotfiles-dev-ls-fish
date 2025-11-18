@@ -1,25 +1,23 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # List all Fish shell scripts that come with the dotfiles
-# (POSIX shell scripts can be listed with `dotfiles-dev-ls-sh`)
-DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
-cd "$(dirname "$DOTFILES_BIN_PATH")"
+__dotfiles_cd_root
 
 files="$({
-  git ls-files --cached --exclude-standard
+  git ls-files --cached --others --exclude-standard
   echo ".config/fish/extra.fish"
 } | sort)"
 
-printf '%s\n' "$files" \
+printf "%s\n" "$files" \
   | while IFS= read -r file; do
     if [ ! -e "$file" ] || [ -L "$file" ]; then
       continue
     fi
 
-    if [ "${file##*.}" = "fish" ] || head -n 1 "$file" | grep -q '^#!.*/fish'; then
+    if [ "${file##*.}" = "fish" ] || head -n 1 "$file" | grep -q "#!/usr/bin/env fish"; then
       echo "${file#./}"
     fi
   done

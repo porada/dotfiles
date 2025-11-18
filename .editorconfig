@@ -12,10 +12,10 @@ trim_trailing_whitespace = true
 indent_size = 4
 indent_style = space
 
-[{*.sh,*.yml}]
+[*.{sh,yml}]
 indent_size = 2
 indent_style = space
 
-[{.husky,bin}/*]
+[bin/*]
 indent_size = 2
 indent_style = space

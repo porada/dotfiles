@@ -1,0 +1,262 @@
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Ensure the library is sourced only once
+if [ -n "${DOTFILES_BIN_DIR-}" ]; then
+  echo '`dotlib` is already present'
+  exit 1
+fi
+
+# Common variables
+DOTFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
+DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
+# shellcheck disable=SC2034
+DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
+
+__chmod() {
+  if [ "$#" -eq 1 ]; then
+    if __is_macos; then
+      chmod "$(stat -f "%A" "$HOME/Library")" "$1"
+    else
+      chmod "$(stat -c "%a" "$HOME")" "$1"
+    fi
+  else
+    chmod "$@"
+  fi
+}
+
+__current_file_hash() {
+  md5 -q "$(__current_file_path)"
+}
+
+__current_file_path() {
+  realpath "$0"
+}
+
+__dotfiles() {
+  command="$1"
+  shift || true
+  "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
+}
+
+__dotfiles_bin() {
+  command="$1"
+  shift || true
+  "$DOTFILES_BIN_DIR/$command" "$@"
+}
+
+__dotfiles_cd_root() {
+  cd "$DOTFILES" || __print_error_and_exit "Could not change directory to \`$DOTFILES\`"
+}
+
+__dotfiles_exec() {
+  command="$1"
+  shift || true
+  exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
+}
+
+__dotfiles_exists() {
+  [ -x "$DOTFILES_BIN_DIR/dotfiles-$1" ]
+}
+
+__dotfiles_git() {
+  __git -C "$DOTFILES" "$@"
+}
+
+__dotfiles_ls_bin() {
+  find "$DOTFILES_BIN_DIR" -maxdepth 1 -type f -perm +111 -exec basename {} \; | sort
+}
+
+__dotfiles_pnpm() {
+  pnpm --dir "$DOTFILES" "$@"
+}
+
+__git() {
+  __print_command "git $*"
+  command git "$@"
+}
+
+__is_callable() {
+  sh -c "command -v \"$1\"" > /dev/null 2>&1
+}
+
+__is_macos() {
+  [ "$(uname -s)" = "Darwin" ]
+}
+
+__log() {
+  if [ "$#" -gt 0 ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
+  else
+    echo
+  fi
+}
+
+__print_command() {
+  __print_info "\$ $*"
+}
+
+__print_error() {
+  __printf "\033[0;31m× %s\033[0m\n" "$*" >&2
+}
+
+__print_error_and_exit() {
+  __print_error "$*"
+  exit 1
+}
+
+__print_heading() {
+  __printf "\n\033[1;33m· %s\033[0m\n" "$*"
+}
+
+__print_heading_dimmed() {
+  __printf "\n\033[1;2m· %s\033[0m\n" "$*"
+}
+
+__print_info() {
+  __printf "\033[2m%s\033[0m\n" "$*"
+}
+
+__print_info_and_exit() {
+  __print_info "$*"
+  exit 0
+}
+
+__print_success() {
+  __printf "\033[0;32m✓ %s\033[0m\n" "$*"
+}
+
+__printf() {
+  format="${1-}"
+  shift || true
+
+  if [ -n "$format" ]; then
+    command printf "$format" "$(__string_replace "$HOME" "~" "$*")"
+  fi
+}
+
+__ssh_add() {
+  __print_command "ssh-add $*"
+  command ssh-add "$@" > /dev/null 2>&1 || true
+}
+
+__string_contains() {
+  if command printf "%s" "$2" | grep -F -q -- "$1"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+__string_matches() {
+  if printf "%s" "$2" | grep -E -q -- "$1"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+__string_replace() {
+  if [ "$#" -ne 3 ]; then
+    __print_error_and_exit '`__string_replace` requires three arguments'
+  fi
+
+  if [ -z "$1" ]; then
+    __print_error_and_exit '`__string_replace` pattern can’t be empty'
+  fi
+
+  if ! __string_contains "$1" "$3"; then
+    echo "$3"
+    return 0
+  fi
+
+  command ruby -e 'pattern, replacement, subject = ARGV; STDOUT.write(subject.gsub(pattern, replacement))' "$@"
+}
+
+__symlink() {
+  command mkdir -p "$(dirname "$2")"
+  command rm -rf "$2"
+  ln -s "$1" "$2"
+}
+
+brew() {
+  command="brew"
+
+  if ! __is_callable $command; then
+    command="/opt/homebrew/bin/brew"
+    [ -x "$command" ] || __print_error_and_exit '`brew` is missing'
+  fi
+
+  if [ "${1-}" != "list" ] && ! __string_matches "^--" "${1-}"; then
+    __print_command "$command $*"
+  fi
+
+  command "$command" "$@"
+}
+
+chmod() {
+  __print_command "chmod $*"
+  command chmod "$@"
+}
+
+chsh() {
+  __print_command "chsh $*"
+  command chsh "$@"
+}
+
+defaults() {
+  __print_command "defaults $*"
+  command defaults "$@"
+}
+
+fish() {
+  __print_command "fish $*"
+  command fish "$@"
+}
+
+fish_indent() {
+  __print_command "fish_indent $*"
+  command fish_indent "$@"
+}
+
+launchctl() {
+  __print_command "launchctl $*"
+  command launchctl "$@"
+}
+
+ln() {
+  __print_command "ln $*"
+  command ln "$@"
+}
+
+mkdir() {
+  __print_command "mkdir $*"
+  command mkdir "$@"
+}
+
+mv() {
+  __print_command "mv $*"
+  command mv "$@"
+}
+
+npm() {
+  __print_command "npm $*"
+  command npm "$@"
+}
+
+pnpm() {
+  __print_command "pnpm $*"
+  command pnpm "$@"
+}
+
+rm() {
+  __print_command "rm $*"
+  command rm "$@"
+}
+
+touch() {
+  __print_command "touch $*"
+  command touch "$@"
+}

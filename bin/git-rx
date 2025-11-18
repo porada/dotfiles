@@ -1,15 +1,14 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Abort when files have been `git skipped`,
 # otherwise they’ll be affected by the reset
 skipped=$(git skipped)
 
 if [ -n "$skipped" ]; then
-  echo "$skipped"
-  exit 1
+  __print_error_and_exit "The repository contains skipped files"
 fi
 
 git reset --hard "$@"

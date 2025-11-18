@@ -1,8 +1,14 @@
+function chmod() {
+	return (files) =>
+		files
+			.filter((file) => file !== 'bin/dotlib')
+			.map((file) => `command chmod +x "${file}"`);
+}
+
 export default {
 	'*': 'pnpm format',
-	'*.fish': ['pnpm format:fish', 'pnpm lint:fish'],
+	'*.fish': 'pnpm lint:fish',
 	'*.plist': 'pnpm lint:plist',
 	'*.sh': 'pnpm lint:sh',
-	'.husky/*': 'pnpm lint:sh',
-	'bin/*': ['chmod +x', 'pnpm lint:sh'],
+	'bin/*': [chmod(), 'pnpm lint:sh'],
 };

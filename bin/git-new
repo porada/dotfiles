@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Create a new branch, overwriting it if necessary
-git branch -D "$@" 2> /dev/null || true
-git checkout -b "$@"
+git branch -D "$1" 2> /dev/null || true
+git checkout -b "$1"

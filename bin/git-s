@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Show the current `git status` including skipped files
 git status --short "$@" || exit $?

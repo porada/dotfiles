@@ -1,48 +1,25 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
-
-get_file_path() {
-  realpath "$0"
-}
-
-get_file_revision() {
-  md5 -q "$(get_file_path)"
-}
-
-get_directory_path() {
-  dirname "$(get_file_path)"
-}
-
-__dotfiles() {
-  "$(get_directory_path)/dotfiles-$1"
-}
-
-__git() {
-  git -C "$(get_directory_path)" "$@"
-}
-
-__upgrading() {
-  printf "\n\033[1;33m· Upgrading %s\033[0m\n" "$*"
-}
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Update dotfiles
 if hash git 2> /dev/null; then
-  __upgrading dotfiles
+  __print_heading "Updating dotfiles"
 
-  current_revision="$(get_file_revision)"
-  __git diff --quiet -- "$(get_file_path)" && __git pull
+  current_revision="$(__current_file_hash)"
+  __dotfiles_git diff --quiet -- "$(__current_file_path)" && __dotfiles_git pull
 
-  # Run the script again if it’s been updated
-  if [ "$(get_file_revision)" != "$current_revision" ]; then
-    exec "$(get_file_path)"
+  if [ "$(__current_file_hash)" != "$current_revision" ]; then
+    __print_info '✓ The upgrade script has been updated. Running `dotfiles upgrade` again'
+    __dotfiles_exec upgrade
   fi
 fi
 
 # Update Homebrew and installed dependencies
-if hash brew 2> /dev/null; then
-  __upgrading brew
+if __is_callable brew; then
+  __print_heading "Updating Homebrew"
+
   brew_cache_path="$(brew --cache)"
   brew update --quiet
   brew upgrade
@@ -51,27 +28,31 @@ if hash brew 2> /dev/null; then
 fi
 
 # Link dependencies
+__print_heading 'Running `dotfiles init`'
+__print_command "dotfiles init"
 __dotfiles init
 
 # Update globally installed Node packages
-if hash npm 2> /dev/null; then
-  __upgrading npm
+if __is_callable npm; then
+  __print_heading 'Updating `npm`'
+
   npm --global install npm
   npm --global update
 fi
 
 # Update Vim plugins
-if hash vim 2> /dev/null; then
-  __upgrading vim plugins
+if __is_callable vim; then
+  __print_heading "Updating Vim plugins"
   vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"
+  __print_info "✓ Updated"
 fi
 
 # Update Fish plugins
-if hash fish 2> /dev/null; then
-  __upgrading fisher
+if __is_callable fish; then
+  __print_heading 'Updating `fisher`'
   fish -c "fisher update"
 fi
 
 # Finish with dependency status
-__upgrading complete
+__print_heading "Update complete"
 __dotfiles dependencies

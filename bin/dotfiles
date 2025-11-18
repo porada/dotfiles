@@ -1,23 +1,23 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Run the available `dotfiles` command or list all available commands
-DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
-DOTFILES_BIN_COMMAND="ls \"$DOTFILES_BIN_PATH\""
-
 if [ $# -gt 0 ]; then
-  COMMAND_PATH="$DOTFILES_BIN_PATH/dotfiles-$1"
+  command="$1"
   shift
 
-  if [ -x "$COMMAND_PATH" ]; then
-    exec "$COMMAND_PATH" "$@"
+  if __dotfiles_exists "$command"; then
+    __dotfiles_exec "$command" "$@"
   fi
 
   # Narrow down the list of available commands
-  DOTFILES_BIN_COMMAND="$DOTFILES_BIN_COMMAND | grep '^dotfiles-'"
+  __print_heading "Available Commands"
+  __dotfiles_ls_bin | grep '^dotfiles-'
+
+  exit 1
 fi
 
-printf "\n\033[1mAvailable Commands\033[0m\n\n"
-eval "$DOTFILES_BIN_COMMAND"
+__print_heading "Available Commands"
+__dotfiles_ls_bin

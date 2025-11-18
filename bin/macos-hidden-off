@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Hide hidden files in Finder
 defaults write com.apple.finder AppleShowAllFiles -bool false

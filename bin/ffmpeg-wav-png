@@ -1,17 +1,15 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
 # Batch convert `.wav` and `.png` pairs in the current directory to video files
 if ! command -v ffmpeg > /dev/null 2>&1; then
-  echo "\`ffmpeg\` is missing"
-  exit 1
+  __print_error_and_exit '`ffmpeg` is missing'
 fi
 
 if ! command -v ffprobe > /dev/null 2>&1; then
-  echo "\`ffprobe\` is missing"
-  exit 1
+  __print_error_and_exit '`ffprobe` is missing'
 fi
 
 # Parse `--preset` from arguments
@@ -26,22 +24,21 @@ for param in "$@"; do
 done
 
 if [ -z "$preset" ]; then
-  echo "You must provide a \`--preset\`"
-  exit 1
+  __print_error_and_exit '`--preset` is missing'
 fi
 
 if [ "$preset" = "instagram" ]; then
-  files="$(find . -name '*.wav' -type f -maxdepth 1 -print)"
-  [ -z "$files" ] && exit 0
+  files="$(find . -name "*.wav" -type f -maxdepth 1 -print)"
+  [ -z "$files" ] && __print_info_and_exit 'No `.wav` files found'
 
-  printf '%s\n' "$files" \
+  printf "%s\n" "$files" \
     | while IFS= read -r audio; do
       base="${audio%.wav}"
       image="$base.png"
       video="$base.mov"
 
       if [ ! -f "$image" ]; then
-        echo "Missing image for \`$audio\`"
+        __print_error "Missing image for \`$audio\`"
         continue
       fi
 
@@ -57,17 +54,17 @@ if [ "$preset" = "instagram" ]; then
 fi
 
 if [ "$preset" = "youtube" ]; then
-  files="$(find . -name '*.wav' -type f -maxdepth 1 -print)"
-  [ -z "$files" ] && exit 0
+  files="$(find . -name "*.wav" -type f -maxdepth 1 -print)"
+  [ -z "$files" ] && __print_info_and_exit 'No `.wav` files found'
 
-  printf '%s\n' "$files" \
+  printf "%s\n" "$files" \
     | while IFS= read -r audio; do
       base="${audio%.wav}"
       image="$base.png"
       video="$base.mkv"
 
       if [ ! -f "$image" ]; then
-        echo "Missing image for \`$audio\`"
+        __print_error "Missing image for \`$audio\`"
         continue
       fi
 

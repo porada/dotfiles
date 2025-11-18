@@ -1,58 +1,29 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
-DOTFILES="$HOME/.dotfiles"
+__print_heading 'Installing dependencies through `brew`'
 
-__installing() {
-  printf "\n\033[1;33m· Installing %s\033[0m\n" "$*"
-}
-
-__error() {
-  printf "\n\033[1;31m× %s\033[0m\n" "$*"
-  exit 1
-}
-
-# Install available dependencies with `brew`
-brew="/opt/homebrew/bin/brew"
-[ ! -x "$brew" ] && __error 'Install `brew` first'
+brew analytics off
 
 for formula in fish git node@22 pnpm vim; do
-  __installing $formula
+  __print_heading_dimmed "Installing \`$formula\`"
 
-  if ! $brew list --formula | grep -q "^$formula\$"; then
-    $brew install $formula
+  if ! brew list --formula | grep -q "^$formula\$"; then
+    brew install $formula
   else
-    $brew unlink $formula
-    $brew link --overwrite $formula
+    brew unlink $formula
+    brew link --overwrite $formula
   fi
 done
 
-# Set up launch agents
-__installing launch agents
-
-for source in "$DOTFILES"/launch-agents/*.plist; do
-  domain="gui/$(id -u)"
-
-  # It’s safe to assume `~/Library/LaunchAgents` always exists
-  agent="$HOME/Library/LaunchAgents/$(basename "$source")"
-  agent_label="$(basename "$agent" .plist)"
-
-  rm -f "$agent"
-  ln -s "$source" "$agent"
-
-  launchctl bootout "$domain" "$agent_label" 2> /dev/null || true
-  launchctl bootstrap "$domain" "$agent" 2> /dev/null || true
-  launchctl kickstart -k "$domain/$agent_label"
-done
-
 # Set `fish` as the default shell
-fish="$($brew --prefix)/bin/fish"
+fish="$(brew --prefix)/bin/fish"
 [ "$fish" = "$SHELL" ] && exit 0
 
-# The following line is not a typo
-__installing '$SHELL'
+__print_heading 'Setting up `fish` as the default shell'
+
 grep -qx "$fish" /etc/shells || echo "$fish" | sudo tee -a /etc/shells
 chsh -s "$fish"
 

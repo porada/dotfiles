@@ -1,29 +1,20 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
-DOTFILES="$HOME/.dotfiles"
-FISH_CONFIG="$DOTFILES/.config/fish"
+__print_heading_dimmed "Cleaning up"
 
 # Migrate `extra.fish`
 if [ -f "$DOTFILES/extra.fish" ]; then
-  mv "$DOTFILES/extra.fish" "$FISH_CONFIG/extra.fish"
+  mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_DIR/extra.fish"
 fi
 
 # Remove `node` in favor of `node@22`
-# (installed through `dotfiles-init-install`)
-__error() {
-  printf "\n\033[1;31m× %s\033[0m\n" "$*"
-  exit 1
-}
-
-brew="/opt/homebrew/bin/brew"
-[ ! -x "$brew" ] && __error 'Install `brew` first'
-
+# shellcheck disable=SC2043
 for formula in node; do
-  if $brew list --formula | grep -q "^$formula\$"; then
-    $brew uninstall $formula
+  if brew list --formula | grep -q "^$formula\$"; then
+    brew uninstall $formula
   fi
 done
 
@@ -31,15 +22,15 @@ done
 for source in "$DOTFILES"/launch-agents/*.plist; do
   domain="gui/$(id -u)"
 
-  # It’s safe to assume `~/Library/LaunchAgents` always exists
   agent="$HOME/Library/LaunchAgents/$(basename "$source")"
-  legacy_agent="$(echo "$agent" | sed 's/engineering\.dom/co.porada.dotfiles/g')"
+  legacy_agent="$(__string_replace "engineering.dom" "co.porada.dotfiles" "$agent")"
 
   if [ "$legacy_agent" != "$agent" ]; then
     legacy_agent_label="$(basename "$legacy_agent" .plist)"
 
     launchctl bootout "$domain" "$legacy_agent_label" 2> /dev/null || true
     launchctl remove "$legacy_agent_label" 2> /dev/null || true
+
     rm -f "$legacy_agent"
   fi
 done

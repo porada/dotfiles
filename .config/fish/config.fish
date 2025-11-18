@@ -33,10 +33,10 @@ fish_add_path --path --move /opt/homebrew/sbin
 fish_add_path --path --move "$HOME/.local/bin"
 
 # Load dotfiles
-set -l FISH_CONFIG "$DOTFILES/.config/fish"
+set -l DOTFILES_FISH_DIR "$DOTFILES/.config/fish"
 
-. "$FISH_CONFIG/colors.fish"
-. "$FISH_CONFIG/aliases.fish"
+. "$DOTFILES_FISH_DIR/colors.fish"
+. "$DOTFILES_FISH_DIR/aliases.fish"
 
 # Load `extra.fish` only if it’s available
-[ -f "$FISH_CONFIG/extra.fish" ]; and . "$FISH_CONFIG/extra.fish"
+[ -f "$DOTFILES_FISH_DIR/extra.fish" ]; and . "$DOTFILES_FISH_DIR/extra.fish"

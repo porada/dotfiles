@@ -1,12 +1,9 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
-# Set up all dotfiles
-DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
-
-"$DOTFILES_BIN_PATH/dotfiles-init-migrate"
-"$DOTFILES_BIN_PATH/dotfiles-init-setup"
-"$DOTFILES_BIN_PATH/dotfiles-init-install"
-"$DOTFILES_BIN_PATH/dotfiles-macos"
+__dotfiles init-migrate
+__dotfiles init-setup
+__dotfiles init-install
+__dotfiles init-macos

@@ -1,35 +1,33 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
-DOTFILES="$HOME/.dotfiles"
-FISH_CONFIG="$DOTFILES/.config/fish"
-
-# Symlink all dotfiles
-symlink() {
-  mkdir -p "$(dirname "$2")"
-  rm -rf "$2"
-  ln -s "$1" "$2"
-}
+__print_heading "Linking all dotfiles"
 
 for source in .config/fish .gitconfig .hushlogin .local .npmrc .ssh .vim .vimrc; do
-  symlink "$DOTFILES/$source" "$HOME/$source"
+  __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
-# Create additional files with proper permissions
-permit() {
-  chmod "$(stat -f "%A" "$HOME/Library")" "$1"
-}
+__print_heading_dimmed "Provisioning extra files"
 
-permit "$DOTFILES"
-touch "$FISH_CONFIG/extra.fish" && permit "$FISH_CONFIG/extra.fish"
-touch "$HOME/.node_history" && permit "$HOME/.node_history"
-mkdir -p "$HOME/Projects" && permit "$HOME/Projects"
+touch "$DOTFILES_FISH_DIR/extra.fish"
+touch "$HOME/.local/.aiexclude"
+touch "$HOME/.node_history"
+touch "$HOME/.ssh/.aiexclude"
+mkdir -p "$HOME/Projects"
+
+__print_heading_dimmed "Ensuring consistent permissions"
+
+__chmod "$DOTFILES"
+__chmod "$DOTFILES_FISH_DIR/extra.fish"
+__chmod "$HOME/.node_history"
+__chmod "$HOME/Projects"
 
 # Ensure Apple Keychain includes the SSH key
 SSH_KEY="$HOME/.ssh/id_ed25519"
 
 if [ -f "$SSH_KEY" ]; then
-  ssh-add --apple-use-keychain "$SSH_KEY" > /dev/null 2>&1 || true
+  __print_heading "Linking the SSH key to Apple Keychain"
+  __ssh_add --apple-use-keychain "$SSH_KEY"
 fi

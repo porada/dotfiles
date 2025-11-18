@@ -1,15 +1,15 @@
 #!/bin/sh
 
-# Enable strict mode
-set -eu
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
 
-# Lint Fish shell scripts that come with the dotfiles
-# (lint all files when no paths are provided)
-DOTFILES_BIN_PATH="$(dirname "$(realpath "$0")")"
-cd "$(dirname "$DOTFILES_BIN_PATH")"
+# Lint and format Fish shell scripts that come with the dotfiles
+# (lints all files when no paths are provided)
+__dotfiles_cd_root
 
 lint() {
-  echo "$1"
+  __print_heading_dimmed "Linting \`$1\`"
+  fish_indent --write -- "$1"
   fish --no-execute -- "$1"
 }
 
@@ -18,9 +18,9 @@ if [ $# -gt 0 ]; then
     lint "$file"
   done
 else
-  files="$("$DOTFILES_BIN_PATH/dotfiles-dev-ls-fish")"
+  files="$("$DOTFILES_BIN_DIR/dotfiles-dev-ls-fish")"
 
-  printf '%s\n' "$files" \
+  printf "%s\n" "$files" \
     | while IFS= read -r file; do
       lint "$file"
     done
