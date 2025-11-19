@@ -3,24 +3,22 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-# Lint and format Fish shell scripts that come with the dotfiles
+# Lint and format POSIX shell scripts that come with the dotfiles
 # (lints all files when no paths are provided)
 __dotfiles_cd_root
 
 if [ $# -eq 0 ]; then
   __ifs_set
   # shellcheck disable=SC2046
-  set -- $("$DOTFILES_BIN_DIR/dotfiles-dev-list-fish")
+  set -- $("$DOTFILES_BIN_DIR/dotfiles-dev-list-sh")
   __ifs_restore
 fi
 
 if [ "$#" -eq 1 ]; then
   __print_heading "Formatting and linting \`$1\`"
 else
-  __print_heading "Formatting and linting Fish scripts"
+  __print_heading "Formatting and linting POSIX shell scripts"
 fi
 
-for file in "$@"; do
-  fish_indent --write -- "$file"
-  fish --no-execute -- "$file"
-done
+__dotfiles_pnpm format "$@"
+__dotfiles_pnpm exec shellcheck --external-sources "$@"

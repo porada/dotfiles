@@ -15,6 +15,9 @@ DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
 # shellcheck disable=SC2034
 DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
 
+# Helper variables and functions
+__DEFAULT_IFS="$IFS"
+
 __chmod() {
   if [ "$#" -eq 1 ]; then
     if __is_macos; then
@@ -70,12 +73,29 @@ __dotfiles_ls_bin() {
 }
 
 __dotfiles_pnpm() {
-  pnpm --dir "$DOTFILES" "$@"
+  pnpm --dir "$DOTFILES" --silent "$@"
 }
 
 __git() {
   __print_command "git $*"
   command git "$@"
+}
+
+__ifs_set() {
+  if [ "$IFS" != "$__DEFAULT_IFS" ]; then
+    __print_error_and_exit '`IFS` is already being overridden'
+  fi
+
+  if [ "$#" -eq 1 ]; then
+    IFS="$1"
+  else
+    IFS='
+'
+  fi
+}
+
+__ifs_restore() {
+  IFS="$__DEFAULT_IFS"
 }
 
 __is_callable() {
