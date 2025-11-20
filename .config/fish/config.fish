@@ -35,8 +35,6 @@ fish_add_path --path --move "$HOME/.local/bin"
 # Load dotfiles
 set -l DOTFILES_FISH_DIR "$DOTFILES/.config/fish"
 
-. "$DOTFILES_FISH_DIR/colors.fish"
 . "$DOTFILES_FISH_DIR/aliases.fish"
-
-# Load `extra.fish` only if it’s available
-[ -f "$DOTFILES_FISH_DIR/extra.fish" ]; and . "$DOTFILES_FISH_DIR/extra.fish"
+. "$DOTFILES_FISH_DIR/colors.fish"
+. "$DOTFILES_FISH_DIR/extra.fish" >/dev/null 2>&1

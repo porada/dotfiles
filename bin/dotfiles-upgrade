@@ -39,8 +39,8 @@ __dotfiles init
 if __is_callable npm; then
   __print_heading 'Updating `npm`'
 
-  npm --global install npm
-  npm --global update
+  npm --global --loglevel=error install npm
+  npm --global --loglevel=error update
 fi
 
 # Update Vim plugins
@@ -58,7 +58,7 @@ fi
 if __is_callable fish; then
   __print_heading 'Updating `fisher`'
 
-  if ! __fish "fisher update"; then
+  if ! __fish_exec "fisher update"; then
     __print_error "Update failed"
   fi
 fi

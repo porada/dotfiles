@@ -1,9 +1,5 @@
 # Clean up legacy abbreviations
-set -l abbr (abbr --list)
-
-if test (count $abbr) -gt 0
-    abbr --erase $abbr
-end
+abbr --erase (abbr --list) >/dev/null 2>&1
 
 # Shorten frequently used commands
 abbr c code

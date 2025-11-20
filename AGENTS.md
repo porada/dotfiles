@@ -18,8 +18,6 @@ This document is not intended for humans.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
 - Always use `git mv` when renaming or moving files.
-- Always run `prettier` and `shellcheck` through `pnpm exec`.
-    - Exempt `package.json` scripts from this requirement.
 
 ### Shell Scripting
 

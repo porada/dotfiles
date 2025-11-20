@@ -8,7 +8,7 @@ if ! __is_callable ffmpeg; then
   __print_error_and_exit '`ffmpeg` is missing'
 fi
 
-if ! __is_callable -v ffprobe; then
+if ! __is_callable ffprobe; then
   __print_error_and_exit '`ffprobe` is missing'
 fi
 

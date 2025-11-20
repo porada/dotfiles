@@ -80,8 +80,8 @@ __dotfiles_pnpm_install() {
   __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
 }
 
-__fish() {
-  __print_command "fish -c '$*'"
+__fish_exec() {
+  __print_command "fish -c \"$*\""
   command fish -c "$@"
 }
 
