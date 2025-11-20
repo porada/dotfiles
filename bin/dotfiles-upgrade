@@ -11,7 +11,7 @@ if hash git 2> /dev/null; then
   __dotfiles_git diff --quiet -- "$(__current_file_path)" && __dotfiles_git pull
 
   if [ "$(__current_file_hash)" != "$current_revision" ]; then
-    __print_info '✓ The upgrade script has been updated. Running `dotfiles upgrade` again'
+    __print_confirmation 'The upgrade script has been updated. Running `dotfiles upgrade` again'
     __dotfiles_exec upgrade
   fi
 fi
@@ -22,7 +22,7 @@ if __is_callable brew; then
 
   brew_cache_path="$(brew --cache)"
   brew update --quiet
-  brew upgrade
+  brew upgrade || true
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
 fi
@@ -44,7 +44,7 @@ fi
 if __is_callable vim; then
   __print_heading "Updating Vim plugins"
   vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"
-  __print_info "✓ Updated"
+  __print_confirmation "Updated"
 fi
 
 # Update Fish plugins
@@ -54,5 +54,8 @@ if __is_callable fish; then
 fi
 
 # Finish with dependency status
-__print_heading "Update complete"
+__print_heading "Upgrade complete"
 __dotfiles dependencies
+
+# Launch updated shell
+[ -t 1 ] && exec "$SHELL" -l

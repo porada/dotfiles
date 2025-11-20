@@ -24,10 +24,26 @@ __chmod "$DOTFILES_FISH_DIR/extra.fish"
 __chmod "$HOME/.node_history"
 __chmod "$HOME/Projects"
 
-# Ensure Apple Keychain includes the SSH key
+__print_heading "Verifying SSH setup"
+
 SSH_KEY="$HOME/.ssh/id_ed25519"
 
 if [ -f "$SSH_KEY" ]; then
-  __print_heading "Linking the SSH key to Apple Keychain"
-  __ssh_add --apple-use-keychain "$SSH_KEY"
+  __print_confirmation "$SSH_KEY"
+else
+  __print_error_and_exit "No SSH key found at \`$SSH_KEY\`"
+fi
+
+__print_heading_dimmed "Ensuring the SSH key is linked to Apple Keychain"
+__ssh_add --apple-use-keychain "$SSH_KEY"
+
+__print_heading_dimmed 'Ensuring dotfiles’ origin uses SSH'
+
+current="$(command git -C "$DOTFILES" remote get-url origin)"
+updated="$(__string_replace 'https://github.com/' 'git@github.com:' "$current")"
+
+if [ "$current" = "$updated" ]; then
+  __print_confirmation "$current"
+else
+  __dotfiles_git remote set-url origin "$updated"
 fi

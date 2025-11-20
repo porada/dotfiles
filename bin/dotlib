@@ -118,6 +118,10 @@ __print_command() {
   __print_info "\$ $*"
 }
 
+__print_confirmation() {
+  __print_info "✓ $*"
+}
+
 __print_error() {
   __printf "\033[0;31m× %s\033[0m\n" "$*" >&2
 }
