@@ -8,7 +8,10 @@ if hash git 2> /dev/null; then
   __print_heading "Updating dotfiles"
 
   current_revision="$(__current_file_hash)"
-  __dotfiles_git diff --quiet -- "$(__current_file_path)" && __dotfiles_git pull
+  __dotfiles_git diff --quiet -- "$(__current_file_path)" && {
+    __dotfiles_git pull
+    __dotfiles_pnpm_install
+  }
 
   if [ "$(__current_file_hash)" != "$current_revision" ]; then
     __print_confirmation 'The upgrade script has been updated. Running `dotfiles upgrade` again'

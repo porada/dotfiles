@@ -6,7 +6,6 @@
 .config/fish/functions/fisher.fish
 .husky/_
 .local
-.ssh
 .vim
 launch-agents/*.err
 launch-agents/*.log

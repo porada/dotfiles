@@ -5,15 +5,18 @@
 
 __print_heading "Linking all dotfiles"
 
-for source in .config/fish .gitconfig .hushlogin .local .npmrc .ssh .vim .vimrc; do
+for source in .config/fish .gitconfig .hushlogin .local .npmrc .vim .vimrc; do
   __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
 __print_heading_dimmed "Provisioning extra files"
 
 touch "$DOTFILES_FISH_DIR/extra.fish"
-touch "$HOME/.local/.aiexclude"
+mkdir -p "$HOME/.local/share"
+touch "$HOME/.local/share/.aiexclude"
+rm -f "$HOME/.local/.aiexclude"
 touch "$HOME/.node_history"
+mkdir -p "$HOME/.ssh"
 touch "$HOME/.ssh/.aiexclude"
 mkdir -p "$HOME/Projects"
 
@@ -34,8 +37,10 @@ else
   __print_error_and_exit "No SSH key found at \`$SSH_KEY\`"
 fi
 
-__print_heading_dimmed "Ensuring the SSH key is linked to Apple Keychain"
-__ssh_add --apple-use-keychain "$SSH_KEY"
+if __is_macos; then
+  __print_heading_dimmed "Ensuring the SSH key is linked to Apple Keychain"
+  __ssh_add --apple-use-keychain "$SSH_KEY"
+fi
 
 __print_heading_dimmed 'Ensuring dotfiles’ origin uses SSH'
 

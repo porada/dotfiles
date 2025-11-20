@@ -7,9 +7,10 @@ This document is not intended for humans.
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
 - This repository is open source and publicly accessible.
 - Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
-    - Take note of which of the listed entries are regular files and which are symlinks.
-    - Ignore symlinks that point outside of the repository.
-- Never read or analyze the `.ssh` directory.
+    - Take note of which entries are regular files and which are symlinks, but do not output this information.
+    - Ignore symlinks that resolve outside of the repository.
+- Never read or analyze the `~/.ssh` directory.
+    - Never follow any symlinks that resolve to it or to any path within it.
 - Always consider `./config/fish/extra.fish` an active part of the dotfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
@@ -44,11 +45,13 @@ This document is not intended for humans.
 - Always prefer the variable name `param` over `arg`.
     - Exempt `fish`’s built-in `$argv` variable from this rule.
 - Do not report use of `eval` unless it poses a security risk.
+- Always report when `find` uses `-maxdepth` in any position other than immediately after the search path.
 - Always report inline `shellcheck` comments that have no effect.
 
 ### `dotfiles` Scripts
 
 - All `dotfiles` commands must work on a fresh macOS install (Sequoia or newer).
+    - Always assume this repository is updated via `dotfiles upgrade`.
 - Do not report `dotfiles-init-setup` overwriting initial state.
     - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
 

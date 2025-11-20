@@ -76,9 +76,17 @@ __dotfiles_pnpm() {
   pnpm --dir "$DOTFILES" --silent "$@"
 }
 
+__dotfiles_pnpm_install() {
+  __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
+}
+
 __git() {
   __print_command "git $*"
   command git "$@"
+}
+
+__ifs_restore() {
+  IFS="$__DEFAULT_IFS"
 }
 
 __ifs_set() {
@@ -92,10 +100,6 @@ __ifs_set() {
     IFS='
 '
   fi
-}
-
-__ifs_restore() {
-  IFS="$__DEFAULT_IFS"
 }
 
 __is_callable() {
@@ -114,12 +118,23 @@ __log() {
   fi
 }
 
+__ls() {
+  __print_command "ls -A $*"
+  echo
+  command ls -A "$@"
+  echo
+}
+
 __print_command() {
   __print_info "\$ $*"
 }
 
 __print_confirmation() {
   __print_info "✓ $*"
+}
+
+__print_confirmation_and_exit() {
+  __print_info_and_exit "✓ $*"
 }
 
 __print_error() {

@@ -2,7 +2,7 @@ function chmod() {
 	return (files) =>
 		files
 			.filter((file) => file !== 'bin/dotlib')
-			.map((file) => `command chmod +x "${file}"`);
+			.map((file) => `chmod +x "${file}"`);
 }
 
 export default {

@@ -2,7 +2,6 @@
 .husky
 .local
 .shellcheckrc
-.ssh
 .vim
 node_modules
 pnpm-lock.yaml

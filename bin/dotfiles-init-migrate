@@ -37,4 +37,28 @@ done
 
 # Clean up legacy dotfiles
 rm -f "$HOME/.lesshst"
+rm -f "$HOME/.ssh/known_hosts.old"
+rm -f "$HOME/.vim/autoload/plug.vim.old"
 rm -f "$HOME/.viminfo"
+
+__print_heading_dimmed 'Ensuring `.ssh` is migrated out of the repository'
+
+SSH_KEY="$HOME/.ssh/id_ed25519"
+[ -f "$SSH_KEY" ] || __print_error_and_exit "Nothing to migrate"
+
+if [ -d "$HOME/.ssh" ] && [ ! -L "$HOME/.ssh" ]; then
+  __print_confirmation_and_exit "Already migrated"
+fi
+
+if [ -d "$DOTFILES/.ssh" ]; then
+  [ -L "$HOME/.ssh" ] && rm "$HOME/.ssh"
+  mv "$DOTFILES/.ssh" "$HOME/.ssh"
+  rm -f "$DOTFILES/.ssh/.keep"
+fi
+
+if [ -L "$HOME/.ssh" ] || [ -L "$SSH_KEY" ]; then
+  __print_error_and_exit "Migration failed"
+fi
+
+__print_confirmation "Migration complete"
+__ls "$HOME/.ssh"

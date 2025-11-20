@@ -28,7 +28,7 @@ if [ -z "$preset" ]; then
 fi
 
 if [ "$preset" = "instagram" ]; then
-  files="$(find . -name "*.wav" -type f -maxdepth 1 -print)"
+  files="$(find . -maxdepth 1 -name "*.wav" -type f -print)"
   [ -z "$files" ] && __print_info_and_exit 'No `.wav` files found'
 
   printf "%s\n" "$files" \
@@ -54,7 +54,7 @@ if [ "$preset" = "instagram" ]; then
 fi
 
 if [ "$preset" = "youtube" ]; then
-  files="$(find . -name "*.wav" -type f -maxdepth 1 -print)"
+  files="$(find . -maxdepth 1 -name "*.wav" -type f -print)"
   [ -z "$files" ] && __print_info_and_exit 'No `.wav` files found'
 
   printf "%s\n" "$files" \
