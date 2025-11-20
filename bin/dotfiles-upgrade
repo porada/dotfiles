@@ -4,13 +4,13 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Update dotfiles
-if hash git 2> /dev/null; then
+if __is_callable git; then
   __print_heading "Updating dotfiles"
 
   current_revision="$(__current_file_hash)"
   __dotfiles_git diff --quiet -- "$(__current_file_path)" && {
     __dotfiles_git pull
-    __dotfiles_pnpm_install
+    __dotfiles_pnpm_install || true
   }
 
   if [ "$(__current_file_hash)" != "$current_revision" ]; then
@@ -46,14 +46,21 @@ fi
 # Update Vim plugins
 if __is_callable vim; then
   __print_heading "Updating Vim plugins"
-  vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"
-  __print_confirmation "Updated"
+
+  if vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"; then
+    __print_confirmation "Updated"
+  else
+    __print_error "Update failed"
+  fi
 fi
 
 # Update Fish plugins
 if __is_callable fish; then
   __print_heading 'Updating `fisher`'
-  fish -c "fisher update"
+
+  if ! __fish "fisher update"; then
+    __print_error "Update failed"
+  fi
 fi
 
 # Finish with dependency status
@@ -61,4 +68,6 @@ __print_heading "Upgrade complete"
 __dotfiles dependencies
 
 # Launch updated shell
-[ -t 1 ] && exec "$SHELL" -l
+if [ -n "${SHELL-}" ]; then
+  exec "$SHELL" -l < /dev/null
+fi

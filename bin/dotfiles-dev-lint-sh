@@ -21,4 +21,4 @@ else
 fi
 
 __dotfiles_pnpm format "$@"
-__dotfiles_pnpm exec shellcheck --external-sources "$@"
+__shellcheck "$@"

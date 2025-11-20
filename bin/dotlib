@@ -80,6 +80,11 @@ __dotfiles_pnpm_install() {
   __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
 }
 
+__fish() {
+  __print_command "fish -c '$*'"
+  command fish -c "$@"
+}
+
 __git() {
   __print_command "git $*"
   command git "$@"
@@ -174,6 +179,10 @@ __printf() {
   if [ -n "$format" ]; then
     command printf "$format" "$(__string_replace "$HOME" "~" "$*")"
   fi
+}
+
+__shellcheck() {
+  shellcheck --external-sources "$@"
 }
 
 __ssh_add() {
@@ -293,6 +302,11 @@ pnpm() {
 rm() {
   __print_command "rm $*"
   command rm "$@"
+}
+
+shellcheck() {
+  __print_command "shellcheck $*"
+  command shellcheck "$@"
 }
 
 touch() {

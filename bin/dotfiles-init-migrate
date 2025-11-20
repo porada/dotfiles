@@ -44,7 +44,7 @@ rm -f "$HOME/.viminfo"
 __print_heading_dimmed 'Ensuring `.ssh` is migrated out of the repository'
 
 SSH_KEY="$HOME/.ssh/id_ed25519"
-[ -f "$SSH_KEY" ] || __print_error_and_exit "Nothing to migrate"
+[ -f "$SSH_KEY" ] || __print_info_and_exit "Nothing to migrate"
 
 if [ -d "$HOME/.ssh" ] && [ ! -L "$HOME/.ssh" ]; then
   __print_confirmation_and_exit "Already migrated"

@@ -4,11 +4,11 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Batch convert `.wav` and `.png` pairs in the current directory to video files
-if ! command -v ffmpeg > /dev/null 2>&1; then
+if ! __is_callable ffmpeg; then
   __print_error_and_exit '`ffmpeg` is missing'
 fi
 
-if ! command -v ffprobe > /dev/null 2>&1; then
+if ! __is_callable -v ffprobe; then
   __print_error_and_exit '`ffprobe` is missing'
 fi
 
@@ -42,6 +42,8 @@ if [ "$preset" = "instagram" ]; then
         continue
       fi
 
+      __print_heading "Generating \`$video\` for Instagram"
+
       # Instagram clips can be up to 60 seconds long
       duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$audio")
       duration_param=$(awk -v d="$duration" 'BEGIN { if (d >= 60.0) print "-t 60"; else print "-shortest"; }')
@@ -67,6 +69,8 @@ if [ "$preset" = "youtube" ]; then
         __print_error "Missing image for \`$audio\`"
         continue
       fi
+
+      __print_heading "Generating \`$video\` for YouTube"
 
       ffmpeg -nostdin -loop 1 -framerate 1 -i "$image" -i "$audio" \
         -vf "format=yuv420p,eq=gamma=1.18,scale=out_color_matrix=bt709" \

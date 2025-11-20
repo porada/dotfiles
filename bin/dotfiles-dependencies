@@ -20,7 +20,7 @@ check() {
 }
 
 dependency_bin() {
-  if hash "$1" > /dev/null 2>&1; then
+  if __is_callable "$1"; then
     __print_success "$1"
   else
     __print_error "$1"

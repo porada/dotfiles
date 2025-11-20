@@ -7,7 +7,7 @@ __print_heading 'Installing dependencies through `brew`'
 
 brew analytics off
 
-for formula in fish git node@22 pnpm vim; do
+for formula in fish git node@22 pnpm shellcheck vim; do
   __print_heading_dimmed "Installing \`$formula\`"
 
   if ! brew list --formula | grep -q "^$formula\$"; then
