@@ -5,18 +5,18 @@
 
 # Check dotfiles’ dependencies
 check() {
-  dependency_path "\$PATH" "$DOTFILES_BIN_DIR"
+  dependency_path '$PATH' "$DOTFILES_BIN_DIR"
 
-  dependency_bin "brew"
+  dependency_exec "brew" "__is_brew_installed"
 
   dependency_bin "fish"
-  dependency_exec "fisher" "fish -c 'fisher --version'"
+  dependency_exec "fisher" "__is_fisher_installed"
 
   dependency_bin "git"
   dependency_bin "node"
 
   dependency_bin "vim"
-  dependency_file "vim-plug" "$HOME/.vim/autoload/plug.vim"
+  dependency_exec "vim-plug" "__is_vim_plug_installed"
 }
 
 dependency_bin() {
@@ -24,6 +24,7 @@ dependency_bin() {
     __print_success "$1"
   else
     __print_error "$1"
+    status=1
   fi
 }
 
@@ -32,14 +33,7 @@ dependency_exec() {
     __print_success "$1"
   else
     __print_error "$1"
-  fi
-}
-
-dependency_file() {
-  if [ -r "$2" ]; then
-    __print_success "$1"
-  else
-    __print_error "$1"
+    status=1
   fi
 }
 
@@ -48,7 +42,11 @@ dependency_path() {
     __print_success "$1"
   else
     __print_error "$1"
+    status=1
   fi
 }
 
+echo
 check
+echo
+exit "${status:-0}"

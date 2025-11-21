@@ -3,7 +3,7 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-__print_heading 'Installing dependencies through `brew`'
+__print_heading "Installing dependencies"
 
 brew analytics off
 
@@ -14,7 +14,7 @@ for formula in fish git node@22 pnpm shellcheck vim; do
     brew install $formula
   else
     brew unlink $formula
-    brew link --overwrite $formula
+    brew link --overwrite $formula || true
   fi
 done
 
@@ -26,5 +26,3 @@ __print_heading 'Setting up `fish` as the default shell'
 
 grep -qx "$fish" /etc/shells || echo "$fish" | sudo tee -a /etc/shells
 chsh -s "$fish"
-
-"$fish" --init-command="dotfiles-dependencies"

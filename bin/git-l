@@ -4,8 +4,9 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Log a given number of last commits
-if test $# -gt 0; then
-  eval "git --no-pager log $(git log-format)" | grep -i -- "$*" || true
+if [ $# -gt 0 ]; then
+  eval "git --no-pager log $(__git_default_log_params --no-refs) --color=always" \
+    | grep -i -- "$*" || true
 else
-  eval "git --no-pager log $(git log-format --refs) -n $(git default-commit-count)"
+  eval "git --no-pager log $(__git_default_log_params) -n $(__git_default_commit_count)"
 fi

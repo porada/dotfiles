@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
+
+__print_heading_dimmed "Cleaning up"
+
+rm -f "$HOME/.bash_history"
+rm -f "$HOME/.lesshst"
+rm -f "$HOME/.local/.aiexclude"
+rm -rf "$HOME/.npm/_logs"
+rm -f "$HOME/.ssh/known_hosts.old"
+rm -f "$HOME/.vim/autoload/plug.vim.old"
+rm -f "$HOME/.viminfo"
+rm -f "$HOME/.zsh_history"

@@ -4,4 +4,4 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Show a full log
-eval "git log --graph $(git log-format --refs)"
+eval "git log $(__git_default_log_params) --graph"

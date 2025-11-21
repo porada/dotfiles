@@ -1,7 +1,5 @@
 # Agent Instructions
 
-This document is not intended for humans.
-
 ## Code
 
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
@@ -9,9 +7,13 @@ This document is not intended for humans.
 - Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
     - Take note of which entries are regular files and which are symlinks, but do not output this information.
     - Ignore symlinks that resolve outside of the repository.
+    - Ignore `.husky/**`.
+    - Ignore `.local/**`.
+    - Ignore `.node_history`.
+    - Ignore `.vim/**`.
 - Never read or analyze the `~/.ssh` directory.
     - Never follow any symlinks that resolve to it or to any path within it.
-- Always consider `./config/fish/extra.fish` an active part of the dotfiles if it exists.
+- Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
     - Do not report the file being empty.
@@ -28,15 +30,17 @@ This document is not intended for humans.
 - Ensure all shell scripts without a file extension include a proper shebang.
 - Ensure all POSIX shell scripts source `dotlib`.
     - Always keep all functions defined in `dotlib` alphabetized in natural order.
-    - Always report any functions defined in `dotlib` that are never used.
+    - Always report any unused functions or variables defined in `dotlib`.
     - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `dotlib`.
 - Ensure all quoted strings use double quotes.
     - Allow single quotes when the string contains characters that would otherwise require escaping.
+    - Never quote `$#` when used in a condition.
 - Always set `IFS` locally when iterating over filenames or command output.
     - Limit `IFS` overrides to the sensitive `read` blocks only.
     - Prefer `while read` loops over for when splitting behavior depends on `IFS`.
 - Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
-    - Exempt intentional `printf` output piped into `while` from this requirement.
+    - Exempt `printf` output piped into `while` from this requirement.
+    - Exempt `__find` output piped into `while` from this requirement.
 - Always prefer `echo` over `printf` for plain text output.
     - Ignore cases where `printf` is required for precise whitespace control.
 - Avoid using `case` statements.
@@ -78,6 +82,7 @@ This document is not intended for humans.
 
 ## Style
 
+- Always report when `AGENTS.md` contains typos or any inconsistencies with the rules defined in this section.
 - Enclose all tokens and code fragments in `backticks` when quoting them in strings or comments.
 - Follow the format below:
 
@@ -108,7 +113,6 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 - Review the entire codebase for redundancies, inconsistencies, typos, and potential structural issues.
     - Ignore files that don’t belong to this repository (other than `extra.fish`).
-    - Include the contents of this document in the analysis.
     - Include all code comments in the analysis.
     - Perform the review without making edits.
 - Ensure there is no dead or unused code.
@@ -123,7 +127,6 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 - Review all collected logs (`**/*.{err,log}`) for any issues that may require attention.
     - Do not comment on or suggest changes to the scripts that generate logs unless explicitly asked.
 - Clear analyzed log files after reporting.
-    - Remove the legacy `co.porada.*.{err,log}` files.
 
 ### Review
 
@@ -135,7 +138,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Verify
 
-- Re-read this document and all reported files to confirm whether reported issues remain relevant.
-    - Ensure that all findings align with the latest version of this document.
+- Re-read `AGENTS.md` and all reported files to confirm whether reported issues remain relevant.
+    - Ensure that all findings align with the latest version of `AGENTS.md`.
 - Mark resolved issues as addressed and exclude them from future reports.
 - Highlight any issues that persist after the latest edits.

@@ -8,13 +8,16 @@ if __is_callable git; then
   __print_heading "Updating dotfiles"
 
   current_revision="$(__current_file_hash)"
-  __dotfiles_git diff --quiet -- "$(__current_file_path)" && {
+
+  if __dotfiles_git diff --quiet; then
     __dotfiles_git pull
     __dotfiles_pnpm_install || true
-  }
+  else
+    __print_warning "The repository contains uncommitted changes"
+  fi
 
   if [ "$(__current_file_hash)" != "$current_revision" ]; then
-    __print_confirmation 'The upgrade script has been updated. Running `dotfiles upgrade` again'
+    __print_confirmation "The upgrade script has been updated"
     __dotfiles_exec upgrade
   fi
 fi
@@ -28,12 +31,10 @@ if __is_callable brew; then
   brew upgrade || true
   brew cleanup --scrub
   rm -rf "$brew_cache_path"
-fi
 
-# Link dependencies
-__print_heading 'Running `dotfiles init`'
-__print_command "dotfiles init"
-__dotfiles init
+  # Link installed dependencies
+  __dotfiles init --upgrade
+fi
 
 # Update globally installed Node packages
 if __is_callable npm; then
@@ -44,7 +45,7 @@ if __is_callable npm; then
 fi
 
 # Update Vim plugins
-if __is_callable vim; then
+if __is_callable vim && __is_vim_plug_installed; then
   __print_heading "Updating Vim plugins"
 
   if vim -c "PlugUpgrade | PlugUpdate | PlugClean! | quitall"; then
@@ -55,19 +56,14 @@ if __is_callable vim; then
 fi
 
 # Update Fish plugins
-if __is_callable fish; then
+if __is_callable fish && __is_fisher_installed; then
   __print_heading 'Updating `fisher`'
 
-  if ! __fish_exec "fisher update"; then
+  if ! __fish_eval "fisher update"; then
     __print_error "Update failed"
   fi
 fi
 
 # Finish with dependency status
 __print_heading "Upgrade complete"
-__dotfiles dependencies
-
-# Launch updated shell
-if [ -n "${SHELL-}" ]; then
-  exec "$SHELL" -l < /dev/null
-fi
+__dotfiles dependencies || true

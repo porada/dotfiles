@@ -11,13 +11,10 @@ done
 
 __print_heading_dimmed "Provisioning extra files"
 
-touch "$DOTFILES_FISH_DIR/extra.fish"
-mkdir -p "$HOME/.local/share"
-touch "$HOME/.local/share/.aiexclude"
-rm -f "$HOME/.local/.aiexclude"
-touch "$HOME/.node_history"
-mkdir -p "$HOME/.ssh"
-touch "$HOME/.ssh/.aiexclude"
+__touch "$DOTFILES_FISH_DIR/extra.fish"
+__touch "$HOME/.local/share/.aiexclude"
+__touch "$HOME/.node_history"
+__touch "$HOME/.ssh/.aiexclude"
 mkdir -p "$HOME/Projects"
 
 __print_heading_dimmed "Ensuring consistent permissions"

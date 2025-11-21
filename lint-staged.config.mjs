@@ -10,5 +10,5 @@ export default {
 	'*.fish': 'pnpm lint:fish',
 	'*.plist': 'pnpm lint:plist',
 	'*.sh': 'pnpm lint:sh',
-	'bin/*': [chmod(), 'pnpm lint:sh'],
+	'bin/!(diff)': [chmod(), 'pnpm lint:sh'],
 };

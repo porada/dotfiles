@@ -4,7 +4,7 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Rebase a given number of last commits
-count="${1:-$(git default-commit-count --no-initial)}"
+count="${1:-$(__git_default_commit_count --no-initial)}"
 available=0
 
 # Ensure the repository has a `HEAD` first

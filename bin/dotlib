@@ -16,10 +16,12 @@ DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
 DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
 
 # Helper variables and functions
-__DEFAULT_IFS="$IFS"
+DOTFILES_DEFAULT_IFS="$IFS"
+# shellcheck disable=SC2034
+DOTFILES_LAUNCH_AGENT_DOMAIN="gui/$(id -u)"
 
 __chmod() {
-  if [ "$#" -eq 1 ]; then
+  if [ $# -eq 1 ]; then
     if __is_macos; then
       chmod "$(stat -f "%A" "$HOME/Library")" "$1"
     else
@@ -41,12 +43,16 @@ __current_file_path() {
 __dotfiles() {
   command="$1"
   shift || true
+
+  echo
+  __print_command "dotfiles $command $*"
   "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
 __dotfiles_bin() {
   command="$1"
   shift || true
+
   "$DOTFILES_BIN_DIR/$command" "$@"
 }
 
@@ -57,6 +63,9 @@ __dotfiles_cd_root() {
 __dotfiles_exec() {
   command="$1"
   shift || true
+
+  echo
+  __print_command "exec dotfiles $command $*"
   exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
@@ -80,7 +89,21 @@ __dotfiles_pnpm_install() {
   __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
 }
 
-__fish_exec() {
+__find() {
+  if [ $# -ne 2 ]; then
+    __print_error_and_exit '`__find` requires two arguments'
+  fi
+
+  files="$(find "$1" -maxdepth 1 -name "$2" -type f -print)"
+
+  if [ -n "$files" ]; then
+    printf "%s\n" "$files"
+  else
+    printf ""
+  fi
+}
+
+__fish_eval() {
   __print_command "fish -c \"$*\""
   command fish -c "$@"
 }
@@ -90,16 +113,39 @@ __git() {
   command git "$@"
 }
 
+__git_default_commit_count() {
+  default=10
+  count=0
+
+  if git rev-parse --verify HEAD > /dev/null 2>&1; then
+    count=$(git rev-list --count HEAD)
+  fi
+
+  if [ "${1-}" = "--no-initial" ] && [ "$count" -gt 0 ]; then
+    count=$((count - 1))
+  fi
+
+  echo $((count < default ? count : default))
+}
+
+__git_default_log_params() {
+  params="--date=format:'%Y-%m-%d / %H:%M' --pretty=format:'%C(dim)%h"
+  [ "${1-}" != "--no-refs" ] && params="$params%C(reset)%C(red)%d"
+  params="$params %C(reset)%s %C(dim)%cd / %an%C(reset)'"
+
+  echo "$params"
+}
+
 __ifs_restore() {
-  IFS="$__DEFAULT_IFS"
+  IFS="$DOTFILES_DEFAULT_IFS"
 }
 
 __ifs_set() {
-  if [ "$IFS" != "$__DEFAULT_IFS" ]; then
+  if [ "$IFS" != "$DOTFILES_DEFAULT_IFS" ]; then
     __print_error_and_exit '`IFS` is already being overridden'
   fi
 
-  if [ "$#" -eq 1 ]; then
+  if [ $# -eq 1 ]; then
     IFS="$1"
   else
     IFS='
@@ -107,16 +153,28 @@ __ifs_set() {
   fi
 }
 
+__is_brew_installed() {
+  brew list --help > /dev/null 2>&1
+}
+
 __is_callable() {
   sh -c "command -v \"$1\"" > /dev/null 2>&1
+}
+
+__is_fisher_installed() {
+  command fish -c "fisher --version" > /dev/null 2>&1
 }
 
 __is_macos() {
   [ "$(uname -s)" = "Darwin" ]
 }
 
+__is_vim_plug_installed() {
+  [ -f "$HOME/.vim/autoload/plug.vim" ]
+}
+
 __log() {
-  if [ "$#" -gt 0 ]; then
+  if [ $# -gt 0 ]; then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
   else
     echo
@@ -172,6 +230,10 @@ __print_success() {
   __printf "\033[0;32m✓ %s\033[0m\n" "$*"
 }
 
+__print_warning() {
+  __printf "\033[1m• %s\033[0m\n" "$*"
+}
+
 __printf() {
   format="${1-}"
   shift || true
@@ -207,7 +269,7 @@ __string_matches() {
 }
 
 __string_replace() {
-  if [ "$#" -ne 3 ]; then
+  if [ $# -ne 3 ]; then
     __print_error_and_exit '`__string_replace` requires three arguments'
   fi
 
@@ -220,13 +282,20 @@ __string_replace() {
     return 0
   fi
 
-  command ruby -e 'pattern, replacement, subject = ARGV; STDOUT.write(subject.gsub(pattern, replacement))' "$@"
+  python3 -c 'import re, sys
+pattern, replacement, subject = sys.argv[1:4]
+sys.stdout.write(re.sub(pattern, replacement, subject))' "$@"
 }
 
 __symlink() {
   command mkdir -p "$(dirname "$2")"
   command rm -rf "$2"
   ln -s "$1" "$2"
+}
+
+__touch() {
+  command mkdir -p "$(dirname "$1")"
+  touch "$1"
 }
 
 brew() {
@@ -244,6 +313,11 @@ brew() {
   command "$command" "$@"
 }
 
+chflags() {
+  __print_command "chflags $*"
+  command chflags "$@"
+}
+
 chmod() {
   __print_command "chmod $*"
   command chmod "$@"
@@ -259,6 +333,11 @@ defaults() {
   command defaults "$@"
 }
 
+ffmpeg() {
+  __print_command "ffmpeg $*"
+  command ffmpeg "$@"
+}
+
 fish() {
   __print_command "fish $*"
   command fish "$@"
@@ -267,6 +346,11 @@ fish() {
 fish_indent() {
   __print_command "fish_indent $*"
   command fish_indent "$@"
+}
+
+killall() {
+  __print_command "killall $*"
+  command killall "$@"
 }
 
 launchctl() {

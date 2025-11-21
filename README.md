@@ -7,9 +7,6 @@ git --version
 # Clone the dotfiles via HTTPS to avoid authentication errors
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
-# Make sure all dependencies are in place
-~/.dotfiles/bin/dotfiles dependencies
-
 # Initialize the dotfiles and make sure everything is up to date
 ~/.dotfiles/bin/dotfiles init
 ~/.dotfiles/bin/dotfiles upgrade
