@@ -19,7 +19,6 @@ DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
 DOTFILES_DEFAULT_IFS="$IFS"
 # shellcheck disable=SC2034
 DOTFILES_LAUNCH_AGENT_DOMAIN="gui/$(id -u)"
-# shellcheck disable=SC2034
 DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 
 __chmod() {
@@ -32,14 +31,6 @@ __chmod() {
   else
     chmod "$@"
   fi
-}
-
-__current_file_hash() {
-  md5 -q "$(__current_file_path)"
-}
-
-__current_file_path() {
-  realpath "$0"
 }
 
 __dotfiles() {
@@ -102,6 +93,10 @@ __dotfiles_pnpm_install() {
   __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
 }
 
+__dotfiles_revision() {
+  command git -C "$DOTFILES" rev-parse --short HEAD
+}
+
 __find() {
   if [ $# -ne 2 ]; then
     __print_error_and_exit '`__find` requires two arguments'
@@ -114,11 +109,6 @@ __find() {
   else
     printf ""
   fi
-}
-
-__fish_eval() {
-  __print_command "fish -c \"$*\""
-  command fish -c "$@"
 }
 
 __git() {
@@ -190,6 +180,14 @@ __is_fisher_installed() {
 
 __is_macos() {
   [ "$(uname -s)" = "Darwin" ]
+}
+
+__is_ssh_set_up() {
+  [ -f "$DOTFILES_SSH_KEY" ]
+}
+
+__is_tty() {
+  [ -t 0 ] && [ -t 1 ]
 }
 
 __is_vim_plug_installed() {
@@ -406,6 +404,11 @@ rm() {
 shellcheck() {
   __print_command "shellcheck $*"
   command shellcheck "$@"
+}
+
+sudo() {
+  __print_command "sudo $*"
+  command sudo "$@"
 }
 
 touch() {

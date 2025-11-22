@@ -26,10 +26,11 @@ __chmod "$HOME/Projects"
 
 __print_heading "Verifying SSH setup"
 
-if [ -f "$DOTFILES_SSH_KEY" ]; then
+if __is_ssh_set_up; then
   __print_confirmation "$DOTFILES_SSH_KEY"
 else
-  __print_error_and_exit "No SSH key found at \`$DOTFILES_SSH_KEY\`"
+  __print_error "No SSH key found"
+  exit 0
 fi
 
 if __is_macos; then

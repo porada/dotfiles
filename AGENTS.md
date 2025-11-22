@@ -53,7 +53,8 @@
 
 ### `dotfiles` Scripts
 
-- All `dotfiles` commands must work on a fresh macOS install (Sequoia or newer).
+- Always assume the setup instructions in `README.md` run on a fresh macOS install (Sequoia or newer) with Command Line Tools and Homebrew installed.
+    - Always report any commands that may cause issues in that environment.
 - Always assume this repository is updated via `dotfiles sync`.
 - Do not report `dotfiles-sync-config` overwriting initial state.
 
@@ -134,6 +135,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
     - If no hash is given, review the most recent commit on the current branch.
     - Perform the review without making edits.
 - Report any regressions the changes may introduce.
+- Report any unused functions or variables defined in `dotlib`.
 - Ensure all changes comply with the latest version of `AGENTS.md`.
 
 ### Verify

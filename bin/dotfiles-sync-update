@@ -3,12 +3,18 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-# Update globally installed Node packages
+# Update `npm` packages
 if __is_callable npm; then
   __print_heading 'Updating `npm` packages'
 
   npm --global --loglevel=error install npm
   npm --global --loglevel=error update
+fi
+
+# Update `pnpm` packages
+if __is_callable pnpm; then
+  __print_heading 'Updating `pnpm` packages'
+  pnpm --global update
 fi
 
 # Update Vim plugins
@@ -26,7 +32,7 @@ fi
 if __is_callable fish && __is_fisher_installed; then
   __print_heading 'Updating `fisher` plugins'
 
-  if ! __fish_eval "fisher update"; then
+  if ! fish -c "fisher update"; then
     __print_error "Update failed"
   fi
 fi

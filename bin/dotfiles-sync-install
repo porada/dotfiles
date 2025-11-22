@@ -4,7 +4,6 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 __print_heading "Installing dependencies"
-
 brew analytics off
 
 __print_heading_dimmed 'Ensuring `brew` is up to date'
@@ -30,7 +29,15 @@ done
 fish="$(brew --prefix)/bin/fish"
 __is_fish "$fish" && exit 0
 
-__print_heading 'Setting up `fish` as the default shell'
+# Skip in non-interactive shells or if already registered
+if ! __is_tty || grep -qFx -- "$fish" /etc/shells; then
+  exit 0
+fi
 
-grep -qx "$fish" /etc/shells || echo "$fish" | sudo tee -a /etc/shells
-chsh -s "$fish"
+__print_heading 'Setting up `fish` as the default shell'
+sudo sh -c "echo \"$fish\" >> /etc/shells" || true
+
+if ! chsh -s "$fish"; then
+  __print_error "Failed to set \`$fish\` as the default shell"
+  exit 0
+fi

@@ -7,6 +7,7 @@
 check() {
   dependency_path '$PATH' "$DOTFILES_BIN_DIR"
 
+  dependency_exec "ssh" "__is_ssh_set_up"
   dependency_exec "brew" "__is_brew_installed"
 
   dependency_bin "fish"
@@ -14,6 +15,7 @@ check() {
 
   dependency_bin "git"
   dependency_bin "node"
+  dependency_bin "pnpm"
 
   dependency_bin "vim"
   dependency_exec "vim-plug" "__is_vim_plug_installed"

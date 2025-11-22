@@ -14,7 +14,7 @@ if __is_callable git; then
   __print_heading_dimmed "Pulling the repository"
 
   # Ensure the remote uses SSH
-  if [ -f "$DOTFILES_SSH_KEY" ]; then
+  if __is_ssh_set_up; then
     current="$(command git -C "$DOTFILES" remote get-url origin)"
     updated="$(__string_replace "https://github.com/" "git@github.com:" "$current")"
 
@@ -25,18 +25,18 @@ if __is_callable git; then
     fi
   fi
 
-  current_revision="$(__current_file_hash)"
+  current_revision="$(__dotfiles_revision)"
 
   # Ensure there are no staged or unstaged changes
   if __dotfiles_git diff --quiet && __dotfiles_git diff --cached --quiet; then
     __dotfiles_git pull
-    __dotfiles_pnpm_install || true
+    __is_callable pnpm && __dotfiles_pnpm_install
   else
     __print_warning "The repository contains uncommitted changes"
   fi
 
-  if [ "$(__current_file_hash)" != "$current_revision" ]; then
-    __print_confirmation "The syncing script has been updated"
+  if [ "$(__dotfiles_revision)" != "$current_revision" ]; then
+    __print_confirmation "Repository updated"
     __dotfiles_exec sync --print
   fi
 fi
