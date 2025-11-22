@@ -7,20 +7,28 @@ __print_heading "Installing dependencies"
 
 brew analytics off
 
-for formula in fish git node@22 pnpm shellcheck vim; do
-  __print_heading_dimmed "Installing \`$formula\`"
+__print_heading_dimmed 'Ensuring `brew` is up to date'
 
+brew_cache_path="$(brew --cache)"
+brew update --quiet
+brew upgrade || true
+brew cleanup --scrub
+rm -rf "$brew_cache_path"
+
+for formula in fish git node@22 pnpm shellcheck vim; do
   if ! brew list --formula | grep -q "^$formula\$"; then
+    __print_heading "Installing \`$formula\`"
     brew install $formula
-  else
-    brew unlink $formula
-    brew link --overwrite $formula || true
   fi
+
+  __print_heading_dimmed "Linking \`$formula\`"
+  brew unlink $formula || true
+  brew link --overwrite $formula || true
 done
 
 # Set `fish` as the default shell
 fish="$(brew --prefix)/bin/fish"
-[ "$fish" = "$SHELL" ] && exit 0
+__is_fish "$fish" && exit 0
 
 __print_heading 'Setting up `fish` as the default shell'
 

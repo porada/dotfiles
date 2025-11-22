@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
+
+if ! __is_brew_installed; then
+  __print_error_and_exit '`brew` needs to be installed before running `dotfiles sync`'
+fi
+
+__print_heading "Syncing dotfiles"
+
+# Sync dotfiles
+if __is_callable git; then
+  __print_heading_dimmed "Pulling the repository"
+
+  # Ensure the remote uses SSH
+  if [ -f "$DOTFILES_SSH_KEY" ]; then
+    current="$(command git -C "$DOTFILES" remote get-url origin)"
+    updated="$(__string_replace "https://github.com/" "git@github.com:" "$current")"
+
+    if [ "$current" = "$updated" ]; then
+      __print_confirmation "$current"
+    else
+      __dotfiles_git remote set-url origin "$updated"
+    fi
+  fi
+
+  current_revision="$(__current_file_hash)"
+
+  # Ensure there are no staged or unstaged changes
+  if __dotfiles_git diff --quiet && __dotfiles_git diff --cached --quiet; then
+    __dotfiles_git pull
+    __dotfiles_pnpm_install || true
+  else
+    __print_warning "The repository contains uncommitted changes"
+  fi
+
+  if [ "$(__current_file_hash)" != "$current_revision" ]; then
+    __print_confirmation "The syncing script has been updated"
+    __dotfiles_exec sync --print
+  fi
+fi
+
+__dotfiles sync-migrate
+__dotfiles sync-config
+__dotfiles sync-install
+__dotfiles sync-macos
+__dotfiles sync-update
+__dotfiles sync-clean
+
+# Finish with dependency status
+__print_heading "Sync complete"
+__dotfiles dependencies || true
+__is_fish || echo

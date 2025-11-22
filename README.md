@@ -8,8 +8,7 @@ git --version
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Initialize the dotfiles and make sure everything is up to date
-~/.dotfiles/bin/dotfiles init
-~/.dotfiles/bin/dotfiles upgrade
+~/.dotfiles/bin/dotfiles sync
 ```
 
 ## Quick Links

@@ -53,9 +53,8 @@
 ### `dotfiles` Scripts
 
 - All `dotfiles` commands must work on a fresh macOS install (Sequoia or newer).
-    - Always assume this repository is updated via `dotfiles upgrade`.
-- Do not report `dotfiles-init-setup` overwriting initial state.
-    - It’s safe to assume these scripts run on a newly set up Mac or update an existing setup.
+- Always assume this repository is updated via `dotfiles sync`.
+- Do not report `dotfiles-sync-config` overwriting initial state.
 
 ### Launch Agents
 

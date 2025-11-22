@@ -46,7 +46,5 @@ dependency_path() {
   fi
 }
 
-echo
 check
-echo
 exit "${status:-0}"

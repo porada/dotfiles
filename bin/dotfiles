@@ -8,16 +8,21 @@ if [ $# -gt 0 ]; then
   command="$1"
   shift
 
+  if [ "$command" = "init" ] || [ "$command" = "upgrade" ]; then
+    __print_warning "\`dotfiles $command\` is deprecated"
+    __dotfiles_exec sync --print
+  fi
+
   if __dotfiles_exists "$command"; then
     __dotfiles_exec "$command" "$@"
   fi
 
-  # Narrow down the list of available commands
+  # Narrow down the list to `dotfiles` commands
   __print_heading "Available Commands"
-  __dotfiles_ls_bin | grep '^dotfiles-'
-
+  __dotfiles_ls_bin "dotfiles-*"
   exit 1
 fi
 
+# List all available commands that come with the dotfiles
 __print_heading "Available Commands"
 __dotfiles_ls_bin

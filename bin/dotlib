@@ -19,6 +19,8 @@ DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
 DOTFILES_DEFAULT_IFS="$IFS"
 # shellcheck disable=SC2034
 DOTFILES_LAUNCH_AGENT_DOMAIN="gui/$(id -u)"
+# shellcheck disable=SC2034
+DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 
 __chmod() {
   if [ $# -eq 1 ]; then
@@ -44,8 +46,6 @@ __dotfiles() {
   command="$1"
   shift || true
 
-  echo
-  __print_command "dotfiles $command $*"
   "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
@@ -56,16 +56,25 @@ __dotfiles_bin() {
   "$DOTFILES_BIN_DIR/$command" "$@"
 }
 
+__dotfiles_cd_bin() {
+  cd "$DOTFILES_BIN_DIR" \
+    || __print_error_and_exit "Could not change directory to \`$DOTFILES_BIN_DIR\`"
+}
+
 __dotfiles_cd_root() {
-  cd "$DOTFILES" || __print_error_and_exit "Could not change directory to \`$DOTFILES\`"
+  cd "$DOTFILES" \
+    || __print_error_and_exit "Could not change directory to \`$DOTFILES\`"
 }
 
 __dotfiles_exec() {
   command="$1"
   shift || true
 
-  echo
-  __print_command "exec dotfiles $command $*"
+  if [ "${1-}" = "--print" ]; then
+    shift || true
+    __print_command "dotfiles $command $*"
+  fi
+
   exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
@@ -78,7 +87,18 @@ __dotfiles_git() {
 }
 
 __dotfiles_ls_bin() {
-  find "$DOTFILES_BIN_DIR" -maxdepth 1 -type f -perm +111 -exec basename {} \; | sort
+  if [ $# -gt 0 ]; then
+    pattern="$1"
+  else
+    pattern="*"
+  fi
+
+  (
+    __dotfiles_cd_bin
+    find . -maxdepth 1 -type f -name "$pattern" -perm -u+x -exec basename {} \; \
+      | sort \
+      | xargs ls
+  )
 }
 
 __dotfiles_pnpm() {
@@ -94,7 +114,7 @@ __find() {
     __print_error_and_exit '`__find` requires two arguments'
   fi
 
-  files="$(find "$1" -maxdepth 1 -name "$2" -type f -print)"
+  files="$(find "$1" -maxdepth 1 -name "$2" -type f -print | sort)"
 
   if [ -n "$files" ]; then
     printf "%s\n" "$files"
@@ -159,6 +179,16 @@ __is_brew_installed() {
 
 __is_callable() {
   sh -c "command -v \"$1\"" > /dev/null 2>&1
+}
+
+__is_fish() {
+  fish="${1-}"
+
+  if [ -z "$fish" ]; then
+    fish="$(brew --prefix)/bin/fish"
+  fi
+
+  [ "$fish" = "$SHELL" ]
 }
 
 __is_fisher_installed() {
@@ -231,7 +261,7 @@ __print_success() {
 }
 
 __print_warning() {
-  __printf "\033[1m• %s\033[0m\n" "$*"
+  __printf "\033[1m▴ %s\033[0m\n" "$*"
 }
 
 __printf() {
