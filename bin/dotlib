@@ -49,13 +49,6 @@ __dotfiles() {
   "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
-__dotfiles_bin() {
-  command="$1"
-  shift || true
-
-  "$DOTFILES_BIN_DIR/$command" "$@"
-}
-
 __dotfiles_cd_bin() {
   cd "$DOTFILES_BIN_DIR" \
     || __print_error_and_exit "Could not change directory to \`$DOTFILES_BIN_DIR\`"
@@ -201,14 +194,6 @@ __is_macos() {
 
 __is_vim_plug_installed() {
   [ -f "$HOME/.vim/autoload/plug.vim" ]
-}
-
-__log() {
-  if [ $# -gt 0 ]; then
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
-  else
-    echo
-  fi
 }
 
 __ls() {

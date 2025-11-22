@@ -45,17 +45,3 @@ defaults write com.apple.AppStore InAppReviewEnabled -bool false
 
 # Quit the printer app when finished
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-__print_heading_dimmed "Setting up Launch Agents"
-
-__find "$DOTFILES/launch-agents" "*.plist" \
-  | while IFS= read -r source; do
-    agent="$HOME/Library/LaunchAgents/$(basename "$source")"
-    agent_label="$(basename "$agent" .plist)"
-
-    __symlink "$source" "$agent"
-
-    launchctl bootout "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$agent_label" 2> /dev/null || true
-    launchctl bootstrap "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$agent" 2> /dev/null || true
-    launchctl kickstart -k "$DOTFILES_LAUNCH_AGENT_DOMAIN/$agent_label"
-  done

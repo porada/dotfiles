@@ -5,6 +5,7 @@
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
 - This repository is open source and publicly accessible.
 - Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
+    - Do not mention it if you’re unable to run the command.
     - Take note of which entries are regular files and which are symlinks, but do not output this information.
     - Ignore symlinks that resolve outside of the repository.
     - Ignore `.husky/**`.

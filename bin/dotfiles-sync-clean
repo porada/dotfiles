@@ -3,6 +3,19 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
+__print_heading_dimmed "Removing phased out launch agents"
+
+for agent in "co.porada.dotfiles.up-for-time-machine" "engineering.dom.up-for-time-machine"; do
+  agent_plist="$HOME/Library/LaunchAgents/$agent.plist"
+
+  launchctl bootout "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$agent" 2> /dev/null || true
+  launchctl remove "$agent" 2> /dev/null || true
+
+  rm -f "$agent_plist"
+done
+
+rm -rf "$DOTFILES/launch-agents"
+
 __print_heading_dimmed "Cleaning up"
 
 rm -f "$HOME/.bash_history"

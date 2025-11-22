@@ -15,7 +15,6 @@
 		"fix": "pnpm --silent format . && pnpm --silent lint:fish && pnpm --silent lint:sh",
 		"format": "prettier --log-level=error --ignore-unknown --write",
 		"lint:fish": "bin/dotfiles-dev-lint-fish",
-		"lint:plist": "plutil -lint",
 		"lint:sh": "bin/dotfiles-dev-lint-sh",
 		"prepare": "husky"
 	}

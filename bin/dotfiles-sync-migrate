@@ -18,24 +18,6 @@ for formula in node; do
   fi
 done
 
-# Clean up legacy launch agents
-__find "$DOTFILES/launch-agents" "*.plist" \
-  | while IFS= read -r source; do
-    agent="$HOME/Library/LaunchAgents/$(basename "$source")"
-    legacy_agent="$(__string_replace "engineering.dom" "co.porada.dotfiles" "$agent")"
-
-    if [ "$legacy_agent" != "$agent" ]; then
-      legacy_agent_label="$(basename "$legacy_agent" .plist)"
-
-      launchctl bootout "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$legacy_agent_label" 2> /dev/null || true
-      launchctl remove "$legacy_agent_label" 2> /dev/null || true
-
-      rm -f "$legacy_agent"
-      rm -f "$DOTFILES/launch-agents/$legacy_agent_label.err"
-      rm -f "$DOTFILES/launch-agents/$legacy_agent_label.log"
-    fi
-  done
-
 __print_heading_dimmed 'Ensuring `.ssh` is migrated out of the repository'
 
 SSH_KEY="$HOME/.ssh/id_ed25519"

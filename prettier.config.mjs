@@ -10,12 +10,5 @@ export default {
 				trailingComma: 'es5',
 			},
 		},
-		{
-			files: '*.plist',
-			options: {
-				parser: 'html',
-				printWidth: 999,
-			},
-		},
 	],
 };
