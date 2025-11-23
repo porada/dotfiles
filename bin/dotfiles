@@ -13,11 +13,11 @@ if [ $# -gt 0 ]; then
   fi
 
   # Narrow down the list to `dotfiles` commands
-  __print_heading "Available Commands"
-  __dotfiles_ls_bin "dotfiles-*"
+  __print_heading 'Available Commands'
+  __dotfiles_ls_bin 'dotfiles-*'
   exit 1
 fi
 
 # List all available commands that come with the dotfiles
-__print_heading "Available Commands"
+__print_heading 'Available Commands'
 __dotfiles_ls_bin

@@ -3,45 +3,51 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-__print_heading "Configuring macOS"
+__print_heading 'Configuring macOS'
 
 if ! __is_macos; then
-  __print_info_and_exit "Skipping configuration. This isn’t macOS"
+  __print_info_and_exit 'Skipping configuration. This isn’t macOS'
 fi
 
 # Enable full keyboard access for all controls
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+__ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Disable window animations and Get Info animations in Finder
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-defaults write com.apple.finder DisableAllAnimations -bool true
+__ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+__ defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Show Library in Finder
-chflags nohidden ~/Library
+__ chflags nohidden ~/Library
 
 # Disable font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 0
+__ defaults -currentHost write -g AppleFontSmoothing -int 0
 
 # Disable screenshot thumbnails
-defaults write com.apple.screencapture show-thumbnail -bool false
+__ defaults write com.apple.screencapture show-thumbnail -bool false
 
 # Disable prompt line marks
-defaults write com.apple.Terminal ShowLineMarks -int 0
+__ defaults write com.apple.Terminal ShowLineMarks -int 0
 
 # Set Dock icons to a specific size and make hidden applications translucent
-defaults write com.apple.dock tilesize -int 48
-defaults write com.apple.dock showhidden -bool true
+__ defaults write com.apple.dock tilesize -int 48
+__ defaults write com.apple.dock showhidden -bool true
 
 # Set the consistent clock style on the login screen
-defaults write com.apple.loginwindow ClockFontIdentifier -string "rounded"
-defaults write com.apple.loginwindow ClockFontWeight -int 500
+__ defaults write com.apple.loginwindow ClockFontIdentifier -string rounded
+__ defaults write com.apple.loginwindow ClockFontWeight -int 500
 
 # Disable autoplay in the App Store
-defaults write com.apple.AppStore AutoPlayVideoSetting -string off
-defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -int 1
+__ defaults write com.apple.AppStore AutoPlayVideoSetting -string off
+__ defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -int 1
 
 # Don’t prompt for reviews
-defaults write com.apple.AppStore InAppReviewEnabled -bool false
+__ defaults write com.apple.AppStore InAppReviewEnabled -bool false
 
 # Quit the printer app when finished
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+__ defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool true
+
+__print_heading_dimmed 'Restarting affected apps'
+
+__ killall Dock || true
+__ killall Finder || true
+__ killall SystemUIServer || true

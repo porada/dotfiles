@@ -20,30 +20,30 @@ function fish_prompt
 end
 
 function __fish_prompt_newline
-    printf "\n"
+    printf '\n'
 end
 
 function __fish_prompt_host
-    test -n "$SSH_CONNECTION"; and printf "%s@%s " $USER (hostname -s)
+    test -n "$SSH_CONNECTION"; and printf '%s@%s ' $USER (hostname -s)
 end
 
 function __fish_prompt_pwd
     set -l fish_prompt_pwd_dir_length 0
     test (id -u) -eq 0; and set_color $fish_color_cwd_root
-    printf "%s " (prompt_pwd)
+    printf '%s ' (prompt_pwd)
 end
 
 function __fish_prompt_git_branch
     set -l git_branch (command git symbolic-ref HEAD 2> /dev/null | sed -e "s|^refs/heads/||")
-    test -n "$git_branch"; and printf "%s" "$git_branch"
+    test -n "$git_branch"; and printf '%s' "$git_branch"
 end
 
 function __fish_prompt_git_dirty
     set -l git_status (command git status --porcelain --untracked-files=no 2> /dev/null)
-    test -n "$git_status"; and printf "·"
+    test -n "$git_status"; and printf '·'
 end
 
 function __fish_prompt_caret
     test $argv[1] -ne 0; and set_color $fish_color_error
-    printf "\$ "
+    printf '$ '
 end

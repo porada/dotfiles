@@ -12,6 +12,7 @@
     - Ignore `.local/**`.
     - Ignore `.node_history`.
     - Ignore `.vim/**`.
+    - Ignore `bin/diff`.
 - Never read or analyze the `~/.ssh` directory.
     - Never follow any symlinks that resolve to it or to any path within it.
 - Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
@@ -33,8 +34,9 @@
     - Always keep all functions defined in `dotlib` alphabetized in natural order.
     - Always report any unused functions or variables defined in `dotlib`.
     - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `dotlib`.
-- Ensure all quoted strings use double quotes.
-    - Allow single quotes when the string contains characters that would otherwise require escaping.
+- Always ensure strings are quoted appropriately:
+    - Use double quotes for any string where expansion may occur.
+    - Use single quotes only for literal strings containing characters that would otherwise require escaping.
     - Never quote `$#` when used in a condition.
 - Always set `IFS` locally when iterating over filenames or command output.
     - Limit `IFS` overrides to the sensitive `read` blocks only.
@@ -56,7 +58,7 @@
 - Always assume the setup instructions in `README.md` run on a fresh macOS install (Sequoia or newer) with Command Line Tools and Homebrew installed.
     - Always report any commands that may cause issues in that environment.
 - Always assume this repository is updated via `dotfiles sync`.
-- Do not report `dotfiles-sync-config` overwriting initial state.
+- Do not report `dotfiles-sync-setup` overwriting initial state.
 
 ### Launch Agents
 
@@ -117,17 +119,10 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
     - Include all code comments in the analysis.
     - Perform the review without making edits.
 - Ensure there is no dead or unused code.
-- Run all instructions from the `Logs` section as part of the audit process.
 - Treat the audit as one continuous task.
     - Do not wait for my confirmation between steps.
     - Report all findings at the end.
     - Report only issues that may require fixing.
-
-### Logs
-
-- Review all collected logs (`**/*.{err,log}`) for any issues that may require attention.
-    - Do not comment on or suggest changes to the scripts that generate logs unless explicitly asked.
-- Clear analyzed log files after reporting.
 
 ### Review
 

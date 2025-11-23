@@ -3,37 +3,37 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-__print_heading "Linking all dotfiles"
+__print_heading 'Linking all dotfiles'
 
 for source in .config/fish .gitconfig .hushlogin .local .npmrc .vim .vimrc; do
   __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
-__print_heading_dimmed "Provisioning extra files"
+__print_heading_dimmed 'Provisioning extra files'
 
 __touch "$DOTFILES_FISH_DIR/extra.fish"
 __touch "$HOME/.local/share/.aiexclude"
 __touch "$HOME/.node_history"
 __touch "$HOME/.ssh/.aiexclude"
-mkdir -p "$HOME/Projects"
+__ mkdir -p "$HOME/Projects"
 
-__print_heading_dimmed "Ensuring consistent permissions"
+__print_heading_dimmed 'Ensuring consistent permissions'
 
 __chmod "$DOTFILES"
 __chmod "$DOTFILES_FISH_DIR/extra.fish"
 __chmod "$HOME/.node_history"
 __chmod "$HOME/Projects"
 
-__print_heading "Verifying SSH setup"
+__print_heading 'Verifying SSH setup'
 
-if __is_ssh_set_up; then
+if __is_ssh_configured; then
   __print_confirmation "$DOTFILES_SSH_KEY"
 else
-  __print_error "No SSH key found"
+  __print_error 'No SSH key found'
   exit 0
 fi
 
 if __is_macos; then
-  __print_heading_dimmed "Ensuring the SSH key is linked to Apple Keychain"
+  __print_heading_dimmed 'Ensuring the SSH key is linked to Apple Keychain'
   __ssh_add --apple-use-keychain "$DOTFILES_SSH_KEY"
 fi

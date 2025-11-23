@@ -17,8 +17,8 @@ fi
 if [ $# -eq 1 ]; then
   __print_heading "Formatting and linting \`$1\`"
 else
-  __print_heading "Formatting and linting POSIX shell scripts"
+  __print_heading 'Formatting and linting POSIX shell scripts'
 fi
 
 __dotfiles_pnpm format "$@"
-__shellcheck "$@"
+__ shellcheck --external-sources "$@"

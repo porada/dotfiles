@@ -5,10 +5,10 @@
 
 # Abort when files have been `git skipped`,
 # otherwise they’ll be affected by the reset
-skipped=$(git skipped)
+skipped=$(__dotfiles_bin git-skipped)
 
 if [ -n "$skipped" ]; then
-  __print_error_and_exit "The repository contains skipped files"
+  __print_error_and_exit 'The repository contains skipped files'
 fi
 
 git reset --hard "$@"

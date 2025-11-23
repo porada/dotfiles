@@ -4,5 +4,5 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Show hidden files in Finder
-defaults write com.apple.finder AppleShowAllFiles -bool true
-killall Finder || true
+__ defaults write com.apple.finder AppleShowAllFiles -bool true
+__ killall Finder || true

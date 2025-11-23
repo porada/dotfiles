@@ -4,5 +4,5 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Enable window shadows when taking screenshots
-defaults write com.apple.screencapture disable-shadow -bool false
-killall SystemUIServer || true
+__ defaults write com.apple.screencapture disable-shadow -bool false
+__ killall SystemUIServer || true

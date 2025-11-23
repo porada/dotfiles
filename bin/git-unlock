@@ -4,4 +4,4 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Remove the index lock file
-rm -f "$(git rev-parse --git-dir)/index.lock"
+__ rm -f "$(git rev-parse --git-dir)/index.lock"

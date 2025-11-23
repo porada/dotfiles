@@ -5,4 +5,4 @@
 
 # Show the current `git status` including skipped files
 git status --short "$@" || exit $?
-git skipped
+__dotfiles_bin git-skipped

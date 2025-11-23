@@ -5,7 +5,7 @@ set -eu
 
 # Ensure the library is sourced only once
 if [ -n "${DOTFILES_BIN_DIR-}" ]; then
-  echo '`dotlib` is already present'
+  echo '`dotlib` is already defined' >&2
   exit 1
 fi
 
@@ -21,23 +21,53 @@ DOTFILES_DEFAULT_IFS="$IFS"
 DOTFILES_LAUNCH_AGENT_DOMAIN="gui/$(id -u)"
 DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 
+__() {
+  if [ $# -eq 0 ]; then
+    __print_error_and_exit '`__` requires at least one argument'
+  fi
+
+  if [ "$1" = 'brew' ]; then
+    __print_command "$@"
+    shift
+    brew "$@"
+  else
+    __print_command "$@"
+    command "$@"
+  fi
+}
+
 __chmod() {
   if [ $# -eq 1 ]; then
     if __is_macos; then
-      chmod "$(stat -f "%A" "$HOME/Library")" "$1"
+      __ chmod "$(stat -f "%A" "$HOME/Library")" "$1"
     else
-      chmod "$(stat -c "%a" "$HOME")" "$1"
+      __ chmod "$(stat -c "%a" "$HOME")" "$1"
     fi
   else
-    chmod "$@"
+    __ chmod "$@"
   fi
 }
 
 __dotfiles() {
+  if [ $# -eq 0 ]; then
+    __print_error_and_exit '`__dotfiles` requires at least one argument'
+  fi
+
   command="$1"
-  shift || true
+  shift
 
   "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
+}
+
+__dotfiles_bin() {
+  if [ $# -eq 0 ]; then
+    __print_error_and_exit '`__dotfiles_bin` requires at least one argument'
+  fi
+
+  command="$1"
+  shift
+
+  "$DOTFILES_BIN_DIR/$command" "$@"
 }
 
 __dotfiles_cd_bin() {
@@ -51,12 +81,16 @@ __dotfiles_cd_root() {
 }
 
 __dotfiles_exec() {
-  command="$1"
-  shift || true
+  if [ $# -eq 0 ]; then
+    __print_error_and_exit '`__dotfiles_exec` requires at least one argument'
+  fi
 
-  if [ "${1-}" = "--print" ]; then
-    shift || true
-    __print_command "dotfiles $command $*"
+  command="$1"
+  shift
+
+  if [ "${1-}" = '--print' ]; then
+    shift
+    __print_command "dotfiles $command" "$@"
   fi
 
   exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
@@ -66,15 +100,11 @@ __dotfiles_exists() {
   [ -x "$DOTFILES_BIN_DIR/dotfiles-$1" ]
 }
 
-__dotfiles_git() {
-  __git -C "$DOTFILES" "$@"
-}
-
 __dotfiles_ls_bin() {
   if [ $# -gt 0 ]; then
     pattern="$1"
   else
-    pattern="*"
+    pattern='*'
   fi
 
   (
@@ -86,7 +116,7 @@ __dotfiles_ls_bin() {
 }
 
 __dotfiles_pnpm() {
-  pnpm --dir "$DOTFILES" --silent "$@"
+  __ pnpm --dir "$DOTFILES" --silent "$@"
 }
 
 __dotfiles_pnpm_install() {
@@ -94,7 +124,7 @@ __dotfiles_pnpm_install() {
 }
 
 __dotfiles_revision() {
-  command git -C "$DOTFILES" rev-parse --short HEAD
+  git -C "$DOTFILES" rev-parse --short HEAD
 }
 
 __find() {
@@ -105,15 +135,10 @@ __find() {
   files="$(find "$1" -maxdepth 1 -name "$2" -type f -print | sort)"
 
   if [ -n "$files" ]; then
-    printf "%s\n" "$files"
+    printf '%s\n' "$files"
   else
-    printf ""
+    printf ''
   fi
-}
-
-__git() {
-  __print_command "git $*"
-  command git "$@"
 }
 
 __git_default_commit_count() {
@@ -124,7 +149,7 @@ __git_default_commit_count() {
     count=$(git rev-list --count HEAD)
   fi
 
-  if [ "${1-}" = "--no-initial" ] && [ "$count" -gt 0 ]; then
+  if [ "${1-}" = '--no-initial' ] && [ "$count" -gt 0 ]; then
     count=$((count - 1))
   fi
 
@@ -157,7 +182,7 @@ __ifs_set() {
 }
 
 __is_brew_installed() {
-  brew list --help > /dev/null 2>&1
+  brew --version > /dev/null 2>&1
 }
 
 __is_callable() {
@@ -165,24 +190,22 @@ __is_callable() {
 }
 
 __is_fish() {
-  fish="${1-}"
-
-  if [ -z "$fish" ]; then
-    fish="$(brew --prefix)/bin/fish"
-  fi
-
-  [ "$fish" = "$SHELL" ]
+  __is_shell "$(brew --prefix)/bin/fish"
 }
 
 __is_fisher_installed() {
-  command fish -c "fisher --version" > /dev/null 2>&1
+  fish -c 'fisher --version' > /dev/null 2>&1
 }
 
 __is_macos() {
-  [ "$(uname -s)" = "Darwin" ]
+  [ "$(uname -s)" = 'Darwin' ]
 }
 
-__is_ssh_set_up() {
+__is_shell() {
+  [ "${1-}" = "$SHELL" ]
+}
+
+__is_ssh_configured() {
   [ -f "$DOTFILES_SSH_KEY" ]
 }
 
@@ -195,14 +218,12 @@ __is_vim_plug_installed() {
 }
 
 __ls() {
-  __print_command "ls -A $*"
-  echo
-  command ls -A "$@"
+  __ ls -A "$@"
   echo
 }
 
 __print_command() {
-  __print_info "\$ $*"
+  __print_info "\$ $(__quote_params "$@")"
 }
 
 __print_confirmation() {
@@ -214,7 +235,7 @@ __print_confirmation_and_exit() {
 }
 
 __print_error() {
-  __printf "\033[0;31m× %s\033[0m\n" "$*" >&2
+  __printf '\033[0;31m× %s\033[0m\n' "$*" >&2
 }
 
 __print_error_and_exit() {
@@ -223,15 +244,15 @@ __print_error_and_exit() {
 }
 
 __print_heading() {
-  __printf "\n\033[1;33m· %s\033[0m\n" "$*"
+  __printf '\n\033[1;33m· %s\033[0m\n' "$*"
 }
 
 __print_heading_dimmed() {
-  __printf "\n\033[1;2m· %s\033[0m\n" "$*"
+  __printf '\n\033[1;2m· %s\033[0m\n' "$*"
 }
 
 __print_info() {
-  __printf "\033[2m%s\033[0m\n" "$*"
+  __printf '\033[2m%s\033[0m\n' "$*"
 }
 
 __print_info_and_exit() {
@@ -240,41 +261,42 @@ __print_info_and_exit() {
 }
 
 __print_success() {
-  __printf "\033[0;32m✓ %s\033[0m\n" "$*"
+  __printf '\033[0;32m✓ %s\033[0m\n' "$*"
 }
 
 __print_warning() {
-  __printf "\033[1m▴ %s\033[0m\n" "$*"
+  __printf '\033[1m▴ %s\033[0m\n' "$*"
 }
 
 __printf() {
+  if [ $# -eq 0 ]; then
+    printf ''
+    return 0
+  fi
+
   format="${1-}"
-  shift || true
+  shift
 
   if [ -n "$format" ]; then
-    command printf "$format" "$(__string_replace "$HOME" "~" "$*")"
+    # shellcheck disable=SC2059
+    printf "$format" "$(__string_replace "$HOME" '~' "$*")"
   fi
 }
 
-__shellcheck() {
-  shellcheck --external-sources "$@"
+__quote_params() {
+  python3 -c '
+import shlex, sys
+params = (shlex.quote(param) for param in sys.argv[1:])
+sys.stdout.write(" ".join(params))' "$@"
 }
 
 __ssh_add() {
-  __print_command "ssh-add $*"
-  command ssh-add "$@" > /dev/null 2>&1 || true
+  __print_command 'ssh-add' "$@"
+  ssh-add "$@" > /dev/null 2>&1 || __print_error '`ssh-add` failed'
 }
 
 __string_contains() {
-  if command printf "%s" "$2" | grep -F -q -- "$1"; then
-    return 0
-  else
-    return 1
-  fi
-}
-
-__string_matches() {
-  if printf "%s" "$2" | grep -E -q -- "$1"; then
+  if printf '%s' "$2" | grep -F -q -- "$1"; then
     return 0
   else
     return 1
@@ -295,123 +317,30 @@ __string_replace() {
     return 0
   fi
 
-  python3 -c 'import re, sys
+  python3 -c '
+import re, sys
 pattern, replacement, subject = sys.argv[1:4]
 sys.stdout.write(re.sub(pattern, replacement, subject))' "$@"
 }
 
 __symlink() {
-  command mkdir -p "$(dirname "$2")"
-  command rm -rf "$2"
-  ln -s "$1" "$2"
+  mkdir -p "$(dirname "$2")"
+  rm -rf "$2"
+  __ ln -s "$1" "$2"
 }
 
 __touch() {
-  command mkdir -p "$(dirname "$1")"
-  touch "$1"
+  mkdir -p "$(dirname "$1")"
+  __ touch "$1"
 }
 
 brew() {
-  command="brew"
-
-  if ! __is_callable $command; then
-    command="/opt/homebrew/bin/brew"
+  if __is_callable brew; then
+    command brew "$@"
+  else
+    command='/opt/homebrew/bin/brew'
     [ -x "$command" ] || __print_error_and_exit '`brew` is missing'
+
+    command "$command" "$@"
   fi
-
-  if [ "${1-}" != "list" ] && ! __string_matches "^--" "${1-}"; then
-    __print_command "$command $*"
-  fi
-
-  command "$command" "$@"
-}
-
-chflags() {
-  __print_command "chflags $*"
-  command chflags "$@"
-}
-
-chmod() {
-  __print_command "chmod $*"
-  command chmod "$@"
-}
-
-chsh() {
-  __print_command "chsh $*"
-  command chsh "$@"
-}
-
-defaults() {
-  __print_command "defaults $*"
-  command defaults "$@"
-}
-
-ffmpeg() {
-  __print_command "ffmpeg $*"
-  command ffmpeg "$@"
-}
-
-fish() {
-  __print_command "fish $*"
-  command fish "$@"
-}
-
-fish_indent() {
-  __print_command "fish_indent $*"
-  command fish_indent "$@"
-}
-
-killall() {
-  __print_command "killall $*"
-  command killall "$@"
-}
-
-launchctl() {
-  __print_command "launchctl $*"
-  command launchctl "$@"
-}
-
-ln() {
-  __print_command "ln $*"
-  command ln "$@"
-}
-
-mkdir() {
-  __print_command "mkdir $*"
-  command mkdir "$@"
-}
-
-mv() {
-  __print_command "mv $*"
-  command mv "$@"
-}
-
-npm() {
-  __print_command "npm $*"
-  command npm "$@"
-}
-
-pnpm() {
-  __print_command "pnpm $*"
-  command pnpm "$@"
-}
-
-rm() {
-  __print_command "rm $*"
-  command rm "$@"
-}
-
-shellcheck() {
-  __print_command "shellcheck $*"
-  command shellcheck "$@"
-}
-
-sudo() {
-  __print_command "sudo $*"
-  command sudo "$@"
-}
-
-touch() {
-  __print_command "touch $*"
-  command touch "$@"
 }

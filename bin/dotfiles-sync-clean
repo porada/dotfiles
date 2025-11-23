@@ -3,26 +3,26 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-__print_heading_dimmed "Removing phased out launch agents"
+__print_heading_dimmed 'Removing phased out launch agents'
 
-for agent in "co.porada.dotfiles.up-for-time-machine" "engineering.dom.up-for-time-machine"; do
+for agent in 'co.porada.dotfiles.up-for-time-machine' 'engineering.dom.up-for-time-machine'; do
   agent_plist="$HOME/Library/LaunchAgents/$agent.plist"
 
-  launchctl bootout "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$agent" 2> /dev/null || true
-  launchctl remove "$agent" 2> /dev/null || true
+  __ launchctl bootout "$DOTFILES_LAUNCH_AGENT_DOMAIN" "$agent" 2> /dev/null || true
+  __ launchctl remove "$agent" 2> /dev/null || true
 
-  rm -f "$agent_plist"
+  __ rm -f "$agent_plist"
 done
 
-rm -rf "$DOTFILES/launch-agents"
+__ rm -rf "$DOTFILES/launch-agents"
 
-__print_heading_dimmed "Cleaning up"
+__print_heading_dimmed 'Cleaning up'
 
-rm -f "$HOME/.bash_history"
-rm -f "$HOME/.lesshst"
-rm -f "$HOME/.local/.aiexclude"
-rm -rf "$HOME/.npm/_logs"
-rm -f "$HOME/.ssh/known_hosts.old"
-rm -f "$HOME/.vim/autoload/plug.vim.old"
-rm -f "$HOME/.viminfo"
-rm -f "$HOME/.zsh_history"
+__ rm -f "$HOME/.bash_history"
+__ rm -f "$HOME/.lesshst"
+__ rm -f "$HOME/.local/.aiexclude"
+__ rm -rf "$HOME/.npm/_logs"
+__ rm -f "$HOME/.ssh/known_hosts.old"
+__ rm -f "$HOME/.vim/autoload/plug.vim.old"
+__ rm -f "$HOME/.viminfo"
+__ rm -f "$HOME/.zsh_history"

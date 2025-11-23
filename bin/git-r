@@ -18,7 +18,7 @@ if [ "$available" -gt 0 ]; then
 fi
 
 if [ "$available" -le 0 ] || [ "$count" -le 0 ]; then
-  __print_info_and_exit "No commits to rebase"
+  __print_info_and_exit 'No commits to rebase'
 fi
 
 if [ "$count" -gt "$available" ]; then

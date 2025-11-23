@@ -1,3 +1,3 @@
 function fish_title
-    printf ""
+    printf ''
 end

@@ -4,30 +4,30 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 __print_heading "Installing dependencies"
-brew analytics off
+__ brew analytics off
 
 __print_heading_dimmed 'Ensuring `brew` is up to date'
 
 brew_cache_path="$(brew --cache)"
-brew update --quiet
-brew upgrade || true
-brew cleanup --scrub
-rm -rf "$brew_cache_path"
+__ brew update --quiet
+__ brew upgrade || true
+__ brew cleanup --scrub
+__ rm -rf "$brew_cache_path"
 
 for formula in fish git node@22 pnpm shellcheck vim; do
   if ! brew list --formula | grep -q "^$formula\$"; then
     __print_heading "Installing \`$formula\`"
-    brew install $formula
+    __ brew install "$formula"
   fi
 
   __print_heading_dimmed "Linking \`$formula\`"
-  brew unlink $formula || true
-  brew link --overwrite $formula || true
+  __ brew unlink "$formula" || true
+  __ brew link --overwrite "$formula" || true
 done
 
 # Set `fish` as the default shell
 fish="$(brew --prefix)/bin/fish"
-__is_fish "$fish" && exit 0
+__is_shell "$fish" && exit 0
 
 # Skip in non-interactive shells or if already registered
 if ! __is_tty || grep -qFx -- "$fish" /etc/shells; then
@@ -35,9 +35,9 @@ if ! __is_tty || grep -qFx -- "$fish" /etc/shells; then
 fi
 
 __print_heading 'Setting up `fish` as the default shell'
-sudo sh -c "echo \"$fish\" >> /etc/shells" || true
+__ sudo sh -c "echo \"$fish\" >> /etc/shells" || true
 
-if ! chsh -s "$fish"; then
+if ! __ chsh -s "$fish"; then
   __print_error "Failed to set \`$fish\` as the default shell"
   exit 0
 fi

@@ -17,10 +17,10 @@ fi
 if [ $# -eq 1 ]; then
   __print_heading "Formatting and linting \`$1\`"
 else
-  __print_heading "Formatting and linting Fish scripts"
+  __print_heading 'Formatting and linting Fish scripts'
 fi
 
 for file in "$@"; do
-  fish_indent --write -- "$file"
-  fish --no-execute -- "$file"
+  __ fish_indent --write -- "$file"
+  __ fish --no-execute -- "$file"
 done

@@ -46,11 +46,13 @@ if [ "$preset" = "instagram" ]; then
       duration_param=$(awk -v d="$duration" 'BEGIN { if (d >= 60.0) print "-t 60"; else print "-shortest"; }')
 
       # shellcheck disable=SC2086
-      ffmpeg -nostdin -y -framerate 1 -loop 1 -i "$image" -i "$audio" -r 1 \
+      __ ffmpeg -nostdin -y -framerate 1 -loop 1 -i "$image" -i "$audio" -r 1 \
         -vf "format=rgb24,scale=in_range=full:out_range=tv" \
         -c:v prores_ks -profile:v 3 -pix_fmt yuv444p10le -color_range 1 \
         -c:a copy $duration_param "$video"
     done
+
+  exit 0
 fi
 
 if [ "$preset" = "youtube" ]; then
@@ -66,11 +68,14 @@ if [ "$preset" = "youtube" ]; then
       fi
 
       __print_heading "Generating \`$video\` for YouTube"
-
-      ffmpeg -nostdin -loop 1 -framerate 1 -i "$image" -i "$audio" \
+      __ ffmpeg -nostdin -loop 1 -framerate 1 -i "$image" -i "$audio" \
         -vf "format=yuv420p,eq=gamma=1.18,scale=out_color_matrix=bt709" \
         -c:v libx264 -crf 0 -preset veryslow -pix_fmt yuv420p \
         -color_range 1 -colorspace 1 -color_primaries 1 -color_trc 1 \
         -c:a copy -shortest -y "$video"
     done
+
+  exit 0
 fi
+
+__print_error_and_exit "Unsupported preset: \`$preset\`"
