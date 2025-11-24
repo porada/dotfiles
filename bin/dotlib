@@ -35,14 +35,10 @@ __() {
 }
 
 __chmod() {
-  if [ $# -eq 1 ]; then
-    if __is_macos; then
-      __ chmod "$(stat -f "%A" "$HOME/Library")" "$1"
-    else
-      __ chmod "$(stat -c "%a" "$HOME")" "$1"
-    fi
-  else
-    __ chmod "$@"
+  if [ -d "$1" ]; then
+    __ chmod 700 "$1"
+  elif [ -f "$1" ]; then
+    __ chmod 600 "$1"
   fi
 }
 
@@ -191,6 +187,10 @@ __is_brew_installed() {
   fi
 }
 
+__is_brew_keg_only() {
+  brew info "$1" --json=v2 2> /dev/null | grep -q '"keg_only": true'
+}
+
 __is_callable() {
   sh -c "command -v \"$1\"" > /dev/null 2>&1
 }
@@ -226,6 +226,11 @@ __is_vim_plug_installed() {
 __ls() {
   __ ls -A "$@"
   echo
+}
+
+__mkdir() {
+  __ mkdir -p "$1"
+  __chmod "$1"
 }
 
 __print_command() {
@@ -330,14 +335,23 @@ sys.stdout.write(re.sub(pattern, replacement, subject))' "$@"
 }
 
 __symlink() {
-  mkdir -p "$(dirname "$2")"
-  rm -rf "$2"
+  parent="$(dirname "$2")"
+
+  if [ -d "$parent" ]; then
+    rm -rf "$2"
+  else
+    __mkdir "$parent"
+  fi
+
   __ ln -s "$1" "$2"
 }
 
 __touch() {
-  mkdir -p "$(dirname "$1")"
+  parent="$(dirname "$1")"
+  [ -d "$parent" ] || __mkdir "$parent"
+
   __ touch "$1"
+  __chmod "$1"
 }
 
 brew() {

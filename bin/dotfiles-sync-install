@@ -27,7 +27,12 @@ for formula in fish git node@22 pnpm shellcheck vim; do
 
   __print_heading_dimmed "Linking \`$formula\`"
   __ brew unlink "$formula" || true
-  __ brew link --overwrite "$formula" || true
+
+  if __is_brew_keg_only "$formula"; then
+    __ brew link --overwrite --force "$formula"
+  else
+    __ brew link --overwrite "$formula"
+  fi
 done
 
 # Set `fish` as the default shell

@@ -59,10 +59,6 @@
 - Always assume this repository is updated via `dotfiles sync`.
 - Do not report `dotfiles-sync-setup` overwriting initial state.
 
-### Launch Agents
-
-- Do not report hardcoded paths in `*.plist` files.
-
 ## General
 
 - Always re-read `AGENTS.md` before reading every message from me to ensure you’re following the latest version of the instructions.

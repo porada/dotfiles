@@ -5,23 +5,21 @@
 
 __print_heading 'Linking all dotfiles'
 
-for source in .config/fish .gitconfig .hushlogin .local .npmrc .vim .vimrc; do
+for source in .config/fish .gitconfig .local .npmrc .vim .vimrc; do
   __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
 __print_heading_dimmed 'Provisioning extra files'
 
 __touch "$DOTFILES_FISH_DIR/extra.fish"
-__touch "$HOME/.node_history"
+__touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"
-__ mkdir -p "$HOME/Projects"
+__mkdir "$HOME/Projects"
 
-__print_heading_dimmed 'Ensuring consistent permissions'
+__print_heading_dimmed 'Ensuring proper permissions'
 
 __chmod "$DOTFILES"
-__chmod "$DOTFILES_FISH_DIR/extra.fish"
-__chmod "$HOME/.node_history"
-__chmod "$HOME/Projects"
+__chmod "$DOTFILES/.ssh"
 
 __print_heading 'Verifying SSH setup'
 

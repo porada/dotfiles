@@ -7,6 +7,4 @@
 .husky/_
 .local
 .vim
-launch-agents/*.err
-launch-agents/*.log
 node_modules

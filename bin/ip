@@ -4,5 +4,5 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Show my local and public IPs
-ifconfig -a inet | awk '/inet/ {print $2}' | grep -v 127.0.0.1
+ifconfig -a inet | awk '/inet/ {print $2}' | grep -v 127.0.0.1 || true
 dig +short myip.opendns.com @resolver1.opendns.com
