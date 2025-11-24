@@ -9,23 +9,14 @@ if [ -f "$DOTFILES/extra.fish" ]; then
   __ mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_DIR/extra.fish"
 fi
 
-# Remove `node` in favor of `node@22`
-# shellcheck disable=SC2043
-for formula in node; do
-  if brew list --formula | grep -q "^$formula\$"; then
-    __print_heading_dimmed "Uninstalling deprecated \`$formula\`"
-    __ brew uninstall "$formula"
-  fi
-done
-
-__print_heading_dimmed 'Ensuring `.ssh` is migrated out of the repository'
-
-SSH_KEY="$HOME/.ssh/id_ed25519"
-[ -f "$SSH_KEY" ] || __print_info_and_exit 'Nothing to migrate'
+# Ensuring `.ssh` is migrated out of the repository
+__is_ssh_configured || exit 0
 
 if [ -d "$HOME/.ssh" ] && [ ! -L "$HOME/.ssh" ]; then
-  __print_confirmation_and_exit 'Already migrated'
+  exit 0
 fi
+
+__print_heading_dimmed "Migrating \`.ssh\` out of \`$DOTFILES\`"
 
 if [ -d "$DOTFILES/.ssh" ]; then
   [ -L "$HOME/.ssh" ] && __ rm "$HOME/.ssh"
@@ -33,7 +24,7 @@ if [ -d "$DOTFILES/.ssh" ]; then
   __ rm -f "$DOTFILES/.ssh/.keep"
 fi
 
-if [ -L "$HOME/.ssh" ] || [ -L "$SSH_KEY" ]; then
+if [ -L "$HOME/.ssh" ] || [ -L "$DOTFILES_SSH_KEY" ]; then
   __print_error_and_exit 'Migration failed'
 fi
 

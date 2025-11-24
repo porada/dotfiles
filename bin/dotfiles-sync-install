@@ -15,7 +15,12 @@ __ brew cleanup --scrub
 __ rm -rf "$brew_cache_path"
 
 for formula in fish git node@22 pnpm shellcheck vim; do
-  if ! brew list --formula | grep -q "^$formula\$"; then
+  if [ "$formula" = "node@22" ] && __is_brew_installed node; then
+    __print_heading 'Replacing `node` with `node@22`'
+    __ brew uninstall node || true
+  fi
+
+  if ! __is_brew_installed "$formula"; then
     __print_heading "Installing \`$formula\`"
     __ brew install "$formula"
   fi

@@ -28,11 +28,12 @@ if __is_callable git; then
   current_revision="$(__dotfiles_revision)"
 
   # Ensure there are no staged or unstaged changes
-  if __ git -C "$DOTFILES" diff --quiet && __ git -C "$DOTFILES" diff --cached --quiet; then
+  if __dotfiles_is_clean || [ "${1-}" = '--force' ]; then
     __ git -C "$DOTFILES" pull
     __is_callable pnpm && __dotfiles_pnpm_install
   else
     __print_warning 'The repository contains uncommitted changes'
+    __print_heading_sub 'Use `dotfiles sync --force` to force repository update'
   fi
 
   if [ "$(__dotfiles_revision)" != "$current_revision" ]; then

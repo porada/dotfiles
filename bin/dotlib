@@ -17,8 +17,6 @@ DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
 
 # Helper variables and functions
 DOTFILES_DEFAULT_IFS="$IFS"
-# shellcheck disable=SC2034
-DOTFILES_LAUNCH_AGENT_DOMAIN="gui/$(id -u)"
 DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 
 __() {
@@ -90,14 +88,18 @@ __dotfiles_exec() {
 
   if [ "${1-}" = '--print' ]; then
     shift
-    __print_command "dotfiles $command" "$@"
+    __print_command dotfiles "$command" "$@"
   fi
 
   exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
-__dotfiles_exists() {
+__dotfiles_is_callable() {
   [ -x "$DOTFILES_BIN_DIR/dotfiles-$1" ]
+}
+
+__dotfiles_is_clean() {
+  __ git -C "$DOTFILES" diff --quiet && __ git -C "$DOTFILES" diff --cached --quiet
 }
 
 __dotfiles_ls_bin() {
@@ -182,7 +184,11 @@ __ifs_set() {
 }
 
 __is_brew_installed() {
-  brew --version > /dev/null 2>&1
+  if [ $# -eq 0 ]; then
+    brew --version > /dev/null 2>&1
+  else
+    brew list --formula | grep -q "^$1\$" > /dev/null 2>&1
+  fi
 }
 
 __is_callable() {
@@ -230,10 +236,6 @@ __print_confirmation() {
   __print_info "✓ $*"
 }
 
-__print_confirmation_and_exit() {
-  __print_info_and_exit "✓ $*"
-}
-
 __print_error() {
   __printf '\033[0;31m× %s\033[0m\n' "$*" >&2
 }
@@ -249,6 +251,10 @@ __print_heading() {
 
 __print_heading_dimmed() {
   __printf '\n\033[1;2m· %s\033[0m\n' "$*"
+}
+
+__print_heading_sub() {
+  __print_info "· $*"
 }
 
 __print_info() {

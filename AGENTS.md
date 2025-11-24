@@ -10,7 +10,6 @@
     - Ignore symlinks that resolve outside of the repository.
     - Ignore `.husky/**`.
     - Ignore `.local/**`.
-    - Ignore `.node_history`.
     - Ignore `.vim/**`.
     - Ignore `bin/diff`.
 - Never read or analyze the `~/.ssh` directory.
@@ -130,7 +129,6 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
     - If no hash is given, review the most recent commit on the current branch.
     - Perform the review without making edits.
 - Report any regressions the changes may introduce.
-- Report any unused functions or variables defined in `dotlib`.
 - Ensure all changes comply with the latest version of `AGENTS.md`.
 
 ### Verify

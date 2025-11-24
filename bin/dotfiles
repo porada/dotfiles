@@ -8,7 +8,7 @@ if [ $# -gt 0 ]; then
   command="$1"
   shift
 
-  if __dotfiles_exists "$command"; then
+  if __dotfiles_is_callable "$command"; then
     __dotfiles_exec "$command" "$@"
   fi
 

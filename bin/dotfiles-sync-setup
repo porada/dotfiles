@@ -12,7 +12,6 @@ done
 __print_heading_dimmed 'Provisioning extra files'
 
 __touch "$DOTFILES_FISH_DIR/extra.fish"
-__touch "$HOME/.local/share/.aiexclude"
 __touch "$HOME/.node_history"
 __touch "$HOME/.ssh/.aiexclude"
 __ mkdir -p "$HOME/Projects"
