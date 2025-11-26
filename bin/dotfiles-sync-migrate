@@ -29,7 +29,7 @@ __print_heading_dimmed "Migrating \`.ssh\` out of \`$DOTFILES\`"
 if [ -d "$DOTFILES/.ssh" ]; then
   [ -L "$HOME/.ssh" ] && __ rm "$HOME/.ssh"
   __ mv "$DOTFILES/.ssh" "$HOME/.ssh"
-  __ rm -f "$DOTFILES/.ssh/.keep"
+  __ rm -f "$HOME/.ssh/.keep"
 fi
 
 if [ -L "$HOME/.ssh" ] || [ -L "$DOTFILES_SSH_KEY" ]; then

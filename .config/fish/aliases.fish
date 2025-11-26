@@ -5,6 +5,7 @@ abbr --erase (abbr --list) >/dev/null 2>&1
 abbr c code
 abbr g git
 abbr o open
+abbr k killall
 abbr p pnpm
 
 # Show hidden files by default when using `ls`

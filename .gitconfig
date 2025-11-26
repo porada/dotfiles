@@ -24,9 +24,6 @@
 	boom = commit -am '💥' --allow-empty --no-verify
 	deps = commit -am 'Update dependencies'
 
-[core]
-	excludesfile = ~/.dotfiles/.gitignore.global
-
 [diff]
 	algorithm = patience
 

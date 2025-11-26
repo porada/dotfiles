@@ -8,9 +8,9 @@ if [ $# -eq 0 ]; then
   excluded_paths="$({
     __git_diff_excluded_files \
       | while IFS= read -r file; do
-        [ -f "$file" ] || continue
-
-        git diff-files --quiet "$file" || echo "$file"
+        if [ -f "$file" ]; then
+          git diff-files --quiet "$file" || echo "$file"
+        fi
       done
   })"
 
@@ -19,6 +19,15 @@ if [ $# -eq 0 ]; then
       printf '%s\n' "$excluded_paths" \
         | while IFS= read -r path; do
           echo ":(exclude)$path"
+        done
+    })"
+
+    excluded_paths="$({
+      __git_diff_excluded_files --related \
+        | while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            git diff-files --quiet "$file" || echo "$file"
+          fi
         done
     })"
 

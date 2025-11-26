@@ -26,6 +26,15 @@ if [ $# -eq 1 ] && __git_is_commit_reference "$1"; then
         done
     })"
 
+    excluded_paths="$({
+      __git_diff_excluded_files --related \
+        | while IFS= read -r file; do
+          if __git_is_file_in_commit "$1" "$file"; then
+            echo "$file"
+          fi
+        done
+    })"
+
     # shellcheck disable=SC2086
     {
       git show --stat --color=always "$1" -- $excluded_paths

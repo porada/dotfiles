@@ -16,13 +16,10 @@ for formula in fish git node@24 pnpm shellcheck vim; do
     __ brew install "$formula"
   fi
 
-  __print_heading_dimmed "Linking \`$formula\`"
-  __ brew unlink "$formula" || true
-
   if __is_brew_keg_only "$formula"; then
+    __print_heading_dimmed "Linking \`$formula\`"
+    __ brew unlink "$formula" || true
     __ brew link --overwrite --force "$formula"
-  else
-    __ brew link --overwrite "$formula"
   fi
 done
 
@@ -34,15 +31,20 @@ __ rm -rf "$(brew --cache)"
 fish="$(brew --prefix)/bin/fish"
 __is_shell "$fish" && exit 0
 
-# Skip in non-interactive shells or if already registered
-if ! __is_tty || grep -qFx -- "$fish" /etc/shells; then
+# Skip in non-interactive shells
+if ! __is_tty; then
   exit 0
 fi
 
-__print_heading 'Setting up `fish` as the default shell'
-__ sudo sh -c "echo \"$fish\" >> /etc/shells" || true
+if ! grep -qFx -- "$fish" /etc/shells; then
+  __print_heading 'Adding `fish` to `/etc/shells`'
+  __ sudo sh -c "echo \"$fish\" >> /etc/shells" || true
+fi
 
-if ! __ chsh -s "$fish"; then
+__print_heading_dimmed 'Setting up `fish` as the default shell'
+
+if __ chsh -s "$fish"; then
+  __print_confirmation "$fish"
+else
   __print_error "Failed to set \`$fish\` as the default shell"
-  exit 0
 fi

@@ -29,8 +29,11 @@ if __is_callable git; then
 
   # Ensure there are no staged or unstaged changes
   if __dotfiles_is_clean || [ "${1-}" = '--force' ]; then
-    __ git -C "$DOTFILES" pull
-    __is_callable pnpm && __dotfiles_pnpm_install
+    if __ git -C "$DOTFILES" pull; then
+      __is_callable pnpm && __dotfiles_pnpm install
+    else
+      __print_error 'Failed to pull the repository'
+    fi
   else
     __print_warning 'The repository contains uncommitted changes'
     __print_heading_sub 'Use `dotfiles sync --force` to force repository update'

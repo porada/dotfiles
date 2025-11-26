@@ -117,10 +117,6 @@ __dotfiles_pnpm() {
   __ pnpm --dir "$DOTFILES" --silent "$@"
 }
 
-__dotfiles_pnpm_install() {
-  __dotfiles_pnpm install --frozen-lockfile --ignore-scripts
-}
-
 __dotfiles_revision() {
   git -C "$DOTFILES" rev-parse --short HEAD
 }
@@ -163,9 +159,13 @@ __git_default_log_params() {
 }
 
 __git_diff_excluded_files() {
-  echo "package-lock.json"
-  echo "pnpm-lock.yaml"
-  echo "yarn.lock"
+  if [ "${1-}" = '--related' ]; then
+    echo 'package.json'
+  fi
+
+  echo 'package-lock.json'
+  echo 'pnpm-lock.yaml'
+  echo 'yarn.lock'
 }
 
 __git_is_commit_reference() {

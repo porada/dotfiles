@@ -4,7 +4,7 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Ensure all dependencies are up to date
-__dotfiles_pnpm_install
+__dotfiles_pnpm install --ignore-scripts
 
 # Lint staged files
 __dotfiles_pnpm exec lint-staged --relative
