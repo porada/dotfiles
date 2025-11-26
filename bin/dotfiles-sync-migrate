@@ -9,6 +9,14 @@ if [ -f "$DOTFILES/extra.fish" ]; then
   __ mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_DIR/extra.fish"
 fi
 
+# Remove deprecated `node` versions
+for formula in node node@22; do
+  if __is_brew_installed "$formula"; then
+    __print_heading_dimmed "\`$formula\` will be replaced with \`node@24\`"
+    __ brew uninstall "$formula"
+  fi
+done
+
 # Ensuring `.ssh` is migrated out of the repository
 __is_ssh_configured || exit 0
 
