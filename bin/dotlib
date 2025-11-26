@@ -162,6 +162,15 @@ __git_default_log_params() {
   echo "$params"
 }
 
+__git_diff_excluded_paths() {
+  path="$(git rev-parse --show-toplevel 2> /dev/null || echo '.')"
+
+  echo "$path" \
+    ":(exclude)$path/package-lock.json" \
+    ":(exclude)$path/pnpm-lock.yaml" \
+    ":(exclude)$path/yarn.lock"
+}
+
 __ifs_restore() {
   IFS="$DOTFILES_DEFAULT_IFS"
 }
@@ -231,6 +240,16 @@ __ls() {
 __mkdir() {
   __ mkdir -p "$1"
   __chmod "$1"
+}
+
+__pager() {
+  if [ -n "${PAGER-}" ]; then
+    sh -c "$PAGER"
+  elif __is_callable less; then
+    less "${LESS-}"
+  else
+    cat
+  fi
 }
 
 __print_command() {

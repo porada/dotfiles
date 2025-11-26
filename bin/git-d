@@ -3,6 +3,15 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-# Show diff without clearing the terminal window unless it’s necessary
-git diff-files --quiet || clear
-git diff "$@"
+# Nicer `git diff`
+if [ $# -gt 0 ]; then
+  git diff --stat --patch "$@"
+else
+  {
+    git diff --stat --color=always "$@"
+    # shellcheck disable=SC2046
+    git diff-files --quiet "$@" -- $(__git_diff_excluded_paths) || echo
+    # shellcheck disable=SC2046
+    git diff --patch --color=always "$@" -- $(__git_diff_excluded_paths)
+  } | __pager
+fi

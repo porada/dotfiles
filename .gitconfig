@@ -28,9 +28,7 @@
 	excludesfile = ~/.dotfiles/.gitignore.global
 
 [diff]
-	algorithm = histogram
-	colorMoved = dimmed-zebra
-	colorMovedWS = allow-indentation-change
+	algorithm = patience
 
 [init]
 	defaultBranch = main

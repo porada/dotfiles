@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# shellcheck source=bin/dotlib
+. "$(dirname "$(realpath "$0")")/dotlib"
+
+# Nicer `git show`
+if [ $# -gt 1 ]; then
+  git show --stat --patch "$@"
+else
+  {
+    git show --stat --color=always "$@"
+    # shellcheck disable=SC2046
+    git diff-tree --quiet "${1:-HEAD}" -- $(__git_diff_excluded_paths) || echo
+    # shellcheck disable=SC2046
+    git show --patch --pretty=format: --color=always "$@" -- $(__git_diff_excluded_paths)
+  } | __pager
+fi
