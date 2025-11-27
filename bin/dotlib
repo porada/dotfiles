@@ -162,13 +162,30 @@ __git_default_log_params() {
   echo "$params"
 }
 
-__git_diff_excluded_paths() {
-  path="$(git rev-parse --show-toplevel 2> /dev/null || echo '.')"
+__git_diff_excluded_files() {
+  echo "package-lock.json"
+  echo "pnpm-lock.yaml"
+  echo "yarn.lock"
+}
 
-  echo "$path" \
-    ":(exclude)$path/package-lock.json" \
-    ":(exclude)$path/pnpm-lock.yaml" \
-    ":(exclude)$path/yarn.lock"
+__git_is_commit_reference() {
+  if git rev-parse --verify "$1" > /dev/null 2>&1; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+__git_is_file_in_commit() {
+  if [ $# -ne 2 ]; then
+    __print_error_and_exit '`__git_is_file_in_commit` requires two arguments'
+  fi
+
+  if git diff-tree --no-commit-id --name-only -r "$1" | grep -q "$2"; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 __ifs_restore() {

@@ -37,14 +37,15 @@
     - Use double quotes for any string where expansion may occur.
     - Use single quotes only for literal strings containing characters that would otherwise require escaping.
     - Never quote `$#` when used in a condition.
+    - Never quote `$?` when passed to `exit`.
 - Always set `IFS` locally when iterating over filenames or command output.
     - Limit `IFS` overrides to the sensitive `read` blocks only.
     - Prefer `while read` loops over for when splitting behavior depends on `IFS`.
 - Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
     - Exempt `printf` output piped into `while` from this requirement.
-    - Exempt `__find` output piped into `while` from this requirement.
+    - Exempt any `dotlib` command output piped into `while` from this requirement.
 - Always prefer `echo` over `printf` for plain text output.
-    - Ignore cases where `printf` is required for precise whitespace control.
+    - Exempt intentional piped `printf` usage from this requirement.
 - Avoid using `case` statements.
 - Always prefer the variable name `param` over `arg`.
     - Exempt `fish`’s built-in `$argv` variable from this rule.
@@ -73,8 +74,6 @@
 - Enforce strict consistency across all modules, configuration files, and naming conventions.
     - Always report any potential misspellings of `dom.engineering`.
 - Do not report inconsistencies automatically handled by the formatter or linter.
-- Split large edits into smaller, digestible changes.
-- Apply changes one by one, waiting for my confirmation before proceeding with the next, unless tightly related and suitable for batching.
 - Notify me if any development tools used in the project allow opting out of telemetry.
     - Do not mention tools where telemetry has already been disabled.
 
@@ -109,7 +108,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Audit
 
-- Review the entire codebase for redundancies, inconsistencies, typos, and potential structural issues.
+- Review the entire codebase for redundancies, inconsistencies, typos, and potential structural or type issues.
     - Ignore files that don’t belong to this repository (other than `extra.fish`).
     - Include all code comments in the analysis.
     - Perform the review without making edits.

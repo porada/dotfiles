@@ -4,14 +4,34 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 # Nicer `git diff`
-if [ $# -gt 0 ]; then
-  git diff --stat --patch "$@"
-else
-  {
-    git diff --stat --color=always "$@"
-    # shellcheck disable=SC2046
-    git diff-files --quiet "$@" -- $(__git_diff_excluded_paths) || echo
-    # shellcheck disable=SC2046
-    git diff --patch --color=always "$@" -- $(__git_diff_excluded_paths)
-  } | __pager
+if [ $# -eq 0 ]; then
+  excluded_paths="$({
+    __git_diff_excluded_files \
+      | while IFS= read -r file; do
+        [ -f "$file" ] || continue
+
+        git diff-files --quiet "$file" || echo "$file"
+      done
+  })"
+
+  if [ -n "$excluded_paths" ]; then
+    exclude_params="$({
+      printf '%s\n' "$excluded_paths" \
+        | while IFS= read -r path; do
+          echo ":(exclude)$path"
+        done
+    })"
+
+    # shellcheck disable=SC2086
+    {
+      echo
+      git diff --stat --color=always -- $excluded_paths
+      git diff-files --quiet -- . $exclude_params || echo
+      git diff --patch --color=always -- . $exclude_params
+    } | __pager
+
+    exit $?
+  fi
 fi
+
+git diff "$@"
