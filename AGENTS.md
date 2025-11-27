@@ -3,10 +3,9 @@
 ## Code
 
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
-- This repository is open source and publicly accessible.
 - Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
-    - Do not mention it if you’re unable to run the command.
-    - Take note of which entries are regular files and which are symlinks, but do not output this information.
+    - Skip this step if the command cannot be completed, but do not mention it.
+    - Take note of which entries are regular files and which are symlinks, but do not mention it.
     - Ignore symlinks that resolve outside of the repository.
     - Ignore `.husky/**`.
     - Ignore `.local/**`.
@@ -20,7 +19,6 @@
     - Do not report the file being empty.
     - Do not suggest adding additional documentation for `extra.fish`.
     - Do not mention the file unless there are specific issues to report.
-- Always use `git mv` when renaming or moving files.
 
 ### Shell Scripting
 
@@ -28,7 +26,6 @@
     - Run all shell terminal commands using `fish` syntax when `fish` is available.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
-- Ensure all shell scripts without a file extension include a proper shebang.
 - Ensure all POSIX shell scripts source `dotlib`.
     - Always keep all functions defined in `dotlib` alphabetized in natural order.
     - Always report any unused functions or variables defined in `dotlib`.
@@ -40,18 +37,13 @@
     - Never quote `$?` when passed to `exit`.
 - Always set `IFS` locally when iterating over filenames or command output.
     - Limit `IFS` overrides to the sensitive `read` blocks only.
-    - Prefer `while read` loops over for when splitting behavior depends on `IFS`.
 - Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
     - Exempt `printf` output piped into `while` from this requirement.
     - Exempt any `dotlib` command output piped into `while` from this requirement.
-- Always prefer `echo` over `printf` for plain text output.
-    - Exempt intentional piped `printf` usage from this requirement.
-- Avoid using `case` statements.
 - Always prefer the variable name `param` over `arg`.
     - Exempt `fish`’s built-in `$argv` variable from this rule.
 - Do not report use of `eval` unless it poses a security risk.
 - Always report when `find` uses `-maxdepth` in any position other than immediately after the search path.
-- Always report inline `shellcheck` comments that have no effect.
 
 ### `dotfiles` Scripts
 
@@ -62,20 +54,13 @@
 
 ## General
 
-- Always re-read `AGENTS.md` before reading every message from me to ensure you’re following the latest version of the instructions.
 - Always stay alert to any issues outlined in this document, even when performing unrelated tasks.
     - Report all discovered issues, but do not fix them without my confirmation.
 - Never edit this file.
 - Never override or alter my input unless explicitly asked.
-- Ask for clarification if you don’t have enough information on a given task.
 - If you cannot verify something directly, admit that you cannot verify it, that you do not have access to the information, or that your knowledge base does not contain it.
-- Always check the most recent version of a file’s contents on each response.
-    - Ignore `.DS_Store` files and do not report on them.
 - Enforce strict consistency across all modules, configuration files, and naming conventions.
-    - Always report any potential misspellings of `dom.engineering`.
 - Do not report inconsistencies automatically handled by the formatter or linter.
-- Notify me if any development tools used in the project allow opting out of telemetry.
-    - Do not mention tools where telemetry has already been disabled.
 
 ## Style
 
