@@ -12,7 +12,7 @@
 		"prettier-plugin-sh": "0.18.0"
 	},
 	"scripts": {
-		"fix": "pnpm --silent format . && pnpm --silent lint:fish && pnpm --silent lint:sh",
+		"fix": "pnpm format . && pnpm --silent lint:fish && pnpm --silent lint:sh",
 		"format": "prettier --log-level=error --ignore-unknown --write",
 		"lint:fish": "bin/dotfiles-dev-lint-fish",
 		"lint:sh": "bin/dotfiles-dev-lint-sh",

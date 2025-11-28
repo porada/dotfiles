@@ -2,10 +2,9 @@
 .config/fish/conf.d
 .config/fish/extra.fish
 .config/fish/fish_variables
-.config/fish/functions/__*
+.config/fish/functions/__*.fish
 .config/fish/functions/fisher.fish
+.config/fish/themes
 .DS_Store
 .husky/_
-.local
-.vim
 node_modules

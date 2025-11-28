@@ -17,24 +17,49 @@ for formula in node node@22; do
   fi
 done
 
-# Ensuring `.ssh` is migrated out of the repository
-__is_ssh_configured || exit 0
+# Ensuring `.local` is migrated out of the repository
+if [ -d "$DOTFILES/.local" ] && [ -L "$HOME/.local" ]; then
+  __print_heading_dimmed "Migrating \`.local\` out of \`$DOTFILES\`"
 
-if [ -d "$HOME/.ssh" ] && [ ! -L "$HOME/.ssh" ]; then
-  exit 0
+  __ rm "$HOME/.local"
+  __ mv "$DOTFILES/.local" "$HOME/.local"
+  __chmod "$HOME/.local"
+  __ rm -f "$HOME/.local/.keep"
+
+  if [ -L "$HOME/.local" ]; then
+    __print_error_and_exit 'Migration failed'
+  else
+    __print_confirmation 'Migration complete'
+  fi
 fi
 
-__print_heading_dimmed "Migrating \`.ssh\` out of \`$DOTFILES\`"
+# Ensuring `.ssh` is migrated out of the repository
+if __is_ssh_configured && [ -d "$DOTFILES/.ssh" ] && [ -L "$HOME/.ssh" ]; then
+  __print_heading_dimmed "Migrating \`.ssh\` out of \`$DOTFILES\`"
 
-if [ -d "$DOTFILES/.ssh" ]; then
-  [ -L "$HOME/.ssh" ] && __ rm "$HOME/.ssh"
+  __ rm "$HOME/.ssh"
   __ mv "$DOTFILES/.ssh" "$HOME/.ssh"
   __ rm -f "$HOME/.ssh/.keep"
+
+  if [ -L "$HOME/.ssh" ] || [ -L "$DOTFILES_SSH_KEY" ]; then
+    __print_error_and_exit 'Migration failed'
+  else
+    __print_confirmation 'Migration complete'
+  fi
 fi
 
-if [ -L "$HOME/.ssh" ] || [ -L "$DOTFILES_SSH_KEY" ]; then
-  __print_error_and_exit 'Migration failed'
-fi
+# Ensuring `.vim` is migrated out of the repository
+if [ -d "$DOTFILES/.vim" ] && [ -L "$HOME/.vim" ]; then
+  __print_heading_dimmed "Migrating \`.vim\` out of \`$DOTFILES\`"
 
-__print_confirmation 'Migration complete'
-__ls "$HOME/.ssh"
+  __ rm "$HOME/.vim"
+  __ mv "$DOTFILES/.vim" "$HOME/.vim"
+  __chmod "$HOME/.vim"
+  __ rm -f "$HOME/.vim/.keep"
+
+  if [ -L "$HOME/.vim" ]; then
+    __print_error_and_exit 'Migration failed'
+  else
+    __print_confirmation 'Migration complete'
+  fi
+fi

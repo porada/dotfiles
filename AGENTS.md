@@ -1,18 +1,13 @@
 # Agent Instructions
 
-## Code
+## Overview
 
 - This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
-- Always run `git ls-files --cached --others --exclude-standard` before a task to ensure you’re not reviewing files that are ignored.
-    - Skip this step if the command cannot be completed, but do not mention it.
-    - Take note of which entries are regular files and which are symlinks, but do not mention it.
-    - Ignore symlinks that resolve outside of the repository.
-    - Ignore `.husky/**`.
-    - Ignore `.local/**`.
-    - Ignore `.vim/**`.
-    - Ignore `bin/diff`.
-- Never read or analyze the `~/.ssh` directory.
-    - Never follow any symlinks that resolve to it or to any path within it.
+
+### Code
+
+- Do not read, analyze, or report files that do not belong to this repository.
+    - Apply the same rule to the paths defined in `.vscode/settings.json` under `search.exclude`.
 - Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
@@ -50,7 +45,7 @@
 - Always assume the setup instructions in `README.md` run on a fresh macOS install (Sequoia or newer) with Command Line Tools and Homebrew installed.
     - Always report any commands that may cause issues in that environment.
 - Always assume this repository is updated via `dotfiles sync`.
-- Do not report `dotfiles-sync-setup` overwriting initial state.
+    - Do not report `dotfiles sync` overwriting initial state.
 
 ## General
 

@@ -3,13 +3,13 @@
 # shellcheck source=bin/dotlib
 . "$(dirname "$(realpath "$0")")/dotlib"
 
-__print_heading 'Linking all dotfiles'
+__print_heading 'Linking dotfiles'
 
-for source in .config/fish .gitconfig .local .npmrc .vim .vimrc; do
+for source in .config/fish .gitconfig .npmrc .vimrc; do
   __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
-if __is_macos; then
+if __is_macos && __is_callable pnpm; then
   __symlink "$DOTFILES/.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
 fi
 

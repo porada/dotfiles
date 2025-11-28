@@ -1,0 +1,6 @@
+{
+	"search.exclude": {
+		".husky/**": true,
+		"bin/diff": true
+	}
+}

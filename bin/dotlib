@@ -249,11 +249,6 @@ __is_vim_plug_installed() {
   [ -f "$HOME/.vim/autoload/plug.vim" ]
 }
 
-__ls() {
-  __ ls -A "$@"
-  echo
-}
-
 __mkdir() {
   __ mkdir -p "$1"
   __chmod "$1"
