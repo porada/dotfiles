@@ -37,11 +37,11 @@ __ defaults write com.apple.loginwindow ClockFontIdentifier -string rounded
 __ defaults write com.apple.loginwindow ClockFontWeight -int 500
 
 # Disable autoplay in the App Store
-__ defaults write com.apple.AppStore AutoPlayVideoSetting -string off
-__ defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -int 1
+__ defaults write com.apple.AppStore AutoPlayVideoSetting -string off || true
+__ defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -int 1 || true
 
 # Don’t prompt for reviews
-__ defaults write com.apple.AppStore InAppReviewEnabled -bool false
+__ defaults write com.apple.AppStore InAppReviewEnabled -bool false || true
 
 # Quit the printer app when finished
 __ defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool true
