@@ -7,11 +7,8 @@ if ! __is_brew_installed; then
   __print_error_and_exit '`brew` needs to be installed before running `dotfiles sync`'
 fi
 
-__print_heading 'Syncing dotfiles'
-
-# Sync dotfiles
 if __is_callable git; then
-  __print_heading_dimmed 'Pulling the repository'
+  __print_heading 'Syncing dotfiles'
 
   # Ensure the remote uses SSH
   if __is_ssh_configured; then
@@ -27,20 +24,50 @@ if __is_callable git; then
 
   current_revision="$(__dotfiles_revision)"
 
-  # Ensure there are no staged or unstaged changes
-  if __dotfiles_is_clean || [ "${1-}" = '--force' ]; then
-    if __ git -C "$DOTFILES" pull; then
-      __is_callable pnpm && __dotfiles_pnpm install
-    else
-      __print_error 'Failed to pull the repository'
-    fi
+  # Perform the actual update
+  if ! __ git -C "$DOTFILES" fetch --quiet; then
+    __print_error 'Failed to fetch latest changes'
+  elif __ git -C "$DOTFILES" merge-base --is-ancestor '@{u}' HEAD; then
+    __print_confirmation 'Up to date'
   else
-    __print_warning 'The repository contains uncommitted changes'
-    __print_heading_sub 'Use `dotfiles sync --force` to force repository update'
+    __print_heading 'Updating the repository'
+
+    if ! __dotfiles_is_clean; then
+      __print_warning 'The repository contains uncommitted changes'
+      __ git -C "$DOTFILES" stash
+      stashed_changes=true
+    fi
+
+    if ! __ git -C "$DOTFILES" rebase; then
+      echo
+      __print_error 'Failed to update the repository'
+      __ git -C "$DOTFILES" rebase --abort || true
+    else
+      __is_callable pnpm && __dotfiles_pnpm install
+      __print_confirmation 'Repository updated'
+    fi
+  fi
+
+  if [ -n "${stashed_changes-}" ]; then
+    if __ git -C "$DOTFILES" stash pop --quiet; then
+      __print_confirmation 'Changes restored'
+    else
+      __print_error 'Failed to restore uncommitted changes'
+
+      __print_heading_dimmed 'Restoring the original state'
+      __ git -C "$DOTFILES" reset --hard "$current_revision"
+      __is_callable pnpm && __dotfiles_pnpm install
+
+      if __ git -C "$DOTFILES" stash pop --quiet; then
+        __print_confirmation 'Original state restored'
+      else
+        __print_error 'Failed to restore the original state'
+      fi
+    fi
   fi
 
   if [ "$(__dotfiles_revision)" != "$current_revision" ]; then
-    __print_confirmation 'Repository updated'
+    __print_heading_dimmed 'Restarting the sync after the update'
     __dotfiles_exec sync --print
   fi
 fi

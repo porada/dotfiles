@@ -13,7 +13,7 @@ if __is_macos && __is_callable pnpm; then
   __symlink "$DOTFILES/.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
 fi
 
-__print_heading_dimmed 'Provisioning extra files'
+__print_heading_dimmed 'Provisioning additional files'
 
 __touch "$DOTFILES_FISH_DIR/extra.fish"
 __touch "$HOME/.hushlogin"

@@ -10,17 +10,33 @@ __print_heading_dimmed 'Ensuring `brew` is up to date'
 __ brew update --quiet
 __ brew upgrade || true
 
-for formula in fish git node@24 pnpm shellcheck vim; do
-  if ! __is_brew_installed "$formula"; then
-    __print_heading "Installing \`$formula\`"
-    __ brew install "$formula"
+install() {
+  if ! __is_brew_installed "$1"; then
+    __print_heading "Installing \`$1\`"
+    __ brew install --quiet "$1"
   fi
 
-  if __is_brew_keg_only "$formula"; then
-    __print_heading_dimmed "Linking \`$formula\`"
-    __ brew unlink "$formula" || true
-    __ brew link --overwrite --force "$formula"
+  if __is_brew_keg_only "$1"; then
+    __print_heading_dimmed "Ensuring \`$1\` is linked"
+    __ brew unlink --quiet "$1" || true
+    __ brew link --quiet --overwrite --force "$1"
   fi
+}
+
+# Install primary dependencies
+for formula in fish git node@24 pnpm vim; do
+  install "$formula"
+done
+
+# Install development dependencies
+# shellcheck disable=SC2043
+for formula in shellcheck; do
+  install "$formula"
+done
+
+# Install utilities that AI agents rely on
+for formula in fd ripgrep; do
+  install "$formula"
 done
 
 # Clean up `brew` cache

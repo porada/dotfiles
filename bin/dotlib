@@ -289,10 +289,6 @@ __print_heading_dimmed() {
   __printf '\n\033[1;2m· %s\033[0m\n' "$*"
 }
 
-__print_heading_sub() {
-  __print_info "· $*"
-}
-
 __print_info() {
   __printf '\033[2m%s\033[0m\n' "$*"
 }

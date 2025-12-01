@@ -1,7 +1,7 @@
 ## Setup
 
 ```sh
-# Trigger the prompt to install developer tools
+# Trigger the prompt to install Command Line Tools
 git --version
 
 # Clone the dotfiles via HTTPS to avoid authentication errors

@@ -11,9 +11,8 @@
 - Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
-    - Do not report the file being empty.
     - Do not suggest adding additional documentation for `extra.fish`.
-    - Do not mention the file unless there are specific issues to report.
+- Do not report empty config files.
 
 ### Shell Scripting
 
@@ -31,7 +30,6 @@
     - Never quote `$#` when used in a condition.
     - Never quote `$?` when passed to `exit`.
 - Always set `IFS` locally when iterating over filenames or command output.
-    - Limit `IFS` overrides to the sensitive `read` blocks only.
 - Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
     - Exempt `printf` output piped into `while` from this requirement.
     - Exempt any `dotlib` command output piped into `while` from this requirement.
