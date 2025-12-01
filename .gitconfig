@@ -2,6 +2,7 @@
 	a = add -v
 	c = commit -v
 	p = pull
+	v = view
 
 	ch = checkout
 	cx = checkout HEAD --

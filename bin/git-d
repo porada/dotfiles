@@ -32,10 +32,16 @@ if [ $# -eq 0 ]; then
     })"
 
     # shellcheck disable=SC2086
+    if git diff --quiet -- . $exclude_params; then
+      git diff -- $excluded_paths
+      exit $?
+    fi
+
+    # shellcheck disable=SC2086
     {
       echo
       git diff --stat --color=always -- $excluded_paths
-      git diff-files --quiet -- . $exclude_params || echo
+      echo
       git diff --patch --color=always -- . $exclude_params
     } | __pager
 
