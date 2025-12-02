@@ -43,7 +43,7 @@ if __is_callable git; then
       __print_error 'Failed to update the repository'
       __ git -C "$DOTFILES" rebase --abort || true
     else
-      __is_callable pnpm && __dotfiles_pnpm install
+      __is_callable pnpm && __ pnpm --dir "$DOTFILES" --silent install
       __print_confirmation 'Repository updated'
     fi
   fi
@@ -56,7 +56,7 @@ if __is_callable git; then
 
       __print_heading_dimmed 'Restoring the original state'
       __ git -C "$DOTFILES" reset --hard "$current_revision"
-      __is_callable pnpm && __dotfiles_pnpm install
+      __is_callable pnpm && __ pnpm --dir "$DOTFILES" --silent install
 
       if __ git -C "$DOTFILES" stash pop --quiet; then
         __print_confirmation 'Original state restored'

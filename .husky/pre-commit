@@ -1,1 +1,10 @@
-../bin/dotfiles-dev-pre-commit
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Ensure all dependencies are up to date
+pnpm --silent install --ignore-scripts
+
+# Lint staged files
+pnpm exec lint-staged --relative

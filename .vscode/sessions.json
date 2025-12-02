@@ -1,0 +1,25 @@
+{
+	"active": "dotfiles",
+	"activateOnStartup": true,
+	"keepExistingTerminals": false,
+	"sessions": {
+		"dotfiles": [
+			[
+				{
+					"name": "Repository",
+					"commands": [],
+					"focus": true
+				},
+				{
+					"name": "Home Directory",
+					"commands": [
+						"git checkout HEAD -- .vscode/sessions.json",
+						"clear",
+						"cd ~"
+					],
+					"autoExecuteCommands": true
+				}
+			]
+		]
+	}
+}

@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
-
-# Check for updates
-__dotfiles_pnpm outdated

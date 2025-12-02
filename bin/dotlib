@@ -113,10 +113,6 @@ __dotfiles_ls_bin() {
   )
 }
 
-__dotfiles_pnpm() {
-  __ pnpm --dir "$DOTFILES" --silent "$@"
-}
-
 __dotfiles_revision() {
   git -C "$DOTFILES" rev-parse --short HEAD
 }

@@ -6,12 +6,11 @@
 
 ### Code
 
-- Do not read, analyze, or report files that do not belong to this repository.
-    - Apply the same rule to the paths defined in `.vscode/settings.json` under `search.exclude`.
 - Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
     - Do not suggest adding additional documentation for `extra.fish`.
+- Do not analyze the contents of `bin/diff` (it’s a symlink).
 - Do not report empty config files.
 
 ### Shell Scripting
@@ -47,6 +46,7 @@
 
 ## General
 
+- Never read, analyze, or report files that do not belong to this repository.
 - Always stay alert to any issues outlined in this document, even when performing unrelated tasks.
     - Report all discovered issues, but do not fix them without my confirmation.
 - Never edit this file.
@@ -86,9 +86,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
 
 ### Audit
 
-- Review the entire codebase for redundancies, inconsistencies, typos, and potential structural or type issues.
-    - Ignore files that don’t belong to this repository (other than `extra.fish`).
-    - Include all code comments in the analysis.
+- Review the entire repository for redundancies, inconsistencies, typos, and potential structural or type issues.
     - Perform the review without making edits.
 - Ensure there is no dead or unused code.
 - Treat the audit as one continuous task.
@@ -102,6 +100,7 @@ describe('`Icon` component with a custom `ASSET_PATH`', () => {
     - If no hash is given, review the most recent commit on the current branch.
     - Perform the review without making edits.
 - Report any regressions the changes may introduce.
+- Report any cases where new code reimplements behavior already available in the language, standard library, or existing shared utilities in this repository.
 - Ensure all changes comply with the latest version of `AGENTS.md`.
 
 ### Verify

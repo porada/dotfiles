@@ -20,5 +20,5 @@ else
   __print_heading 'Formatting and linting POSIX shell scripts'
 fi
 
-__dotfiles_pnpm format "$@"
+__ pnpm --silent format "$@"
 __ shellcheck --external-sources "$@"

@@ -1,1 +1,7 @@
-../bin/dotfiles-dev-pre-push
+#!/bin/sh
+
+# Enable strict mode
+set -eu
+
+# Check for updates
+pnpm outdated
