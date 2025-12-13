@@ -1,7 +1,4 @@
 .config/fish
 .husky
-.local
-.shellcheckrc
-.vim
 node_modules
 pnpm-lock.yaml

@@ -61,7 +61,7 @@
 - Enclose all tokens and code fragments in `backticks` when quoting them in strings or comments.
 - Follow the format below:
 
-```js
+```ts
 /**
  * Tests for the `Icon` component
  */
