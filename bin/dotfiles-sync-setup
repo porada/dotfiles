@@ -25,16 +25,10 @@ __print_heading_dimmed 'Ensuring proper permissions'
 __chmod "$DOTFILES"
 __chmod "$HOME/.ssh"
 
-__print_heading 'Verifying SSH setup'
+__print_heading_dimmed 'Verifying SSH setup'
 
 if __is_ssh_configured; then
   __print_confirmation "$DOTFILES_SSH_KEY"
 else
   __print_error 'No SSH key found'
-  exit 0
-fi
-
-if __is_macos; then
-  __print_heading_dimmed 'Ensuring the SSH key is linked to Apple Keychain'
-  __ssh_add --apple-use-keychain "$DOTFILES_SSH_KEY"
 fi

@@ -20,11 +20,16 @@ if __is_callable git; then
     else
       __ git -C "$DOTFILES" remote set-url origin "$updated"
     fi
+
+    if __is_macos; then
+      __print_heading_dimmed 'Ensuring the SSH key is linked to Apple Keychain'
+      __ssh_add --apple-use-keychain "$DOTFILES_SSH_KEY"
+    fi
   fi
 
+  __print_heading_dimmed 'Fetching the latest changes'
   current_revision="$(__dotfiles_revision)"
 
-  # Perform the actual update
   if ! __ git -C "$DOTFILES" fetch --quiet; then
     __print_error 'Failed to fetch latest changes'
   elif __ git -C "$DOTFILES" merge-base --is-ancestor '@{u}' HEAD; then
