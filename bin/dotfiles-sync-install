@@ -22,9 +22,9 @@ install() {
     __ brew link --quiet --overwrite --force "$1"
   fi
 
-  if [ "$1" = 'node@24' ] && __is_callable corepack; then
-    __ corepack cache clean
-    __ corepack disable
+  if [ "$1" = 'node@24' ] && __is_callable npm; then
+    __is_callable corepack && corepack cache clean
+    __ npm --global --loglevel=error uninstall corepack
   fi
 }
 
