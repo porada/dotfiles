@@ -16,10 +16,15 @@ install() {
     __ brew install --quiet "$1"
   fi
 
-  if __is_brew_keg_only "$1"; then
+  if __is_brew_keg_only "$1" || [ "$1" = 'pnpm' ]; then
     __print_heading_dimmed "Ensuring \`$1\` is linked"
     __ brew unlink --quiet "$1" || true
     __ brew link --quiet --overwrite --force "$1"
+  fi
+
+  if [ "$1" = 'node@24' ] && __is_callable corepack; then
+    __ corepack cache clean
+    __ corepack disable
   fi
 }
 
