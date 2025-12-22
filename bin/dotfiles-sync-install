@@ -16,10 +16,14 @@ install() {
     __ brew install --quiet "$1"
   fi
 
-  if __is_brew_keg_only "$1" || [ "$1" = 'pnpm' ]; then
+  if [ "$1" = 'pnpm' ] || __is_brew_keg_only "$1"; then
     __print_heading_dimmed "Ensuring \`$1\` is linked"
     __ brew unlink --quiet "$1" || true
     __ brew link --quiet --overwrite --force "$1"
+  fi
+
+  if [ "$1" = 'pnpm' ] && __is_callable pnpm; then
+    pnpm completion fish > "$DOTFILES_FISH_DIR/completions/pnpm.fish"
   fi
 
   if [ "$1" = 'node@24' ] && __is_callable npm; then
