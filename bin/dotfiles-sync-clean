@@ -5,6 +5,9 @@
 
 __print_heading_dimmed 'Cleaning up'
 
+__ rm -f "$DOTFILES_FISH_DIR/conf.d/fish_frozen_key_bindings.fish"
+__ rm -f "$DOTFILES_FISH_DIR/conf.d/fish_frozen_theme.fish"
+
 __ rm -f "$HOME/.bash_history"
 __ rm -f "$HOME/.lesshst"
 __ rm -rf "$HOME/.npm/_logs"
