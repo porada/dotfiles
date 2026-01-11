@@ -9,15 +9,14 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": "^24.11.0",
-		"pnpm": ">=10"
+		"node": "^24.12.0"
 	},
+	"packageManager": "pnpm@10.28.0",
 	"devDependencies": {
+		"@standard-config/prettier": "1.1.0",
 		"husky": "9.1.7",
 		"lint-staged": "16.2.7",
-		"prettier": "3.7.4",
-		"prettier-plugin-sh": "0.18.0",
-		"prettier-plugin-sort-json": "4.1.1"
+		"prettier": "3.7.4"
 	},
 	"scripts": {
 		"fix": "pnpm format . && pnpm --silent lint:fish && pnpm --silent lint:sh",

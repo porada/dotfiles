@@ -1,24 +1,7 @@
-import type { Config } from 'prettier';
+import { defineConfig, prioritizeKeys } from '@standard-config/prettier';
 
-const config: Config = {
-	plugins: ['prettier-plugin-sh'],
-	singleQuote: true,
+export default defineConfig({
 	overrides: [
-		{
-			files: ['*.json'],
-			options: {
-				plugins: ['prettier-plugin-sort-json'],
-				jsonRecursiveSort: true,
-			},
-		},
-		{
-			files: '*.ts',
-			options: {
-				bracketSpacing: true,
-				quoteProps: 'consistent',
-				trailingComma: 'es5',
-			},
-		},
 		{
 			files: ['.vscode/sessions.json'],
 			options: {
@@ -26,19 +9,4 @@ const config: Config = {
 			},
 		},
 	],
-};
-
-export default config;
-
-function prioritizeKeys(...keys: ReadonlyArray<string>) {
-	const order: Record<string, null> = {};
-
-	for (const key of keys) {
-		order[key] = null;
-	}
-
-	return JSON.stringify({
-		...order,
-		[/.*/ as any]: 'lexical',
-	});
-}
+});
