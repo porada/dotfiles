@@ -9,13 +9,14 @@ if [ -n "${DOTFILES_BIN_DIR-}" ]; then
   exit 1
 fi
 
-# Common variables
+# Resolve common paths
 DOTFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
 DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
+DOTFILES_CONFIG_DIR="$DOTFILES/.config"
 # shellcheck disable=SC2034
-DOTFILES_FISH_DIR="$DOTFILES/.config/fish"
+DOTFILES_FISH_DIR="$DOTFILES_CONFIG_DIR/fish"
 
-# Helper variables and functions
+# Define helper variables and functions
 DOTFILES_DEFAULT_IFS="$IFS"
 DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 

@@ -1,3 +1,9 @@
+# Resolve common paths
+set -l DOTFILES_FISH_DIR (path dirname (path resolve (status filename)))
+set -l DOTFILES_CONFIG_DIR (path dirname "$DOTFILES_FISH_DIR")
+set -l DOTFILES (path dirname "$DOTFILES_CONFIG_DIR")
+set -l DOTFILES_BIN_DIR "$DOTFILES/bin"
+
 # Set the default editor
 set -x EDITOR 'vim -c startinsert'
 
@@ -16,6 +22,10 @@ set -x NODE_OPTIONS '--trace-uncaught --unhandled-rejections=strict'
 set -x NODE_REPL_HISTORY "$HOME/.node_history"
 set -x NODE_REPL_MODE sloppy
 
+# Set `npm` config paths
+set -x NPM_CONFIG_GLOBALCONFIG "$DOTFILES_CONFIG_DIR/npm/global.npmrc"
+set -x NPM_CONFIG_USERCONFIG "$DOTFILES_CONFIG_DIR/npm/user.npmrc"
+
 # Opt out of telemetry
 set -x DO_NOT_TRACK 1
 set -x HOMEBREW_NO_ANALYTICS 1
@@ -25,16 +35,11 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x HOMEBREW_NO_ENV_HINTS 1
 
 # Set `$PATH`
-set -l DOTFILES "$HOME/.dotfiles"
-
-fish_add_path --path --move --append "$DOTFILES/bin"
+fish_add_path --path --move --append "$DOTFILES_BIN_DIR"
 fish_add_path --path --move /opt/homebrew/bin
 fish_add_path --path --move /opt/homebrew/sbin
-fish_add_path --path --move "$HOME/.local/bin"
 
 # Load dotfiles
-set -l DOTFILES_FISH_DIR "$DOTFILES/.config/fish"
-
 . "$DOTFILES_FISH_DIR/aliases.fish"
 . "$DOTFILES_FISH_DIR/colors.fish"
 . "$DOTFILES_FISH_DIR/extra.fish" >/dev/null 2>&1

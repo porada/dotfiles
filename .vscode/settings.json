@@ -1,4 +1,7 @@
 {
+	"files.associations": {
+		"*.pnpmrc": "properties"
+	},
 	"search.exclude": {
 		"bin/diff": true
 	}

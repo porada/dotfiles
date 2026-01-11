@@ -5,17 +5,18 @@
 
 __print_heading 'Linking dotfiles'
 
-for source in .config/fish .gitconfig .npmrc .vimrc; do
+for source in .config/fish .gitconfig .vimrc; do
   __symlink "$DOTFILES/$source" "$HOME/$source"
 done
 
 if __is_macos && __is_callable pnpm; then
-  __symlink "$DOTFILES/.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
+  __symlink "$DOTFILES_CONFIG_DIR/npm/global.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
 fi
 
 __print_heading_dimmed 'Provisioning additional files'
 
 __touch "$DOTFILES_FISH_DIR/extra.fish"
+__touch "$DOTFILES_CONFIG_DIR/npm/user.npmrc"
 __touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"
 __mkdir "$HOME/Projects"
