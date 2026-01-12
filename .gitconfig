@@ -35,8 +35,8 @@
 	ff = only
 
 [pager]
-	diff = ~/.dotfiles/bin/diff | less --chop-long-lines
-	show = ~/.dotfiles/bin/diff | less --chop-long-lines
+	diff = git-diff-highlight | less --chop-long-lines
+	show = git-diff-highlight | less --chop-long-lines
 
 [pull]
 	rebase = true

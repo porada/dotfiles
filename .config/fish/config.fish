@@ -35,9 +35,9 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x HOMEBREW_NO_ENV_HINTS 1
 
 # Set `$PATH`
-fish_add_path --path --move --append "$DOTFILES_BIN_DIR"
-fish_add_path --path --move /opt/homebrew/bin
 fish_add_path --path --move /opt/homebrew/sbin
+fish_add_path --path --move /opt/homebrew/bin
+fish_add_path --path --move "$DOTFILES_BIN_DIR"
 
 # Load dotfiles
 . "$DOTFILES_FISH_DIR/aliases.fish"

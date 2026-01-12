@@ -10,8 +10,9 @@
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
     - Do not suggest adding additional documentation for `extra.fish`.
-- Do not analyze the contents of `bin/diff` (it’s a symlink).
+- Do not analyze the contents of `bin/git-diff-highlight` (it’s a symlink).
 - Do not report empty config files.
+- Report any cases that would tie this repository to a fixed filesystem location.
 
 ### Shell Scripting
 
@@ -67,15 +68,15 @@
  */
 
 describe('`Icon` component with a custom `ASSET_PATH`', () => {
-	process.env.ASSET_PATH = '/assets';
+    process.env.ASSET_PATH = '/assets';
 
-	test('accepts `true` as the `name` prop', () => {
-		// …
-	});
+    test('accepts `true` as the `name` prop', () => {
+        // …
+    });
 
-	test('returns `undefined` if the `name` prop isn’t provided', () => {
-		// …
-	});
+    test('returns `undefined` if the `name` prop isn’t provided', () => {
+        // …
+    });
 });
 ```
 

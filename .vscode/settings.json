@@ -3,6 +3,6 @@
 		"*.pnpmrc": "properties"
 	},
 	"search.exclude": {
-		"bin/diff": true
+		"bin/git-diff-highlight": true
 	}
 }

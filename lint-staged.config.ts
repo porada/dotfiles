@@ -11,7 +11,7 @@ const config: Configuration = {
 	'*': 'pnpm format',
 	'*.fish': 'pnpm lint:fish',
 	'*.sh': 'pnpm lint:sh',
-	'bin/!(diff)': [chmod(), 'pnpm lint:sh'],
+	'bin/!(git-diff-highlight)': [chmod(), 'pnpm lint:sh'],
 };
 
 export default config;
