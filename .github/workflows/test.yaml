@@ -23,6 +23,7 @@ jobs:
           - latest
     steps:
       - uses: actions/checkout@v6
+      - run: sw_vers
       - run: bin/dotfiles sync
       - uses: porada/action-setup-vim-plug@v1
       - uses: fish-actions/fisher@v1

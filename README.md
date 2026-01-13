@@ -1,3 +1,7 @@
+[![](https://img.shields.io/github/actions/workflow/status/porada/dotfiles/test.yaml)](https://github.com/porada/dotfiles/actions/workflows/test.yaml)
+
+# dotfiles
+
 ## Install
 
 ```sh
