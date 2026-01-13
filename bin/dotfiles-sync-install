@@ -8,7 +8,7 @@ __ brew analytics off
 
 __print_heading_dimmed 'Ensuring `brew` is up to date'
 __ brew update --quiet
-__ brew upgrade || true
+__is_ci || __ brew upgrade || true
 
 install() {
   if ! __is_brew_installed "$1"; then
@@ -45,9 +45,11 @@ for formula in shellcheck; do
 done
 
 # Install utilities that AI agents rely on
-for formula in fd ripgrep; do
-  install "$formula"
-done
+if ! __is_ci; then
+  for formula in fd ripgrep; do
+    install "$formula"
+  done
+fi
 
 # Clean up `brew` cache
 __ brew cleanup --scrub
@@ -58,7 +60,7 @@ fish="$(brew --prefix)/bin/fish"
 __is_shell "$fish" && exit 0
 
 # Skip in non-interactive shells
-if ! __is_tty; then
+if __is_ci || ! __is_tty; then
   exit 0
 fi
 

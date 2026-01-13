@@ -44,7 +44,7 @@
 
 ### `dotfiles` Scripts
 
-- Always assume the setup instructions in `README.md` run on a fresh macOS install (Sequoia or newer) with Command Line Tools and Homebrew installed.
+- Always assume the setup instructions in the `README` run on a fresh macOS install (version 26 or newer) with Command Line Tools and Homebrew installed.
     - Always report any commands that may cause issues in that environment.
 - Always assume this repository is updated via `dotfiles sync`.
     - Do not report `dotfiles sync` overwriting initial state.

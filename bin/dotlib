@@ -222,6 +222,10 @@ __is_callable() {
   sh -c "command -v \"$1\"" > /dev/null 2>&1
 }
 
+__is_ci() {
+  [ -n "${CI-}" ] || [ -n "${GITHUB_ACTIONS-}" ]
+}
+
 __is_fish() {
   __is_shell "$(brew --prefix)/bin/fish"
 }
