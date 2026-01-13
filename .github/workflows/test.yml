@@ -18,3 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: bin/dotfiles sync
+
+      - uses: fish-actions/fisher@v1
+      - run: bin/dotfiles sync
+        shell: fish
