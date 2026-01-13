@@ -18,6 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: bin/dotfiles sync
-
+      - uses: porada/action-setup-vim-plug@main
       - uses: fish-actions/fisher@v1
       - run: fish --command 'bin/dotfiles sync'
