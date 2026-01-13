@@ -1,6 +1,9 @@
+# Resolve config paths
+set -l DOTFILES_FISH_CONFIG_DIR (path dirname (path resolve (status filename)))
+set -l DOTFILES_CONFIG_DIR (path dirname "$DOTFILES_FISH_CONFIG_DIR")
+set -l DOTFILES_NPM_CONFIG_DIR "$DOTFILES_CONFIG_DIR/npm"
+
 # Resolve common paths
-set -l DOTFILES_FISH_DIR (path dirname (path resolve (status filename)))
-set -l DOTFILES_CONFIG_DIR (path dirname "$DOTFILES_FISH_DIR")
 set -l DOTFILES (path dirname "$DOTFILES_CONFIG_DIR")
 set -l DOTFILES_BIN_DIR "$DOTFILES/bin"
 
@@ -23,8 +26,8 @@ set -x NODE_REPL_HISTORY "$HOME/.node_history"
 set -x NODE_REPL_MODE sloppy
 
 # Set `npm` config paths
-set -x NPM_CONFIG_GLOBALCONFIG "$DOTFILES_CONFIG_DIR/npm/global.npmrc"
-set -x NPM_CONFIG_USERCONFIG "$DOTFILES_CONFIG_DIR/npm/user.npmrc"
+set -x NPM_CONFIG_GLOBALCONFIG "$DOTFILES_NPM_CONFIG_DIR/global.npmrc"
+set -x NPM_CONFIG_USERCONFIG "$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
 
 # Opt out of telemetry
 set -x DO_NOT_TRACK 1
@@ -40,6 +43,6 @@ fish_add_path --path --move /opt/homebrew/bin
 fish_add_path --path --move "$DOTFILES_BIN_DIR"
 
 # Load dotfiles
-. "$DOTFILES_FISH_DIR/aliases.fish"
-. "$DOTFILES_FISH_DIR/colors.fish"
-. "$DOTFILES_FISH_DIR/extra.fish" >/dev/null 2>&1
+. "$DOTFILES_FISH_CONFIG_DIR/aliases.fish"
+. "$DOTFILES_FISH_CONFIG_DIR/colors.fish"
+. "$DOTFILES_FISH_CONFIG_DIR/extra.fish" >/dev/null 2>&1

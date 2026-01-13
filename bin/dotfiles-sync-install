@@ -23,7 +23,8 @@ install() {
   fi
 
   if [ "$1" = 'pnpm' ] && __is_callable pnpm; then
-    pnpm completion fish > "$DOTFILES_FISH_DIR/completions/pnpm.fish"
+    __mkdir "$DOTFILES_FISH_CONFIG_DIR/completions"
+    pnpm completion fish > "$DOTFILES_FISH_CONFIG_DIR/completions/pnpm.fish"
   fi
 
   if [ "$1" = 'node@24' ] && __is_callable npm; then

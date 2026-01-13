@@ -6,7 +6,7 @@
 # Migrate `extra.fish`
 if [ -f "$DOTFILES/extra.fish" ]; then
   __print_heading_dimmed 'Migrating `extra.fish`'
-  __ mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_DIR/extra.fish"
+  __ mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_CONFIG_DIR/extra.fish"
 fi
 
 # Remove deprecated `node` versions

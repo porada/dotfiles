@@ -10,13 +10,13 @@ for source in .config/fish .gitconfig .vimrc; do
 done
 
 if __is_macos && __is_callable pnpm; then
-  __symlink "$DOTFILES_CONFIG_DIR/npm/global.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
+  __symlink "$DOTFILES_NPM_CONFIG_DIR/global.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
 fi
 
 __print_heading_dimmed 'Provisioning additional files'
 
-__touch "$DOTFILES_FISH_DIR/extra.fish"
-__touch "$DOTFILES_CONFIG_DIR/npm/user.npmrc"
+__touch "$DOTFILES_FISH_CONFIG_DIR/extra.fish"
+__touch "$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
 __touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"
 __mkdir "$HOME/Projects"

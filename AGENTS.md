@@ -13,6 +13,9 @@
 - Do not analyze the contents of `bin/git-diff-highlight` (it’s a symlink).
 - Do not report empty config files.
 - Report any cases that would tie this repository to a fixed filesystem location.
+    - Do not report system paths and vendor paths.
+    - Do not report symlinks created via `dotfiles sync`.
+    - Do not report documentation.
 
 ### Shell Scripting
 
@@ -21,12 +24,13 @@
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
 - Ensure all POSIX shell scripts source `dotlib`.
+    - Exempt `.husky` scripts from this requirement.
     - Always keep all functions defined in `dotlib` alphabetized in natural order.
     - Always report any unused functions or variables defined in `dotlib`.
     - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `dotlib`.
 - Always ensure strings are quoted appropriately:
     - Use double quotes for any string where expansion may occur.
-    - Use single quotes only for literal strings containing characters that would otherwise require escaping.
+    - Use single quotes for literal strings containing characters that would otherwise require escaping.
     - Never quote `$#` when used in a condition.
     - Never quote `$?` when passed to `exit`.
 - Always set `IFS` locally when iterating over filenames or command output.

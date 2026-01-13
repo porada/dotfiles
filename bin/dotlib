@@ -12,9 +12,13 @@ fi
 # Resolve common paths
 DOTFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
 DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
+
+# Resolve config paths
 DOTFILES_CONFIG_DIR="$DOTFILES/.config"
 # shellcheck disable=SC2034
-DOTFILES_FISH_DIR="$DOTFILES_CONFIG_DIR/fish"
+DOTFILES_FISH_CONFIG_DIR="$DOTFILES_CONFIG_DIR/fish"
+# shellcheck disable=SC2034
+DOTFILES_NPM_CONFIG_DIR="$DOTFILES_CONFIG_DIR/npm"
 
 # Define helper variables and functions
 DOTFILES_DEFAULT_IFS="$IFS"
