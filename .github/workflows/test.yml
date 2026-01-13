@@ -13,11 +13,17 @@ permissions:
 
 jobs:
   sync:
-    name: sync / macos@26
-    runs-on: macos-26
+    name: sync / macos@${{ matrix.macos-version }}
+    runs-on: macos-${{ matrix.macos-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        macos-version:
+          - 26
+          - latest
     steps:
       - uses: actions/checkout@v6
       - run: bin/dotfiles sync
-      - uses: porada/action-setup-vim-plug@main
+      - uses: porada/action-setup-vim-plug@v1
       - uses: fish-actions/fisher@v1
       - run: fish --command 'bin/dotfiles sync'
