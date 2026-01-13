@@ -6,9 +6,11 @@
 __print_heading "Installing dependencies"
 __ brew analytics off
 
-__print_heading_dimmed 'Ensuring `brew` is up to date'
-__ brew update --quiet
-__ brew upgrade || true
+if ! __is_ci; then
+  __print_heading_dimmed 'Ensuring `brew` is up to date'
+  __ brew update --quiet
+  __ brew upgrade || true
+fi
 
 install() {
   if ! __is_brew_installed "$1"; then
@@ -58,7 +60,7 @@ fish="$(brew --prefix)/bin/fish"
 __is_shell "$fish" && exit 0
 
 # Skip in non-interactive shells
-if ! __is_tty; then
+if __is_ci || ! __is_tty; then
   exit 0
 fi
 
