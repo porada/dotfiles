@@ -20,7 +20,8 @@
 	},
 	"scripts": {
 		"fix": "pnpm format . && pnpm run '/^lint:/'",
-		"format": "prettier --log-level=warn --ignore-unknown --write",
+		"format": "prettier --write --ignore-unknown --log-level=warn",
+		"format:check": "prettier --check --ignore-unknown .",
 		"lint:fish": "bin/dotfiles-dev-lint-fish",
 		"lint:sh": "bin/dotfiles-dev-lint-sh",
 		"prepare": "husky"
