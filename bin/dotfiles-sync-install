@@ -6,11 +6,9 @@
 __print_heading "Installing dependencies"
 __ brew analytics off
 
-if ! __is_ci; then
-  __print_heading_dimmed 'Ensuring `brew` is up to date'
-  __ brew update --quiet
-  __ brew upgrade || true
-fi
+__print_heading_dimmed 'Ensuring `brew` is up to date'
+__ brew update --quiet
+__is_ci || __ brew upgrade || true
 
 install() {
   if ! __is_brew_installed "$1"; then
@@ -47,9 +45,11 @@ for formula in shellcheck; do
 done
 
 # Install utilities that AI agents rely on
-for formula in fd ripgrep; do
-  install "$formula"
-done
+if ! __is_ci; then
+  for formula in fd ripgrep; do
+    install "$formula"
+  done
+fi
 
 # Clean up `brew` cache
 __ brew cleanup --scrub

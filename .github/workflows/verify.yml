@@ -22,3 +22,19 @@ jobs:
       - uses: pnpm/action-setup@v4
       - run: pnpm install
       - run: pnpm format:check
+
+  lint-fish:
+    name: lint / fish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: fish-actions/install-fish@v1
+      - run: bin/dotfiles-dev-lint-fish
+
+  lint-sh:
+    name: lint / sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pollenjp/setup-shellcheck@v1
+      - run: bin/dotfiles-dev-lint-sh
