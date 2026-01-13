@@ -20,5 +20,4 @@ jobs:
       - run: bin/dotfiles sync
 
       - uses: fish-actions/fisher@v1
-      - run: bin/dotfiles sync
-        shell: fish
+      - run: fish --command 'bin/dotfiles sync'
