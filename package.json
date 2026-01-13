@@ -13,13 +13,13 @@
 	},
 	"packageManager": "pnpm@10.28.0",
 	"devDependencies": {
-		"@standard-config/prettier": "1.2.0",
+		"@standard-config/prettier": "1.2.1",
 		"husky": "9.1.7",
 		"lint-staged": "16.2.7",
 		"prettier": "3.7.4"
 	},
 	"scripts": {
-		"fix": "pnpm format . && pnpm --silent lint:fish && pnpm --silent lint:sh",
+		"fix": "pnpm format . && pnpm run '/^lint:/'",
 		"format": "prettier --log-level=warn --ignore-unknown --write",
 		"lint:fish": "bin/dotfiles-dev-lint-fish",
 		"lint:sh": "bin/dotfiles-dev-lint-sh",

@@ -1,4 +1,4 @@
-## Setup
+## Install
 
 ```sh
 # Trigger the prompt to install Command Line Tools
