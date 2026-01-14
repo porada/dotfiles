@@ -17,7 +17,6 @@ DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
 DOTFILES_CONFIG_DIR="$DOTFILES/.config"
 # shellcheck disable=SC2034
 DOTFILES_FISH_CONFIG_DIR="$DOTFILES_CONFIG_DIR/fish"
-# shellcheck disable=SC2034
 DOTFILES_NPM_CONFIG_DIR="$DOTFILES_CONFIG_DIR/npm"
 
 # Define helper variables and functions
@@ -33,6 +32,13 @@ __() {
     __print_command "$@"
     shift
     brew "$@"
+  elif [ "$1" = 'npm' ] || [ "$1" = 'pnpm' ]; then
+    __print_command "$@"
+    (
+      export NPM_CONFIG_GLOBALCONFIG="$DOTFILES_NPM_CONFIG_DIR/global.npmrc"
+      export NPM_CONFIG_USERCONFIG="$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
+      command "$@"
+    )
   else
     __print_command "$@"
     command "$@"

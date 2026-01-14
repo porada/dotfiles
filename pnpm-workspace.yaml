@@ -1,1 +1,3 @@
-preferFrozenLockfile: true
+autoInstallPeers: false
+
+strictPeerDependencies: true
