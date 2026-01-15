@@ -6,7 +6,7 @@
 # Update `npm` packages
 if __is_callable npm; then
   __print_heading 'Updating `npm` packages'
-
+  __is_ci && __ npm --version
   __ npm --global --loglevel=error install npm
   __ npm --global --loglevel=error update
 fi
@@ -14,12 +14,14 @@ fi
 # Update `pnpm` packages
 if __is_callable pnpm; then
   __print_heading 'Updating `pnpm` packages'
+  __is_ci && __ pnpm --version
   __ pnpm --global --loglevel=error update
 fi
 
 # Update Vim plugins
 if __is_callable vim && __is_vim_plug_installed; then
   __print_heading 'Updating Vim plugins'
+  __is_ci && __ vim --version
 
   if ! __ vim -c 'PlugUpgrade | PlugUpdate | PlugClean! | quitall'; then
     __print_error 'Update failed'
@@ -29,6 +31,11 @@ fi
 # Update Fish plugins
 if __is_callable fish && __is_fisher_installed; then
   __print_heading 'Updating `fisher` plugins'
+
+  if __is_ci; then
+    __ fish --version
+    __ fish -c 'fisher --version'
+  fi
 
   if ! __ fish -c 'fisher update'; then
     __print_error 'Update failed'

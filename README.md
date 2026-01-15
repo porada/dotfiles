@@ -1,3 +1,4 @@
+[![](https://img.shields.io/badge/shell-fish-steelblue)](https://fishshell.com)
 [![](https://img.shields.io/github/actions/workflow/status/porada/dotfiles/test.yaml)](https://github.com/porada/dotfiles/actions/workflows/test.yaml)
 
 # dotfiles

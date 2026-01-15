@@ -4,11 +4,17 @@
 . "$(dirname "$(realpath "$0")")/dotlib"
 
 __print_heading "Installing dependencies"
+__is_ci && __ brew --version
 __ brew analytics off
 
 __print_heading_dimmed 'Ensuring `brew` is up to date'
 __ brew update --quiet
-__is_ci || __ brew upgrade || true
+
+if __is_ci; then
+  __ brew --version
+else
+  __ brew upgrade || true
+fi
 
 install() {
   if ! __is_brew_installed "$1"; then
