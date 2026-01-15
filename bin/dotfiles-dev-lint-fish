@@ -1,16 +1,16 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Lint and format Fish shell scripts that come with the dotfiles
 # (lints all files when no paths are provided)
-__dotfiles_cd_root
+__domfiles_cd_root
 
 if [ $# -eq 0 ]; then
   __ifs_set
   # shellcheck disable=SC2046
-  set -- $("$DOTFILES_BIN_DIR/dotfiles-dev-list-fish")
+  set -- $("$DOMFILES_BIN_DIR/dotfiles-dev-list-fish")
   __ifs_restore
 fi
 

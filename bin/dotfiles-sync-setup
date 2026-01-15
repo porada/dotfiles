@@ -1,35 +1,35 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 __print_heading 'Linking dotfiles'
 
 for source in .config/fish .gitconfig .vimrc; do
-  __symlink "$DOTFILES/$source" "$HOME/$source"
+  __symlink "$DOMFILES/$source" "$HOME/$source"
 done
 
 if __is_macos && __is_callable pnpm; then
-  __symlink "$DOTFILES_NPM_CONFIG_DIR/global.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
+  __symlink "$DOMFILES_NPM_CONFIG_DIR/global.pnpmrc" "$HOME/Library/Preferences/pnpm/rc"
 fi
 
 __print_heading_dimmed 'Provisioning additional files'
 
-__touch "$DOTFILES_FISH_CONFIG_DIR/extra.fish"
-__touch "$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
+__touch "$DOMFILES_FISH_CONFIG_DIR/extra.fish"
+__touch "$DOMFILES_NPM_CONFIG_DIR/user.npmrc"
 __touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"
 __mkdir "$HOME/Projects"
 
 __print_heading_dimmed 'Ensuring proper permissions'
 
-__chmod "$DOTFILES"
+__chmod "$DOMFILES"
 __chmod "$HOME/.ssh"
 
 __print_heading_dimmed 'Verifying SSH setup'
 
 if __is_ssh_configured; then
-  __print_confirmation "$DOTFILES_SSH_KEY"
+  __print_confirmation "$DOMFILES_SSH_KEY"
 else
   __print_error 'No SSH key found'
 fi

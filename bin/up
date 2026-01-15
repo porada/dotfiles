@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Don’t let the system go to sleep
 if [ "$(pgrep caffeinate | wc -l)" -gt 0 ]; then

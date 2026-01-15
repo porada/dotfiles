@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Abort when files have been `git skipped`,
 # otherwise they’ll be affected by the reset
-skipped=$(__dotfiles_bin git-skipped)
+skipped=$(__domfiles_bin git-skipped)
 
 if [ -n "$skipped" ]; then
   __print_error_and_exit 'The repository contains skipped files'

@@ -3,7 +3,7 @@ import type { Configuration } from 'lint-staged';
 function chmod() {
 	return (files: ReadonlyArray<string>) =>
 		files
-			.filter((file) => file !== 'bin/dotlib')
+			.filter((file) => file !== 'bin/domlib')
 			.map((file) => `chmod +x '${file}'`);
 }
 

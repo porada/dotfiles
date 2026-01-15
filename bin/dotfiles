@@ -1,23 +1,23 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Run the available `dotfiles` command or list all available commands
 if [ $# -gt 0 ]; then
   command="$1"
   shift
 
-  if __dotfiles_is_callable "$command"; then
-    __dotfiles_exec "$command" "$@"
+  if __domfiles_is_callable "$command"; then
+    __domfiles_exec "$command" "$@"
   fi
 
   # Narrow down the list to `dotfiles` commands
   __print_heading 'Available Commands'
-  __dotfiles_ls_bin 'dotfiles-*'
+  __domfiles_ls_bin 'dotfiles-*'
   exit 1
 fi
 
 # List all available commands that come with the dotfiles
 __print_heading 'Available Commands'
-__dotfiles_ls_bin
+__domfiles_ls_bin

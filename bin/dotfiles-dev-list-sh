@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # List all POSIX shell scripts that come with the dotfiles
-__dotfiles_cd_root
+__domfiles_cd_root
 
 files="$(git ls-files --cached --others --exclude-standard)"
 [ -z "$files" ] && exit 0

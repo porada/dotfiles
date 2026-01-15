@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Print the most recent commits or filter all commits by a search term
 if [ $# -gt 0 ]; then

@@ -23,11 +23,11 @@
     - Run all shell terminal commands using `fish` syntax when `fish` is available.
 - Always ensure that any shell scripts not written in `fish` strictly conform to POSIX `sh`.
     - Apply strict mode when applicable.
-- Ensure all POSIX shell scripts source `dotlib`.
+- Ensure all POSIX shell scripts source `domlib`.
     - Exempt `.husky` scripts from this requirement.
-    - Always keep all functions defined in `dotlib` alphabetized in natural order.
-    - Always report any unused functions or variables defined in `dotlib`.
-    - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `dotlib`.
+    - Always keep all functions defined in `domlib` alphabetized in natural order.
+    - Always report any unused functions or variables defined in `domlib`.
+    - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `domlib`.
 - Always ensure strings are quoted appropriately:
     - Use double quotes for any string where expansion may occur.
     - Use single quotes for literal strings containing characters that would otherwise require escaping.
@@ -36,7 +36,7 @@
 - Always set `IFS` locally when iterating over filenames or command output.
 - Avoid bare pipelines when feeding command output into a loop. Use command substitution for better detection of potential upstream failures.
     - Exempt `printf` output piped into `while` from this requirement.
-    - Exempt any `dotlib` command output piped into `while` from this requirement.
+    - Exempt any `domlib` command output piped into `while` from this requirement.
 - Always prefer the variable name `param` over `arg`.
     - Exempt `fish`’s built-in `$argv` variable from this rule.
 - Do not report use of `eval` unless it poses a security risk.

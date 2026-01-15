@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Create a new branch based on the name of the current one
 git checkout -b "wip/$(git rev-parse --abbrev-ref HEAD)"

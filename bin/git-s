@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Show the current `git status` including skipped files
 git status --short "$@" || exit $?
-__dotfiles_bin git-skipped
+__domfiles_bin git-skipped

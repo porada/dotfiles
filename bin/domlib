@@ -4,24 +4,24 @@
 set -eu
 
 # Ensure the library is sourced only once
-if [ -n "${DOTFILES_BIN_DIR-}" ]; then
-  echo '`dotlib` is already defined' >&2
+if [ -n "${DOMFILES_BIN_DIR-}" ]; then
+  echo '`domlib` is already defined' >&2
   exit 1
 fi
 
 # Resolve common paths
-DOTFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
-DOTFILES="$(dirname "$DOTFILES_BIN_DIR")"
+DOMFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
+DOMFILES="$(dirname "$DOMFILES_BIN_DIR")"
 
 # Resolve config paths
-DOTFILES_CONFIG_DIR="$DOTFILES/.config"
+DOMFILES_CONFIG_DIR="$DOMFILES/.config"
 # shellcheck disable=SC2034
-DOTFILES_FISH_CONFIG_DIR="$DOTFILES_CONFIG_DIR/fish"
-DOTFILES_NPM_CONFIG_DIR="$DOTFILES_CONFIG_DIR/npm"
+DOMFILES_FISH_CONFIG_DIR="$DOMFILES_CONFIG_DIR/fish"
+DOMFILES_NPM_CONFIG_DIR="$DOMFILES_CONFIG_DIR/npm"
 
 # Define helper variables and functions
-DOTFILES_DEFAULT_IFS="$IFS"
-DOTFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
+DOMFILES_DEFAULT_IFS="$IFS"
+DOMFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
 
 __() {
   if [ $# -eq 0 ]; then
@@ -35,8 +35,8 @@ __() {
   elif [ "$1" = 'npm' ] || [ "$1" = 'pnpm' ]; then
     __print_command "$@"
     (
-      export NPM_CONFIG_GLOBALCONFIG="$DOTFILES_NPM_CONFIG_DIR/global.npmrc"
-      export NPM_CONFIG_USERCONFIG="$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
+      export NPM_CONFIG_GLOBALCONFIG="$DOMFILES_NPM_CONFIG_DIR/global.npmrc"
+      export NPM_CONFIG_USERCONFIG="$DOMFILES_NPM_CONFIG_DIR/user.npmrc"
       command "$@"
     )
   else
@@ -53,41 +53,41 @@ __chmod() {
   fi
 }
 
-__dotfiles() {
+__domfiles() {
   if [ $# -eq 0 ]; then
-    __print_error_and_exit '`__dotfiles` requires at least one argument'
+    __print_error_and_exit '`__domfiles` requires at least one argument'
   fi
 
   command="$1"
   shift
 
-  "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
+  "$DOMFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
-__dotfiles_bin() {
+__domfiles_bin() {
   if [ $# -eq 0 ]; then
-    __print_error_and_exit '`__dotfiles_bin` requires at least one argument'
+    __print_error_and_exit '`__domfiles_bin` requires at least one argument'
   fi
 
   command="$1"
   shift
 
-  "$DOTFILES_BIN_DIR/$command" "$@"
+  "$DOMFILES_BIN_DIR/$command" "$@"
 }
 
-__dotfiles_cd_bin() {
-  cd "$DOTFILES_BIN_DIR" \
-    || __print_error_and_exit "Could not change directory to \`$DOTFILES_BIN_DIR\`"
+__domfiles_cd_bin() {
+  cd "$DOMFILES_BIN_DIR" \
+    || __print_error_and_exit "Could not change directory to \`$DOMFILES_BIN_DIR\`"
 }
 
-__dotfiles_cd_root() {
-  cd "$DOTFILES" \
-    || __print_error_and_exit "Could not change directory to \`$DOTFILES\`"
+__domfiles_cd_root() {
+  cd "$DOMFILES" \
+    || __print_error_and_exit "Could not change directory to \`$DOMFILES\`"
 }
 
-__dotfiles_exec() {
+__domfiles_exec() {
   if [ $# -eq 0 ]; then
-    __print_error_and_exit '`__dotfiles_exec` requires at least one argument'
+    __print_error_and_exit '`__domfiles_exec` requires at least one argument'
   fi
 
   command="$1"
@@ -98,18 +98,18 @@ __dotfiles_exec() {
     __print_command dotfiles "$command" "$@"
   fi
 
-  exec "$DOTFILES_BIN_DIR/dotfiles-$command" "$@"
+  exec "$DOMFILES_BIN_DIR/dotfiles-$command" "$@"
 }
 
-__dotfiles_is_callable() {
-  [ -x "$DOTFILES_BIN_DIR/dotfiles-$1" ]
+__domfiles_is_callable() {
+  [ -x "$DOMFILES_BIN_DIR/dotfiles-$1" ]
 }
 
-__dotfiles_is_clean() {
-  __ git -C "$DOTFILES" diff --quiet && __ git -C "$DOTFILES" diff --cached --quiet
+__domfiles_is_clean() {
+  __ git -C "$DOMFILES" diff --quiet && __ git -C "$DOMFILES" diff --cached --quiet
 }
 
-__dotfiles_ls_bin() {
+__domfiles_ls_bin() {
   if [ $# -gt 0 ]; then
     pattern="$1"
   else
@@ -117,15 +117,15 @@ __dotfiles_ls_bin() {
   fi
 
   (
-    __dotfiles_cd_bin
+    __domfiles_cd_bin
     find . -maxdepth 1 -type f -name "$pattern" -perm -u+x -exec basename {} \; \
       | sort \
       | xargs ls
   )
 }
 
-__dotfiles_revision() {
-  git -C "$DOTFILES" rev-parse --short HEAD
+__domfiles_revision() {
+  git -C "$DOMFILES" rev-parse --short HEAD
 }
 
 __find() {
@@ -196,11 +196,11 @@ __git_is_file_in_commit() {
 }
 
 __ifs_restore() {
-  IFS="$DOTFILES_DEFAULT_IFS"
+  IFS="$DOMFILES_DEFAULT_IFS"
 }
 
 __ifs_set() {
-  if [ "$IFS" != "$DOTFILES_DEFAULT_IFS" ]; then
+  if [ "$IFS" != "$DOMFILES_DEFAULT_IFS" ]; then
     __print_error_and_exit '`IFS` is already being overridden'
   fi
 
@@ -249,7 +249,7 @@ __is_shell() {
 }
 
 __is_ssh_configured() {
-  [ -f "$DOTFILES_SSH_KEY" ]
+  [ -f "$DOMFILES_SSH_KEY" ]
 }
 
 __is_tty() {

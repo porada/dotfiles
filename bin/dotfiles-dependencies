@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Check dotfiles’ dependencies
 check() {
-  dependency_path '$PATH' "$DOTFILES_BIN_DIR"
+  dependency_path '$PATH' "$DOMFILES_BIN_DIR"
 
   if ! __is_ci; then
     dependency_exec 'ssh' '__is_ssh_configured'

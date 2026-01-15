@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 if ! __is_brew_installed; then
   __print_error_and_exit '`brew` needs to be installed before running `dotfiles sync`'
@@ -12,58 +12,58 @@ if __is_callable git; then
 
   # Ensure the remote uses SSH
   if __is_ssh_configured; then
-    current="$(git -C "$DOTFILES" remote get-url origin)"
+    current="$(git -C "$DOMFILES" remote get-url origin)"
     updated="$(__string_replace 'https://github.com/' 'git@github.com:' "$current")"
 
     if [ "$current" = "$updated" ]; then
       __print_confirmation "$current"
     else
-      __ git -C "$DOTFILES" remote set-url origin "$updated"
+      __ git -C "$DOMFILES" remote set-url origin "$updated"
     fi
 
     if __is_macos; then
       __print_heading_dimmed 'Ensuring the SSH key is linked to Apple Keychain'
-      __ssh_add --apple-use-keychain "$DOTFILES_SSH_KEY"
+      __ssh_add --apple-use-keychain "$DOMFILES_SSH_KEY"
     fi
   fi
 
   __print_heading_dimmed 'Fetching the latest changes'
-  current_revision="$(__dotfiles_revision)"
+  current_revision="$(__domfiles_revision)"
 
-  if ! __ git -C "$DOTFILES" fetch --quiet; then
+  if ! __ git -C "$DOMFILES" fetch --quiet; then
     __print_error 'Failed to fetch latest changes'
-  elif __ git -C "$DOTFILES" merge-base --is-ancestor '@{u}' HEAD; then
+  elif __ git -C "$DOMFILES" merge-base --is-ancestor '@{u}' HEAD; then
     __print_confirmation 'Up to date'
   else
     __print_heading 'Updating the repository'
 
-    if ! __dotfiles_is_clean; then
+    if ! __domfiles_is_clean; then
       __print_warning 'The repository contains uncommitted changes'
-      __ git -C "$DOTFILES" stash
+      __ git -C "$DOMFILES" stash
       stashed_changes=true
     fi
 
-    if ! __ git -C "$DOTFILES" rebase; then
+    if ! __ git -C "$DOMFILES" rebase; then
       echo
       __print_error 'Failed to update the repository'
-      __ git -C "$DOTFILES" rebase --abort || true
+      __ git -C "$DOMFILES" rebase --abort || true
     else
-      __is_callable pnpm && __ pnpm --dir "$DOTFILES" --silent install
+      __is_callable pnpm && __ pnpm --dir "$DOMFILES" --silent install
       __print_confirmation 'Repository updated'
     fi
   fi
 
   if [ -n "${stashed_changes-}" ]; then
-    if __ git -C "$DOTFILES" stash pop --quiet; then
+    if __ git -C "$DOMFILES" stash pop --quiet; then
       __print_confirmation 'Changes restored'
     else
       __print_error 'Failed to restore uncommitted changes'
 
       __print_heading_dimmed 'Restoring the original state'
-      __ git -C "$DOTFILES" reset --hard "$current_revision"
-      __is_callable pnpm && __ pnpm --dir "$DOTFILES" --silent install
+      __ git -C "$DOMFILES" reset --hard "$current_revision"
+      __is_callable pnpm && __ pnpm --dir "$DOMFILES" --silent install
 
-      if __ git -C "$DOTFILES" stash pop --quiet; then
+      if __ git -C "$DOMFILES" stash pop --quiet; then
         __print_confirmation 'Original state restored'
       else
         __print_error 'Failed to restore the original state'
@@ -71,20 +71,20 @@ if __is_callable git; then
     fi
   fi
 
-  if [ "$(__dotfiles_revision)" != "$current_revision" ]; then
+  if [ "$(__domfiles_revision)" != "$current_revision" ]; then
     __print_heading_dimmed 'Restarting the sync after the update'
-    __dotfiles_exec sync --print
+    __domfiles_exec sync --print
   fi
 fi
 
-__dotfiles sync-migrate
-__dotfiles sync-setup
-__dotfiles sync-install
-__dotfiles sync-macos
-__dotfiles sync-update
-__dotfiles sync-clean
+__domfiles sync-migrate
+__domfiles sync-setup
+__domfiles sync-install
+__domfiles sync-macos
+__domfiles sync-update
+__domfiles sync-clean
 
 # Finish with dependency status
 __print_heading 'Sync complete'
-__dotfiles dependencies || true
+__domfiles dependencies || true
 __is_fish || echo

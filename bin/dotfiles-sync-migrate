@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# shellcheck source=bin/dotlib
-. "$(dirname "$(realpath "$0")")/dotlib"
+# shellcheck source=bin/domlib
+. "$(dirname "$(realpath "$0")")/domlib"
 
 # Migrate `extra.fish`
-if [ -f "$DOTFILES/extra.fish" ]; then
+if [ -f "$DOMFILES/extra.fish" ]; then
   __print_heading_dimmed 'Migrating `extra.fish`'
-  __ mv "$DOTFILES/extra.fish" "$DOTFILES_FISH_CONFIG_DIR/extra.fish"
+  __ mv "$DOMFILES/extra.fish" "$DOMFILES_FISH_CONFIG_DIR/extra.fish"
 fi
 
 # Remove deprecated `node` versions
@@ -18,11 +18,11 @@ for formula in node node@22; do
 done
 
 # Ensuring `.local` is migrated out of the repository
-if [ -d "$DOTFILES/.local" ] && [ -L "$HOME/.local" ]; then
-  __print_heading_dimmed "Migrating \`.local\` out of \`$DOTFILES\`"
+if [ -d "$DOMFILES/.local" ] && [ -L "$HOME/.local" ]; then
+  __print_heading_dimmed "Migrating \`.local\` out of \`$DOMFILES\`"
 
   __ rm "$HOME/.local"
-  __ mv "$DOTFILES/.local" "$HOME/.local"
+  __ mv "$DOMFILES/.local" "$HOME/.local"
   __chmod "$HOME/.local"
   __ rm -f "$HOME/.local/.keep"
 
@@ -34,14 +34,14 @@ if [ -d "$DOTFILES/.local" ] && [ -L "$HOME/.local" ]; then
 fi
 
 # Ensuring `.ssh` is migrated out of the repository
-if __is_ssh_configured && [ -d "$DOTFILES/.ssh" ] && [ -L "$HOME/.ssh" ]; then
-  __print_heading_dimmed "Migrating \`.ssh\` out of \`$DOTFILES\`"
+if __is_ssh_configured && [ -d "$DOMFILES/.ssh" ] && [ -L "$HOME/.ssh" ]; then
+  __print_heading_dimmed "Migrating \`.ssh\` out of \`$DOMFILES\`"
 
   __ rm "$HOME/.ssh"
-  __ mv "$DOTFILES/.ssh" "$HOME/.ssh"
+  __ mv "$DOMFILES/.ssh" "$HOME/.ssh"
   __ rm -f "$HOME/.ssh/.keep"
 
-  if [ -L "$HOME/.ssh" ] || [ -L "$DOTFILES_SSH_KEY" ]; then
+  if [ -L "$HOME/.ssh" ] || [ -L "$DOMFILES_SSH_KEY" ]; then
     __print_error_and_exit 'Migration failed'
   else
     __print_confirmation 'Migration complete'
@@ -49,11 +49,11 @@ if __is_ssh_configured && [ -d "$DOTFILES/.ssh" ] && [ -L "$HOME/.ssh" ]; then
 fi
 
 # Ensuring `.vim` is migrated out of the repository
-if [ -d "$DOTFILES/.vim" ] && [ -L "$HOME/.vim" ]; then
-  __print_heading_dimmed "Migrating \`.vim\` out of \`$DOTFILES\`"
+if [ -d "$DOMFILES/.vim" ] && [ -L "$HOME/.vim" ]; then
+  __print_heading_dimmed "Migrating \`.vim\` out of \`$DOMFILES\`"
 
   __ rm "$HOME/.vim"
-  __ mv "$DOTFILES/.vim" "$HOME/.vim"
+  __ mv "$DOMFILES/.vim" "$HOME/.vim"
   __chmod "$HOME/.vim"
   __ rm -f "$HOME/.vim/.keep"
 

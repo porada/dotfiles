@@ -1,11 +1,11 @@
 # Resolve config paths
-set -l DOTFILES_FISH_CONFIG_DIR (path dirname (path resolve (status filename)))
-set -l DOTFILES_CONFIG_DIR (path dirname "$DOTFILES_FISH_CONFIG_DIR")
-set -l DOTFILES_NPM_CONFIG_DIR "$DOTFILES_CONFIG_DIR/npm"
+set -l DOMFILES_FISH_CONFIG_DIR (path dirname (path resolve (status filename)))
+set -l DOMFILES_CONFIG_DIR (path dirname "$DOMFILES_FISH_CONFIG_DIR")
+set -l DOMFILES_NPM_CONFIG_DIR "$DOMFILES_CONFIG_DIR/npm"
 
 # Resolve common paths
-set -l DOTFILES (path dirname "$DOTFILES_CONFIG_DIR")
-set -l DOTFILES_BIN_DIR "$DOTFILES/bin"
+set -l DOMFILES (path dirname "$DOMFILES_CONFIG_DIR")
+set -l DOMFILES_BIN_DIR "$DOMFILES/bin"
 
 # Set the default editor
 set -x EDITOR 'vim -c startinsert'
@@ -26,8 +26,8 @@ set -x NODE_REPL_HISTORY "$HOME/.node_history"
 set -x NODE_REPL_MODE sloppy
 
 # Set `npm` config paths
-set -x NPM_CONFIG_GLOBALCONFIG "$DOTFILES_NPM_CONFIG_DIR/global.npmrc"
-set -x NPM_CONFIG_USERCONFIG "$DOTFILES_NPM_CONFIG_DIR/user.npmrc"
+set -x NPM_CONFIG_GLOBALCONFIG "$DOMFILES_NPM_CONFIG_DIR/global.npmrc"
+set -x NPM_CONFIG_USERCONFIG "$DOMFILES_NPM_CONFIG_DIR/user.npmrc"
 
 # Opt out of telemetry
 set -x DO_NOT_TRACK 1
@@ -40,9 +40,9 @@ set -x HOMEBREW_NO_ENV_HINTS 1
 # Set `$PATH`
 fish_add_path --path --move /opt/homebrew/sbin
 fish_add_path --path --move /opt/homebrew/bin
-fish_add_path --path --move "$DOTFILES_BIN_DIR"
+fish_add_path --path --move "$DOMFILES_BIN_DIR"
 
 # Load dotfiles
-. "$DOTFILES_FISH_CONFIG_DIR/aliases.fish"
-. "$DOTFILES_FISH_CONFIG_DIR/colors.fish"
-. "$DOTFILES_FISH_CONFIG_DIR/extra.fish" >/dev/null 2>&1
+. "$DOMFILES_FISH_CONFIG_DIR/aliases.fish"
+. "$DOMFILES_FISH_CONFIG_DIR/colors.fish"
+. "$DOMFILES_FISH_CONFIG_DIR/extra.fish" >/dev/null 2>&1
