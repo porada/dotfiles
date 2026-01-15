@@ -45,14 +45,8 @@ for formula in fish git node@24 pnpm vim; do
 done
 
 # Install development dependencies
-# shellcheck disable=SC2043
-for formula in shellcheck; do
-  install "$formula"
-done
-
-# Install utilities that AI agents rely on
 if ! __is_ci; then
-  for formula in fd ripgrep; do
+  for formula in fd ripgrep shellcheck; do
     install "$formula"
   done
 fi

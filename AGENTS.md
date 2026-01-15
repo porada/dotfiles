@@ -2,11 +2,11 @@
 
 ## Overview
 
-- This repository contains all my dotfiles that are actively used across multiple Apple Silicon–based Macs.
+- This repository is the home of all my dotfiles actively used across multiple Apple Silicon–based Macs (also referred to as `domfiles`).
 
 ### Code
 
-- Always consider `.config/fish/extra.fish` an active part of the dotfiles if it exists.
+- Always consider `.config/fish/extra.fish` an active part of domfiles if it exists.
     - Always include `extra.fish` in any analysis or execution.
     - Do not report `.gitignore` including `extra.fish`.
     - Do not suggest adding additional documentation for `extra.fish`.

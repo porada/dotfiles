@@ -3,7 +3,7 @@
 # shellcheck source=bin/domlib
 . "$(dirname "$(realpath "$0")")/domlib"
 
-__print_heading 'Linking dotfiles'
+__print_heading 'Linking domfiles'
 
 for source in .config/fish .gitconfig .vimrc; do
   __symlink "$DOMFILES/$source" "$HOME/$source"

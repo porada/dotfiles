@@ -3,7 +3,7 @@
 # shellcheck source=bin/domlib
 . "$(dirname "$(realpath "$0")")/domlib"
 
-# List all Fish shell scripts that come with the dotfiles
+# List all Fish shell scripts that come with domfiles
 __domfiles_cd_root
 
 files="$({

@@ -3,7 +3,7 @@
 # shellcheck source=bin/domlib
 . "$(dirname "$(realpath "$0")")/domlib"
 
-# Check dotfiles’ dependencies
+# Check domfiles’ dependencies
 check() {
   dependency_path '$PATH' "$DOMFILES_BIN_DIR"
 

@@ -1,9 +1,9 @@
 {
-	"active": "dotfiles",
+	"active": "domfiles",
 	"activateOnStartup": true,
 	"keepExistingTerminals": false,
 	"sessions": {
-		"dotfiles": [
+		"domfiles": [
 			[
 				{
 					"name": "Repository",

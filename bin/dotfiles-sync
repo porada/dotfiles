@@ -8,7 +8,7 @@ if ! __is_brew_installed; then
 fi
 
 if __is_callable git; then
-  __print_heading 'Syncing dotfiles'
+  __print_heading 'Syncing domfiles'
 
   # Ensure the remote uses SSH
   if __is_ssh_configured; then

@@ -3,7 +3,7 @@
 # shellcheck source=bin/domlib
 . "$(dirname "$(realpath "$0")")/domlib"
 
-# List all POSIX shell scripts that come with the dotfiles
+# List all POSIX shell scripts that come with domfiles
 __domfiles_cd_root
 
 files="$(git ls-files --cached --others --exclude-standard)"
