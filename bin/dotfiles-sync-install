@@ -13,7 +13,7 @@ __ brew update --quiet
 if __is_ci; then
   __ brew --version
 else
-  __ brew upgrade || true
+  __ brew upgrade --overwrite || true
 fi
 
 install() {
@@ -58,7 +58,7 @@ if ! __is_ci; then
 fi
 
 # Clean up `brew` cache
-__ brew cleanup --scrub
+__ brew cleanup --scrub --quiet
 __ rm -rf "$(brew --cache)"
 
 # Set `fish` as the default shell
