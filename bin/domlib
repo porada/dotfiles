@@ -100,7 +100,7 @@ __domfiles_exec() {
 
   if [ "${1-}" = '--print' ]; then
     shift
-    __print_command dotfiles "$command" "$@"
+    __print_command domfiles "$command" "$@"
   fi
 
   # Ensure compatibility during the transition period

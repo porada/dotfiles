@@ -22,8 +22,8 @@
 		"fix": "pnpm format . && pnpm run '/^lint:/'",
 		"format": "prettier --write --ignore-unknown --log-level=warn",
 		"format:check": "prettier --check --ignore-unknown .",
-		"lint:fish": "bin/dotfiles-dev-lint-fish",
-		"lint:sh": "bin/dotfiles-dev-lint-sh",
+		"lint:fish": "bin/domfiles-dev-lint-fish",
+		"lint:sh": "bin/domfiles-dev-lint-sh",
 		"prepare": "husky"
 	}
 }

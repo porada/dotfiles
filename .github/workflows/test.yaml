@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: sw_vers
-      - run: bin/dotfiles sync
+      - run: bin/domfiles-sync
       - uses: porada/action-setup-vim-plug@v1
       - uses: fish-actions/fisher@v1
-      - run: fish --command 'bin/dotfiles sync'
+      - run: fish --command 'domfiles sync'

@@ -13,7 +13,7 @@ git --version
 git clone https://github.com/porada/dotfiles.git ~/.dotfiles
 
 # Initialize the dotfiles and make sure everything is up to date
-~/.dotfiles/bin/dotfiles sync
+~/.dotfiles/bin/domfiles sync
 ```
 
 ## Quick Links

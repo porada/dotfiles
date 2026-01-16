@@ -4,7 +4,7 @@
 . "$(dirname "$(realpath "$0")")/domlib"
 
 if ! __is_brew_installed; then
-  __print_error_and_exit '`brew` needs to be installed before running `dotfiles sync`'
+  __print_error_and_exit '`brew` needs to be installed before running `domfiles sync`'
 fi
 
 if __is_callable git; then

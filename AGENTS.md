@@ -14,7 +14,7 @@
 - Do not report empty config files.
 - Report any cases that would tie this repository to a fixed filesystem location.
     - Do not report system paths and vendor paths.
-    - Do not report symlinks created via `dotfiles sync`.
+    - Do not report symlinks created via `domfiles sync`.
     - Do not report documentation.
 
 ### Shell Scripting
@@ -42,16 +42,17 @@
 - Do not report use of `eval` unless it poses a security risk.
 - Always report when `find` uses `-maxdepth` in any position other than immediately after the search path.
 
-### `dotfiles` Scripts
+### `domfiles` Scripts
 
 - Always assume the setup instructions in the `README` run on a fresh macOS install (version 26 or newer) with Command Line Tools and Homebrew installed.
     - Always report any commands that may cause issues in that environment.
-- Always assume this repository is updated via `dotfiles sync`.
-    - Do not report `dotfiles sync` overwriting initial state.
+- Always assume this repository is updated via `domfiles sync`.
+    - Do not report `domfiles sync` overwriting initial state.
 
 ## General
 
 - Never read, analyze, or report files that do not belong to this repository.
+    - Exempt skill files from this rule.
 - Always stay alert to any issues outlined in this document, even when performing unrelated tasks.
     - Report all discovered issues, but do not fix them without my confirmation.
 - Never edit this file.
@@ -70,7 +71,6 @@
 /**
  * Tests for the `Icon` component
  */
-
 describe('`Icon` component with a custom `ASSET_PATH`', () => {
     process.env.ASSET_PATH = '/assets';
 

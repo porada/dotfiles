@@ -3,24 +3,22 @@
 # shellcheck source=bin/domlib
 . "$(dirname "$(realpath "$0")")/domlib"
 
-# Lint and format Fish shell scripts that come with domfiles
+# Lint and format POSIX shell scripts that come with domfiles
 # (lints all files when no paths are provided)
 __domfiles_cd_root
 
 if [ $# -eq 0 ]; then
   __ifs_set
   # shellcheck disable=SC2046
-  set -- $("$DOMFILES_BIN_DIR/dotfiles-dev-list-fish")
+  set -- $("$DOMFILES_BIN_DIR/domfiles-dev-list-sh")
   __ifs_restore
 fi
 
 if [ $# -eq 1 ]; then
   __print_heading "Formatting and linting \`$1\`"
 else
-  __print_heading 'Formatting and linting Fish scripts'
+  __print_heading 'Formatting and linting POSIX shell scripts'
 fi
 
-for file in "$@"; do
-  __ fish_indent --write -- "$file"
-  __ fish --no-execute -- "$file"
-done
+__is_ci || __ pnpm --silent format "$@"
+__ shellcheck --external-sources "$@"
