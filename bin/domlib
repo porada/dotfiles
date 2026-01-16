@@ -12,6 +12,8 @@ fi
 # Resolve common paths
 DOMFILES_BIN_DIR="$(dirname "$(realpath "$0")")"
 DOMFILES="$(dirname "$DOMFILES_BIN_DIR")"
+# shellcheck disable=SC2034
+DOMFILES_PROJECTS_DIR="$HOME/Projects"
 
 # Resolve config paths
 DOMFILES_CONFIG_DIR="$DOMFILES/.config"

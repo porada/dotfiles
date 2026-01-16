@@ -10,3 +10,14 @@ abbr p pnpm
 
 # Show hidden files by default when using `ls`
 alias ls 'ls -A'
+
+# Clone a repository and navigate into it
+function clone
+    cd "$DOMFILES_PROJECTS_DIR"
+
+    if test (count $argv) -eq 1
+        git clone $argv && cd (basename $argv .git)
+    else
+        git clone $argv
+    end
+end

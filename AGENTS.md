@@ -15,6 +15,7 @@
 - Report any cases that would tie this repository to a fixed filesystem location.
     - Do not report system paths and vendor paths.
     - Do not report symlinks created via `domfiles sync`.
+    - Do not report `$DOMFILES_PROJECTS_DIR`.
     - Do not report documentation.
 
 ### Shell Scripting
@@ -26,7 +27,11 @@
 - Ensure all POSIX shell scripts source `domlib`.
     - Exempt `.husky` scripts from this requirement.
     - Always keep all functions defined in `domlib` alphabetized in natural order.
-    - Always report any unused functions or variables defined in `domlib`.
+    - Always keep the set of `$DOMFILES_*` variables defined in `domlib` and `.config/fish/config.fish` in sync.
+        - Variable names must match exactly in both locations.
+        - Exempt `$DOMFILES_DEFAULT_IFS` and `$DOMFILES_SSH_KEY` from this requirement.
+    - Always report unused functions or variables defined in `domlib`.
+        - Do not treat variables as unused when they exist solely to maintain parity with `.config/fish/config.fish`.
     - Always report any POSIX shell functions prefixed with `__` when they are defined outside of `domlib`.
 - Always ensure strings are quoted appropriately:
     - Use double quotes for any string where expansion may occur.

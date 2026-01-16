@@ -1,11 +1,12 @@
 # Resolve config paths
-set -l DOMFILES_FISH_CONFIG_DIR (path dirname (path resolve (status filename)))
-set -l DOMFILES_CONFIG_DIR (path dirname "$DOMFILES_FISH_CONFIG_DIR")
-set -l DOMFILES_NPM_CONFIG_DIR "$DOMFILES_CONFIG_DIR/npm"
+set -g DOMFILES_FISH_CONFIG_DIR (path dirname (path resolve (status filename)))
+set -g DOMFILES_CONFIG_DIR (path dirname "$DOMFILES_FISH_CONFIG_DIR")
+set -g DOMFILES_NPM_CONFIG_DIR "$DOMFILES_CONFIG_DIR/npm"
 
 # Resolve common paths
-set -l DOMFILES (path dirname "$DOMFILES_CONFIG_DIR")
-set -l DOMFILES_BIN_DIR "$DOMFILES/bin"
+set -g DOMFILES (path dirname "$DOMFILES_CONFIG_DIR")
+set -g DOMFILES_BIN_DIR "$DOMFILES/bin"
+set -g DOMFILES_PROJECTS_DIR "$HOME/Projects"
 
 # Set the default editor
 set -x EDITOR 'vim -c startinsert'

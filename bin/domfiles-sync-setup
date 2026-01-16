@@ -19,7 +19,7 @@ __touch "$DOMFILES_FISH_CONFIG_DIR/local.fish"
 __touch "$DOMFILES_NPM_CONFIG_DIR/user.npmrc"
 __touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"
-__mkdir "$HOME/Projects"
+__mkdir "$DOMFILES_PROJECTS_DIR"
 
 __print_heading_dimmed 'Ensuring proper permissions'
 
