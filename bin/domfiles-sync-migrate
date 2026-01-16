@@ -4,9 +4,9 @@
 . "$(dirname "$(realpath "$0")")/domlib"
 
 # Migrate `extra.fish`
-if [ -f "$DOMFILES/extra.fish" ]; then
+if [ -f "$DOMFILES_FISH_CONFIG_DIR/extra.fish" ]; then
   __print_heading_dimmed 'Migrating `extra.fish`'
-  __ mv "$DOMFILES/extra.fish" "$DOMFILES_FISH_CONFIG_DIR/extra.fish"
+  __ mv "$DOMFILES_FISH_CONFIG_DIR/extra.fish" "$DOMFILES_FISH_CONFIG_DIR/local.fish"
 fi
 
 # Remove deprecated `node` versions

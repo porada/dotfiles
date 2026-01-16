@@ -45,4 +45,4 @@ fish_add_path --path --move "$DOMFILES_BIN_DIR"
 # Load domfiles
 . "$DOMFILES_FISH_CONFIG_DIR/aliases.fish"
 . "$DOMFILES_FISH_CONFIG_DIR/colors.fish"
-. "$DOMFILES_FISH_CONFIG_DIR/extra.fish" >/dev/null 2>&1
+. "$DOMFILES_FISH_CONFIG_DIR/local.fish" >/dev/null 2>&1

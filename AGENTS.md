@@ -6,10 +6,10 @@
 
 ### Code
 
-- Always consider `.config/fish/extra.fish` an active part of domfiles if it exists.
-    - Always include `extra.fish` in any analysis or execution.
-    - Do not report `.gitignore` including `extra.fish`.
-    - Do not suggest adding additional documentation for `extra.fish`.
+- Always consider `.config/fish/local.fish` an active part of domfiles if it exists.
+    - Always include `local.fish` in any analysis or execution.
+    - Do not report `.gitignore` including `local.fish`.
+    - Do not suggest adding additional documentation for `local.fish`.
 - Do not analyze the contents of `bin/git-diff-highlight` (it’s a symlink).
 - Do not report empty config files.
 - Report any cases that would tie this repository to a fixed filesystem location.

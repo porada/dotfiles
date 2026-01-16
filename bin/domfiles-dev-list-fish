@@ -8,7 +8,7 @@ __domfiles_cd_root
 
 files="$({
   git ls-files --cached --others --exclude-standard
-  echo '.config/fish/extra.fish'
+  echo '.config/fish/local.fish'
 } | sort)"
 
 printf '%s\n' "$files" \

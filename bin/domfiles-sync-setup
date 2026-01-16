@@ -15,7 +15,7 @@ fi
 
 __print_heading_dimmed 'Provisioning additional files'
 
-__touch "$DOMFILES_FISH_CONFIG_DIR/extra.fish"
+__touch "$DOMFILES_FISH_CONFIG_DIR/local.fish"
 __touch "$DOMFILES_NPM_CONFIG_DIR/user.npmrc"
 __touch "$HOME/.hushlogin"
 __touch "$HOME/.ssh/.aiexclude"

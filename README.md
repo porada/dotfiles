@@ -1,24 +1,32 @@
 [![](https://img.shields.io/badge/shell-fish-cornflowerblue)](https://fishshell.com)
-[![](https://img.shields.io/github/actions/workflow/status/porada/dotfiles/test.yaml)](https://github.com/porada/dotfiles/actions/workflows/test.yaml)
+[![](https://img.shields.io/github/actions/workflow/status/porada/domfiles/test.yaml)](https://github.com/porada/domfiles/actions/workflows/test.yaml)
 
-# dotfiles
+# domfiles
+
+Minimal dotfiles for Apple Silicon Macs. Use them as your own starting point or keep them as-is for effortless long-term maintenance.
 
 ## Install
 
 ```sh
-# Trigger the prompt to install Command Line Tools
-git --version
-
-# Clone the dotfiles via HTTPS to avoid authentication errors
-git clone https://github.com/porada/dotfiles.git ~/.dotfiles
-
-# Initialize the dotfiles and make sure everything is up to date
-~/.dotfiles/bin/domfiles sync
+git clone https://github.com/porada/domfiles.git ~/.domfiles
 ```
+
+Cloning over HTTPS is recommended to avoid authentication issues on a fresh system. Once SSH is set up, the remote will be updated automatically to `git@github.com`.
+
+Use `domfiles sync` to link all the dotfiles and keep everything up to date over time:
+
+```sh
+~/.domfiles/bin/domfiles sync
+```
+
+You can place the repository wherever you like, but `~/.domfiles` is the recommended location.
+
+### Prerequisites
+
+[**Homebrew**](https://brew.sh) is the only required dependency. Make sure it’s installed before setting up the repository.
 
 ## Quick Links
 
-- [`brew`](https://brew.sh)
 - [`fisher`](https://github.com/jorgebucaran/fisher)
 - [`ssh`](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - [`vim-plug`](https://github.com/junegunn/vim-plug)

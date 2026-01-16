@@ -14,6 +14,7 @@ if __is_callable git; then
   if __is_ssh_configured; then
     current="$(git -C "$DOMFILES" remote get-url origin)"
     updated="$(__string_replace 'https://github.com/' 'git@github.com:' "$current")"
+    updated="$(__string_replace 'porada/dotfiles' 'porada/domfiles' "$updated")"
 
     if [ "$current" = "$updated" ]; then
       __print_confirmation "$current"
@@ -88,3 +89,6 @@ __domfiles sync-clean
 __print_heading 'Sync complete'
 __domfiles dependencies || true
 __is_fish || echo
+
+# Record the last successful sync
+date +%s > "$DOMFILES/.lastsync"
