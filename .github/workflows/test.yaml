@@ -26,5 +26,4 @@ jobs:
       - run: sw_vers
       - run: bin/domfiles-sync
       - uses: porada/action-setup-vim-plug@v1
-      - uses: fish-actions/fisher@v1
       - run: fish --command 'domfiles sync'

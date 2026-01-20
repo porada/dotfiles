@@ -3,7 +3,9 @@
 
 # domfiles
 
-Minimal dotfiles for Apple Silicon Macs. Use them as your own starting point or keep them as-is for effortless long-term maintenance.
+Minimal dotfiles for Apple Silicon Macs.
+
+Use them as your own starting point or keep them as-is for effortless long-term maintenance.
 
 ## Install
 
@@ -27,6 +29,5 @@ You can place the repository wherever you like, but `~/.domfiles` is the recomme
 
 ## Quick Links
 
-- [`fisher`](https://github.com/jorgebucaran/fisher)
 - [`ssh`](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - [`vim-plug`](https://github.com/junegunn/vim-plug)

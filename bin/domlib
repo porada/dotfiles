@@ -250,7 +250,7 @@ __is_fish() {
 }
 
 __is_fisher_installed() {
-  fish -c 'fisher --version' > /dev/null 2>&1
+  fish --command 'fisher --version' > /dev/null 2>&1
 }
 
 __is_macos() {

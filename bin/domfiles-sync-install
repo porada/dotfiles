@@ -55,6 +55,16 @@ fi
 __ brew cleanup --scrub --quiet
 __ rm -rf "$(brew --cache)"
 
+# Install `fisher`
+if __is_callable fish && ! __is_fisher_installed; then
+  __print_heading 'Installing `fisher`'
+  curl \
+    --fail \
+    --location \
+    'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' \
+    | fish --command 'source /dev/stdin && fisher install jorgebucaran/fisher'
+fi
+
 # Set `fish` as the default shell
 fish="$(brew --prefix)/bin/fish"
 __is_shell "$fish" && exit 0
