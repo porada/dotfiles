@@ -35,7 +35,7 @@ fi
 # Update Vim plugins
 if __is_callable vim && __is_vim_plug_installed; then
   __print_heading 'Updating Vim plugins'
-  __is_ci && __ vim --version
+  __is_ci && __ vim --version | head -n 2
 
   if ! __ vim -c 'PlugUpgrade | PlugUpdate | PlugClean! | quitall'; then
     __print_error 'Update failed'

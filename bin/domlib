@@ -24,6 +24,7 @@ DOMFILES_NPM_CONFIG_DIR="$DOMFILES_CONFIG_DIR/npm"
 # Define helper variables and functions
 DOMFILES_DEFAULT_IFS="$IFS"
 DOMFILES_SSH_KEY="$HOME/.ssh/id_ed25519"
+DOMFILES_VIM_PLUG="$HOME/.vim/autoload/plug.vim"
 
 __() {
   if [ $# -eq 0 ]; then
@@ -270,7 +271,7 @@ __is_tty() {
 }
 
 __is_vim_plug_installed() {
-  [ -f "$HOME/.vim/autoload/plug.vim" ]
+  [ -s "$DOMFILES_VIM_PLUG" ] && grep -q '[^[:space:]]' "$DOMFILES_VIM_PLUG"
 }
 
 __mkdir() {

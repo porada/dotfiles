@@ -13,7 +13,7 @@ Use them as your own starting point or keep them as-is for effortless long-term 
 git clone https://github.com/porada/domfiles.git ~/.domfiles
 ```
 
-Cloning over HTTPS is recommended to avoid authentication issues on a fresh system. Once SSH is set up, the remote will be updated automatically to `git@github.com`.
+Cloning over HTTPS is recommended to avoid authentication issues on a fresh system. [Once SSH is set up](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), the remote will be updated automatically to `git@github.com`.
 
 Use `domfiles sync` to link all the dotfiles and keep everything up to date over time:
 
@@ -26,8 +26,3 @@ You can place the repository wherever you like, but `~/.domfiles` is the recomme
 ### Prerequisites
 
 [**Homebrew**](https://brew.sh) is the only required dependency. Make sure it’s installed before setting up the repository.
-
-## Quick Links
-
-- [`ssh`](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- [`vim-plug`](https://github.com/junegunn/vim-plug)
