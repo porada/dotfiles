@@ -22,7 +22,7 @@ install() {
     __ brew install --quiet "$1"
   fi
 
-  if [ "$1" = 'pnpm' ] || __is_brew_keg_only "$1"; then
+  if [ "$1" = 'pnpm' ] || [ "$1" = 'yarn' ] || __is_brew_keg_only "$1"; then
     __print_heading_dimmed "Ensuring \`$1\` is linked"
     __ brew unlink --quiet "$1" || true
     __ brew link --quiet --overwrite --force "$1"
@@ -46,7 +46,7 @@ done
 
 # Install development dependencies
 if ! __is_ci; then
-  for formula in fd ripgrep shellcheck; do
+  for formula in fd ripgrep shellcheck yarn; do
     install "$formula"
   done
 fi
