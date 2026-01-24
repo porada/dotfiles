@@ -26,3 +26,7 @@ You can place the repository wherever you like, but `~/.domfiles` is the recomme
 ### Prerequisites
 
 [**Homebrew**](https://brew.sh) is the only required dependency. Make sure it’s installed before setting up the repository.
+
+## License
+
+MIT © [Dom Porada](https://dom.engineering)

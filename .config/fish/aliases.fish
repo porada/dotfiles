@@ -6,7 +6,9 @@ abbr c code
 abbr g git
 abbr o open
 abbr k killall
+abbr n npm
 abbr p pnpm
+abbr y yarn
 
 # Show hidden files by default when using `ls`
 alias ls 'ls -A'
