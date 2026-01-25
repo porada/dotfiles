@@ -2,7 +2,8 @@
 	"files.associations": {
 		"*.pnpmrc": "properties"
 	},
-	"search.exclude": {
+	"files.exclude": {
+		".editorconfig": true,
 		"bin/git-diff-highlight": true
 	}
 }

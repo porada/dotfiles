@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@standard-config/prettier':
-        specifier: 1.5.0
-        version: 1.5.0(prettier@3.8.1)
+        specifier: 1.6.0
+        version: 1.6.0(prettier@3.8.1)
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -135,8 +135,8 @@ packages:
     resolution: {integrity: sha512-Tb5wIMvBf/nLejTQ61krK644/CEMB/cpiaIFXqGApfGqO3GwcR3qnI0DbmkFVCl2OyEp8LnLX3EkucoL0+tbFg==}
     engines: {node: ^v12.20.0 || ^14.13.0 || >=16.0.0}
 
-  '@standard-config/prettier@1.5.0':
-    resolution: {integrity: sha512-X4/d2AOBoIBKSQ1kZCANlxAh9nHA+ikMpfrfXUY9UYJb4hvrVq+ssUehHK4mVQw/hZlwrhJNUJ1gg49WgMV99Q==}
+  '@standard-config/prettier@1.6.0':
+    resolution: {integrity: sha512-bwprZp0+un3VMLpTpgQ+gVPVyXqaiqhgEokt7FFUtnLcUiu47cP8Q4YbVOuBqY/fgDO5QUeIDdsPQSV3SSZw1Q==}
     engines: {node: '>=22'}
     peerDependencies:
       prettier: '>=3.7'
@@ -279,8 +279,8 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  prettier-plugin-expand-json@1.0.1:
-    resolution: {integrity: sha512-12DzyrHqtU2wCkmpZrh63NthNwxP0hh0R8WJ9QafJ67h2HR5nEBATeNX5JTPE31gxCwMPXDQYA9ZEajx0n6RkQ==}
+  prettier-plugin-expand-json@1.0.2:
+    resolution: {integrity: sha512-5ZtlA1aDpUxQ63OnKdkmVwOUEBbw0w5O8B4rCLcEOvKC0xEq1OPFeqtlh0LX18nLolmfC8BnN9pKEsv7ShyqKQ==}
     engines: {node: '>=20'}
     peerDependencies:
       prettier: '>=3'
@@ -458,11 +458,11 @@ snapshots:
 
   '@reteps/dockerfmt@0.3.6': {}
 
-  '@standard-config/prettier@1.5.0(prettier@3.8.1)':
+  '@standard-config/prettier@1.6.0(prettier@3.8.1)':
     dependencies:
       '@prettier/plugin-oxc': 0.1.3
       prettier: 3.8.1
-      prettier-plugin-expand-json: 1.0.1(prettier@3.8.1)
+      prettier-plugin-expand-json: 1.0.2(prettier@3.8.1)
       prettier-plugin-packagejson: 3.0.0(prettier@3.8.1)
       prettier-plugin-sh: 0.18.0(prettier@3.8.1)
       prettier-plugin-sort-json: 4.2.0(prettier@3.8.1)
@@ -598,7 +598,7 @@ snapshots:
 
   pidtree@0.6.0: {}
 
-  prettier-plugin-expand-json@1.0.1(prettier@3.8.1):
+  prettier-plugin-expand-json@1.0.2(prettier@3.8.1):
     dependencies:
       jsonc-parser: 3.3.1
       prettier: 3.8.1
